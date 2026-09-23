@@ -287,6 +287,24 @@ select {
   width: 100% !important;
   height: 100% !important;
 }
+.source-line,
+.source-list {
+  color: var(--muted);
+  font-size: 0.88rem;
+}
+.source-line {
+  margin: 0.65rem 0 0;
+}
+.source-line a,
+.source-list a {
+  font-weight: 600;
+}
+.source-list {
+  margin: 0.5rem 0 0;
+  padding-left: 1.2rem;
+}
+.source-list li { margin: 0.55rem 0; }
+
 .chart-note {
   font-size: 0.82rem;
   color: var(--muted);
@@ -428,6 +446,32 @@ footer.site {
 }
 .sources-body p { color: var(--muted); }
 .sources-body strong { color: var(--text); }
+
+.notice {
+  background: #fffbeb;
+  border: 1px solid #e6d3a1;
+  color: #92400e;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  font-weight: 600;
+}
+.glossary {
+  display: grid;
+  gap: 0.75rem;
+}
+.glossary article {
+  background: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.85rem 1rem;
+}
+.glossary h3 {
+  margin: 0 0 0.35rem;
+  font-size: 1rem;
+  color: var(--heading);
+}
+.glossary p { margin: 0.35rem 0; }
+.glossary .caveat { color: #92400e; }
 
 .loading { color: var(--muted); font-style: italic; }
 .error {
