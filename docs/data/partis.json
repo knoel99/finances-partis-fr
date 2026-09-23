@@ -1,0 +1,523 @@
+{
+  "meta": {
+    "title": "Partis politiques FR — présidentielles 2017/2022/2027",
+    "generated_at": "2026-09-23 (Europe/Paris, UTC+2)",
+    "rule": "Aucun chiffre inventé. Candidats 2027 = annonces presse/sites, NON officiels Conseil constitutionnel.",
+    "candidats_officiels": {
+      "2017": {
+        "source": "https://presidentielle2017.conseil-constitutionnel.fr/liste-officielle-des-candidats-a-lelection-presidentielle/",
+        "decision": "Conseil constitutionnel 18 mars 2017",
+        "liste": [
+          {
+            "nom": "Nicolas Dupont-Aignan",
+            "parti_id": "dlf"
+          },
+          {
+            "nom": "Marine Le Pen",
+            "parti_id": "rn"
+          },
+          {
+            "nom": "Emmanuel Macron",
+            "parti_id": "renaissance"
+          },
+          {
+            "nom": "Benoît Hamon",
+            "parti_id": "ps"
+          },
+          {
+            "nom": "Nathalie Arthaud",
+            "parti_id": "lo"
+          },
+          {
+            "nom": "Philippe Poutou",
+            "parti_id": null,
+            "etiquette": "NPA",
+            "note": "Comptes NPA non consolidés dans ce dossier"
+          },
+          {
+            "nom": "Jacques Cheminade",
+            "parti_id": "sp"
+          },
+          {
+            "nom": "Jean Lassalle",
+            "parti_id": "resistons"
+          },
+          {
+            "nom": "Jean-Luc Mélenchon",
+            "parti_id": "lfi"
+          },
+          {
+            "nom": "François Asselineau",
+            "parti_id": "upr"
+          },
+          {
+            "nom": "François Fillon",
+            "parti_id": "lr"
+          }
+        ]
+      },
+      "2022": {
+        "source": "https://www.conseil-constitutionnel.fr/decision/2022/2022187PDR.htm",
+        "decision": "Décision n° 2022-187 PDR du 7 mars 2022",
+        "liste": [
+          {
+            "nom": "Nathalie Arthaud",
+            "parti_id": "lo"
+          },
+          {
+            "nom": "Fabien Roussel",
+            "parti_id": "pcf"
+          },
+          {
+            "nom": "Emmanuel Macron",
+            "parti_id": "renaissance"
+          },
+          {
+            "nom": "Jean Lassalle",
+            "parti_id": "resistons"
+          },
+          {
+            "nom": "Marine Le Pen",
+            "parti_id": "rn"
+          },
+          {
+            "nom": "Éric Zemmour",
+            "parti_id": "reconquete"
+          },
+          {
+            "nom": "Jean-Luc Mélenchon",
+            "parti_id": "lfi"
+          },
+          {
+            "nom": "Anne Hidalgo",
+            "parti_id": "ps"
+          },
+          {
+            "nom": "Yannick Jadot",
+            "parti_id": "eelv"
+          },
+          {
+            "nom": "Valérie Pécresse",
+            "parti_id": "lr"
+          },
+          {
+            "nom": "Philippe Poutou",
+            "parti_id": null,
+            "etiquette": "NPA"
+          },
+          {
+            "nom": "Nicolas Dupont-Aignan",
+            "parti_id": "dlf"
+          }
+        ]
+      }
+    }
+  },
+  "partis": [
+    {
+      "id": "upr",
+      "code_cnccfp": "806",
+      "noms_historiques": [
+        "Union Populaire Républicaine",
+        "UPR"
+      ],
+      "candidats_2017": [
+        {
+          "nom": "François Asselineau",
+          "etiquette": "UPR",
+          "source": "https://presidentielle2017.conseil-constitutionnel.fr/liste-officielle-des-candidats-a-lelection-presidentielle/"
+        }
+      ],
+      "candidats_2022": [],
+      "candidats_2027": [
+        {
+          "nom": "François Asselineau",
+          "statut": "prévisionnel / non officiel",
+          "annonce": "Campagne lancée 21 mars 2026 (site UPR)",
+          "sources": [
+            "https://upr.fr/militantisme/19-ans-de-lupr-francois-asselineau-lance-sa-campagne-presidentielle-2027-et-nomme-marc-parigot-directeur-de-campagne/",
+            "https://www.touteleurope.eu/vie-politique-des-etats-membres/presidentielle-2027-qui-sont-les-candidats-deja-declares/"
+          ]
+        }
+      ],
+      "notes": "Référentiel du dossier. Claim « zéro dette / financement cotisations » : emprunts = 0 sur 2017-2024 ; dettes d'exploitation (fournisseurs/fiscales) non nulles ; recettes = cotisations + dons (aide publique quasi nulle)."
+    },
+    {
+      "id": "rn",
+      "code_cnccfp": "40",
+      "noms_historiques": [
+        "Front National (FN)",
+        "Rassemblement National (RN)"
+      ],
+      "candidats_2017": [
+        {
+          "nom": "Marine Le Pen",
+          "etiquette": "FN",
+          "source": "https://presidentielle2017.conseil-constitutionnel.fr/liste-officielle-des-candidats-a-lelection-presidentielle/"
+        }
+      ],
+      "candidats_2022": [
+        {
+          "nom": "Marine Le Pen",
+          "etiquette": "RN",
+          "source": "https://www.conseil-constitutionnel.fr/decision/2022/2022187PDR.htm"
+        }
+      ],
+      "candidats_2027": [
+        {
+          "nom": "Marine Le Pen",
+          "statut": "prévisionnel / non officiel",
+          "annonce": "Annonce 7 juillet 2026 (Touteleurope)",
+          "sources": [
+            "https://www.touteleurope.eu/vie-politique-des-etats-membres/presidentielle-2027-qui-sont-les-candidats-deja-declares/"
+          ]
+        }
+      ],
+      "notes": "Renommage FN→RN (2018). Code CNCCFP 40 conservé."
+    },
+    {
+      "id": "lr",
+      "code_cnccfp": "401",
+      "noms_historiques": [
+        "Les Républicains",
+        "LR"
+      ],
+      "candidats_2017": [
+        {
+          "nom": "François Fillon",
+          "etiquette": "LR",
+          "source": "https://presidentielle2017.conseil-constitutionnel.fr/liste-officielle-des-candidats-a-lelection-presidentielle/"
+        }
+      ],
+      "candidats_2022": [
+        {
+          "nom": "Valérie Pécresse",
+          "etiquette": "LR",
+          "source": "https://www.conseil-constitutionnel.fr/decision/2022/2022187PDR.htm"
+        }
+      ],
+      "candidats_2027": [
+        {
+          "nom": "Bruno Retailleau",
+          "statut": "prévisionnel / non officiel",
+          "annonce": "Désigné par adhérents LR 19 avril 2026 (73,8%)",
+          "sources": [
+            "https://www.touteleurope.eu/vie-politique-des-etats-membres/presidentielle-2027-qui-sont-les-candidats-deja-declares/"
+          ]
+        }
+      ],
+      "notes": "Autres candidatures droite annoncées (Bertrand, Lisnard) hors ticket unique."
+    },
+    {
+      "id": "ps",
+      "code_cnccfp": "76",
+      "noms_historiques": [
+        "Parti socialiste",
+        "PS"
+      ],
+      "candidats_2017": [
+        {
+          "nom": "Benoît Hamon",
+          "etiquette": "PS",
+          "source": "https://presidentielle2017.conseil-constitutionnel.fr/liste-officielle-des-candidats-a-lelection-presidentielle/"
+        }
+      ],
+      "candidats_2022": [
+        {
+          "nom": "Anne Hidalgo",
+          "etiquette": "PS",
+          "source": "https://www.conseil-constitutionnel.fr/decision/2022/2022187PDR.htm"
+        }
+      ],
+      "candidats_2027": [
+        {
+          "nom": "(primaire Choisir 2027)",
+          "statut": "prévisionnel / non officiel",
+          "annonce": "Primaire PS/Place publique 9-17 oct. 2026",
+          "sources": [
+            "https://www.touteleurope.eu/vie-politique-des-etats-membres/presidentielle-2027-qui-sont-les-candidats-deja-declares/"
+          ]
+        }
+      ],
+      "notes": "Candidat officiel 2027 non désigné au 2026-09-23."
+    },
+    {
+      "id": "lfi",
+      "code_cnccfp": "976",
+      "noms_historiques": [
+        "La France Insoumise",
+        "LFI"
+      ],
+      "candidats_2017": [
+        {
+          "nom": "Jean-Luc Mélenchon",
+          "etiquette": "LFI",
+          "source": "https://presidentielle2017.conseil-constitutionnel.fr/liste-officielle-des-candidats-a-lelection-presidentielle/"
+        }
+      ],
+      "candidats_2022": [
+        {
+          "nom": "Jean-Luc Mélenchon",
+          "etiquette": "LFI",
+          "source": "https://www.conseil-constitutionnel.fr/decision/2022/2022187PDR.htm"
+        }
+      ],
+      "candidats_2027": [
+        {
+          "nom": "Jean-Luc Mélenchon",
+          "statut": "prévisionnel / non officiel",
+          "annonce": "Annonce 3 mai 2026",
+          "sources": [
+            "https://www.touteleurope.eu/vie-politique-des-etats-membres/presidentielle-2027-qui-sont-les-candidats-deja-declares/"
+          ]
+        }
+      ],
+      "notes": "Cotisations adhérents souvent 0 dans CSV CNCCFP — ne pas interpréter comme absence d'adhérents."
+    },
+    {
+      "id": "renaissance",
+      "code_cnccfp": "910",
+      "noms_historiques": [
+        "La République En Marche",
+        "LREM",
+        "En Marche",
+        "Renaissance"
+      ],
+      "candidats_2017": [
+        {
+          "nom": "Emmanuel Macron",
+          "etiquette": "EM / LREM",
+          "source": "https://presidentielle2017.conseil-constitutionnel.fr/liste-officielle-des-candidats-a-lelection-presidentielle/"
+        }
+      ],
+      "candidats_2022": [
+        {
+          "nom": "Emmanuel Macron",
+          "etiquette": "LREM / Ensemble",
+          "source": "https://www.conseil-constitutionnel.fr/decision/2022/2022187PDR.htm"
+        }
+      ],
+      "candidats_2027": [
+        {
+          "nom": "Gabriel Attal",
+          "statut": "prévisionnel / non officiel",
+          "annonce": "Officialisé 22 mai 2026",
+          "sources": [
+            "https://www.touteleurope.eu/vie-politique-des-etats-membres/presidentielle-2027-qui-sont-les-candidats-deja-declares/"
+          ]
+        }
+      ],
+      "notes": "Code 910. Structure 718 « La France En Marche » distincte en 2017."
+    },
+    {
+      "id": "eelv",
+      "code_cnccfp": "104",
+      "noms_historiques": [
+        "Europe Écologie Les Verts",
+        "EELV",
+        "Les Écologistes"
+      ],
+      "candidats_2017": [],
+      "candidats_2022": [
+        {
+          "nom": "Yannick Jadot",
+          "etiquette": "EELV",
+          "source": "https://www.conseil-constitutionnel.fr/decision/2022/2022187PDR.htm"
+        }
+      ],
+      "candidats_2027": [
+        {
+          "nom": "Marine Tondelier",
+          "statut": "prévisionnel / non officiel",
+          "annonce": "Candidature autonome validée par le parti",
+          "sources": [
+            "https://www.touteleurope.eu/vie-politique-des-etats-membres/presidentielle-2027-qui-sont-les-candidats-deja-declares/"
+          ]
+        }
+      ],
+      "notes": "Pas de candidat écologiste officiel distinct en 2017."
+    },
+    {
+      "id": "pcf",
+      "code_cnccfp": "60",
+      "noms_historiques": [
+        "Parti communiste français",
+        "PCF"
+      ],
+      "candidats_2017": [],
+      "candidats_2022": [
+        {
+          "nom": "Fabien Roussel",
+          "etiquette": "PCF",
+          "source": "https://www.conseil-constitutionnel.fr/decision/2022/2022187PDR.htm"
+        }
+      ],
+      "candidats_2027": [
+        {
+          "nom": "Fabien Roussel",
+          "statut": "prévisionnel / non officiel",
+          "annonce": "Officialisé 6 sept. 2026 (vote militants ~72%)",
+          "sources": [
+            "https://www.france24.com/fr/france/20260906-pr%C3%A9sidentielle-2027-fabien-roussel-officialise-sa-candidature-avec-le-pcf"
+          ]
+        }
+      ],
+      "notes": "2017: pas de candidat PCF propre (soutien Mélenchon)."
+    },
+    {
+      "id": "dlf",
+      "code_cnccfp": "410",
+      "noms_historiques": [
+        "Debout la France",
+        "DLF"
+      ],
+      "candidats_2017": [
+        {
+          "nom": "Nicolas Dupont-Aignan",
+          "etiquette": "DLF",
+          "source": "https://presidentielle2017.conseil-constitutionnel.fr/liste-officielle-des-candidats-a-lelection-presidentielle/"
+        }
+      ],
+      "candidats_2022": [
+        {
+          "nom": "Nicolas Dupont-Aignan",
+          "etiquette": "DLF",
+          "source": "https://www.conseil-constitutionnel.fr/decision/2022/2022187PDR.htm"
+        }
+      ],
+      "candidats_2027": [
+        {
+          "nom": "Nicolas Dupont-Aignan",
+          "statut": "prévisionnel / non officiel",
+          "annonce": "Candidature annoncée",
+          "sources": [
+            "https://www.touteleurope.eu/vie-politique-des-etats-membres/presidentielle-2027-qui-sont-les-candidats-deja-declares/"
+          ]
+        }
+      ],
+      "notes": ""
+    },
+    {
+      "id": "reconquete",
+      "code_cnccfp": "1307",
+      "noms_historiques": [
+        "Reconquête !"
+      ],
+      "candidats_2017": [],
+      "candidats_2022": [
+        {
+          "nom": "Éric Zemmour",
+          "etiquette": "Reconquête",
+          "source": "https://www.conseil-constitutionnel.fr/decision/2022/2022187PDR.htm"
+        }
+      ],
+      "candidats_2027": [
+        {
+          "nom": "Éric Zemmour",
+          "statut": "prévisionnel / non officiel",
+          "annonce": "Confirmation BFMTV 17 sept. 2026",
+          "sources": [
+            "https://www.france24.com/fr/france/20260917-france-extreme-droite-eric-zemmour-confirme-candidature-pr%C3%A9sidentielle-immigration"
+          ]
+        }
+      ],
+      "notes": "Créé 2021 ; comptes dès 2021."
+    },
+    {
+      "id": "modem",
+      "code_cnccfp": "529",
+      "noms_historiques": [
+        "Mouvement démocrate",
+        "MoDem"
+      ],
+      "candidats_2017": [],
+      "candidats_2022": [],
+      "candidats_2027": [],
+      "notes": "Allié LREM/Renaissance."
+    },
+    {
+      "id": "lo",
+      "code_cnccfp": "96",
+      "noms_historiques": [
+        "Lutte ouvrière",
+        "LO"
+      ],
+      "candidats_2017": [
+        {
+          "nom": "Nathalie Arthaud",
+          "etiquette": "LO",
+          "source": "https://presidentielle2017.conseil-constitutionnel.fr/liste-officielle-des-candidats-a-lelection-presidentielle/"
+        }
+      ],
+      "candidats_2022": [
+        {
+          "nom": "Nathalie Arthaud",
+          "etiquette": "LO",
+          "source": "https://www.conseil-constitutionnel.fr/decision/2022/2022187PDR.htm"
+        }
+      ],
+      "candidats_2027": [
+        {
+          "nom": "Nathalie Arthaud",
+          "statut": "prévisionnel / non officiel",
+          "annonce": "Candidature annoncée",
+          "sources": [
+            "https://www.touteleurope.eu/vie-politique-des-etats-membres/presidentielle-2027-qui-sont-les-candidats-deja-declares/"
+          ]
+        }
+      ],
+      "notes": ""
+    },
+    {
+      "id": "generations",
+      "code_cnccfp": "945",
+      "noms_historiques": [
+        "Génération.s"
+      ],
+      "candidats_2017": [],
+      "candidats_2022": [],
+      "candidats_2027": [],
+      "notes": "Post-2017 Hamon ; pas de ligne 2017 fiable sous ce nom."
+    },
+    {
+      "id": "sp",
+      "code_cnccfp": "210",
+      "noms_historiques": [
+        "Solidarité et Progrès"
+      ],
+      "candidats_2017": [
+        {
+          "nom": "Jacques Cheminade",
+          "etiquette": "Solidarité et Progrès",
+          "source": "https://presidentielle2017.conseil-constitutionnel.fr/liste-officielle-des-candidats-a-lelection-presidentielle/"
+        }
+      ],
+      "candidats_2022": [],
+      "candidats_2027": [],
+      "notes": ""
+    },
+    {
+      "id": "resistons",
+      "code_cnccfp": "975",
+      "noms_historiques": [
+        "Résistons !"
+      ],
+      "candidats_2017": [
+        {
+          "nom": "Jean Lassalle",
+          "etiquette": "Résistons !",
+          "source": "https://presidentielle2017.conseil-constitutionnel.fr/liste-officielle-des-candidats-a-lelection-presidentielle/"
+        }
+      ],
+      "candidats_2022": [
+        {
+          "nom": "Jean Lassalle",
+          "etiquette": "Résistons !",
+          "source": "https://www.conseil-constitutionnel.fr/decision/2022/2022187PDR.htm"
+        }
+      ],
+      "candidats_2027": [],
+      "notes": "Candidature 2027 non confirmée dans sources consultées au 2026-09-23."
+    }
+  ]
+}

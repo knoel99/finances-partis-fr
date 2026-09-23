@@ -1,0 +1,1151 @@
+{
+  "meta": {
+    "description": "debt_eur = emprunts financiers. debt_total_bilan_III_eur = Total_III passif (incl. fournisseurs).",
+    "generated_at": "2026-09-23 (Europe/Paris, UTC+2)",
+    "n_parties": 15,
+    "n_debt_points": 115,
+    "parties_with_ge3": 15
+  },
+  "parties": [
+    {
+      "party_id": "dlf",
+      "code_cnccfp": "410",
+      "n_points": 8,
+      "series": [
+        {
+          "year": 2017,
+          "debt_eur": 81242.0,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 1727271.0,
+          "libelle_exact": "2017: Emprunts établissements de crédit + Emprunts et dettes financières divers",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20190111-135832/comptes-partis-exercice-2017.ods",
+          "confidence": 4
+        },
+        {
+          "year": 2018,
+          "debt_eur": 0,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 1363730.0,
+          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20200902-121107/comptes-partis-exercice-2018.xlsx",
+          "confidence": 5
+        },
+        {
+          "year": 2019,
+          "debt_eur": 0,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 1101821.11,
+          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20230302-161340/comptes-partis-exercice-2019.xlsx",
+          "confidence": 5
+        },
+        {
+          "year": 2020,
+          "debt_eur": 24844.22,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 1001100.47,
+          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20220317-163630/comptes-partis-exercice-2020.xlsx",
+          "confidence": 5
+        },
+        {
+          "year": 2021,
+          "debt_eur": 328480.0,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 996810.0,
+          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20260210-151846/comptes-partis-exercice-2021.csv",
+          "confidence": 5
+        },
+        {
+          "year": 2022,
+          "debt_eur": 445596.6,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 793625.14,
+          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20260210-121141/comptes-partis-exercice-2022.csv",
+          "confidence": 5
+        },
+        {
+          "year": 2023,
+          "debt_eur": 233894.5,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 270022.3501,
+          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20260210-120352/comptes-partis-exercice-2023.csv",
+          "confidence": 5
+        },
+        {
+          "year": 2024,
+          "debt_eur": 432885.49,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 634662.75,
+          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20260210-110641/comptes-partis-exercice-2024.csv",
+          "confidence": 5
+        }
+      ]
+    },
+    {
+      "party_id": "eelv",
+      "code_cnccfp": "104",
+      "n_points": 8,
+      "series": [
+        {
+          "year": 2017,
+          "debt_eur": 785528.0,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 1959387.0,
+          "libelle_exact": "2017: Emprunts établissements de crédit + Emprunts et dettes financières divers",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20190111-135832/comptes-partis-exercice-2017.ods",
+          "confidence": 4
+        },
+        {
+          "year": 2018,
+          "debt_eur": 633249.0,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 1193441.0,
+          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20200902-121107/comptes-partis-exercice-2018.xlsx",
+          "confidence": 5
+        },
+        {
+          "year": 2019,
+          "debt_eur": 538506.0,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 1310887.0,
+          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20230302-161340/comptes-partis-exercice-2019.xlsx",
+          "confidence": 5
+        },
+        {
+          "year": 2020,
+          "debt_eur": 470021.03,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 916777.3600000001,
+          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20220317-163630/comptes-partis-exercice-2020.xlsx",
+          "confidence": 5
+        },
+        {
+          "year": 2021,
+          "debt_eur": 7300031.77,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 7823245.55,
+          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20260210-151846/comptes-partis-exercice-2021.csv",
+          "confidence": 5
+        },
+        {
+          "year": 2022,
+          "debt_eur": 7176528.0,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 8318944.0,
+          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20260210-121141/comptes-partis-exercice-2022.csv",
+          "confidence": 5
+        },
+        {
+          "year": 2023,
+          "debt_eur": 1020819.0,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 2007873.0,
+          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20260210-120352/comptes-partis-exercice-2023.csv",
+          "confidence": 5
+        },
+        {
+          "year": 2024,
+          "debt_eur": 5549484.0,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 7912847.0,
+          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20260210-110641/comptes-partis-exercice-2024.csv",
+          "confidence": 5
+        }
+      ]
+    },
+    {
+      "party_id": "generations",
+      "code_cnccfp": "945",
+      "n_points": 7,
+      "series": [
+        {
+          "year": 2018,
+          "debt_eur": 0,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 76736.0,
+          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20200902-121107/comptes-partis-exercice-2018.xlsx",
+          "confidence": 5
+        },
+        {
+          "year": 2019,
+          "debt_eur": 250000.0,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 289518.75,
+          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20230302-161340/comptes-partis-exercice-2019.xlsx",
+          "confidence": 5
+        },
+        {
+          "year": 2020,
+          "debt_eur": 0,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 40772.0,
+          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20220317-163630/comptes-partis-exercice-2020.xlsx",
+          "confidence": 5
+        },
+        {
+          "year": 2021,
+          "debt_eur": 0,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 44311.11,
+          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20260210-151846/comptes-partis-exercice-2021.csv",
+          "confidence": 5
+        },
+        {
+          "year": 2022,
+          "debt_eur": 0,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 78938.09,
+          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20260210-121141/comptes-partis-exercice-2022.csv",
+          "confidence": 5
+        },
+        {
+          "year": 2023,
+          "debt_eur": 0,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 59088.96,
+          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20260210-120352/comptes-partis-exercice-2023.csv",
+          "confidence": 5
+        },
+        {
+          "year": 2024,
+          "debt_eur": 0,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 64042.43,
+          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20260210-110641/comptes-partis-exercice-2024.csv",
+          "confidence": 5
+        }
+      ]
+    },
+    {
+      "party_id": "lfi",
+      "code_cnccfp": "976",
+      "n_points": 8,
+      "series": [
+        {
+          "year": 2017,
+          "debt_eur": 350000.0,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 1010698.0,
+          "libelle_exact": "2017: Emprunts établissements de crédit + Emprunts et dettes financières divers",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20190111-135832/comptes-partis-exercice-2017.ods",
+          "confidence": 4
+        },
+        {
+          "year": 2018,
+          "debt_eur": 0,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 284706.0,
+          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20200902-121107/comptes-partis-exercice-2018.xlsx",
+          "confidence": 5
+        },
+        {
+          "year": 2019,
+          "debt_eur": 0,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 200566.32,
+          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20230302-161340/comptes-partis-exercice-2019.xlsx",
+          "confidence": 5
+        },
+        {
+          "year": 2020,
+          "debt_eur": 0,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 332658.1566666667,
+          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20220317-163630/comptes-partis-exercice-2020.xlsx",
+          "confidence": 5
+        },
+        {
+          "year": 2021,
+          "debt_eur": 0,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 353564.08,
+          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20260210-151846/comptes-partis-exercice-2021.csv",
+          "confidence": 5
+        },
+        {
+          "year": 2022,
+          "debt_eur": 6400000.0,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 6967571.3,
+          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20260210-121141/comptes-partis-exercice-2022.csv",
+          "confidence": 5
+        },
+        {
+          "year": 2023,
+          "debt_eur": 0,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 452805.37,
+          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20260210-120352/comptes-partis-exercice-2023.csv",
+          "confidence": 5
+        },
+        {
+          "year": 2024,
+          "debt_eur": 4446005.0,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 5890845.0,
+          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20260210-110641/comptes-partis-exercice-2024.csv",
+          "confidence": 5
+        }
+      ]
+    },
+    {
+      "party_id": "lo",
+      "code_cnccfp": "96",
+      "n_points": 8,
+      "series": [
+        {
+          "year": 2017,
+          "debt_eur": 262.0,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 161810.0,
+          "libelle_exact": "2017: Emprunts établissements de crédit + Emprunts et dettes financières divers",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20190111-135832/comptes-partis-exercice-2017.ods",
+          "confidence": 4
+        },
+        {
+          "year": 2018,
+          "debt_eur": 0,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 167041.0,
+          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20200902-121107/comptes-partis-exercice-2018.xlsx",
+          "confidence": 5
+        },
+        {
+          "year": 2019,
+          "debt_eur": 560525.0,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 836919.0,
+          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20230302-161340/comptes-partis-exercice-2019.xlsx",
+          "confidence": 5
+        },
+        {
+          "year": 2020,
+          "debt_eur": 0,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 269117.0,
+          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20220317-163630/comptes-partis-exercice-2020.xlsx",
+          "confidence": 5
+        },
+        {
+          "year": 2021,
+          "debt_eur": 277.0,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 234162.0,
+          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20260210-151846/comptes-partis-exercice-2021.csv",
+          "confidence": 5
+        },
+        {
+          "year": 2022,
+          "debt_eur": 0,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 229412.0,
+          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20260210-121141/comptes-partis-exercice-2022.csv",
+          "confidence": 5
+        },
+        {
+          "year": 2023,
+          "debt_eur": 0,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 219372.0,
+          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20260210-120352/comptes-partis-exercice-2023.csv",
+          "confidence": 5
+        },
+        {
+          "year": 2024,
+          "debt_eur": 0,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 232375.0,
+          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20260210-110641/comptes-partis-exercice-2024.csv",
+          "confidence": 5
+        }
+      ]
+    },
+    {
+      "party_id": "lr",
+      "code_cnccfp": "401",
+      "n_points": 8,
+      "series": [
+        {
+          "year": 2017,
+          "debt_eur": 54907873.0,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 61300203.0,
+          "libelle_exact": "2017: Emprunts établissements de crédit + Emprunts et dettes financières divers",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20190111-135832/comptes-partis-exercice-2017.ods",
+          "confidence": 4
+        },
+        {
+          "year": 2018,
+          "debt_eur": 50083964.0,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 55609241.0,
+          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20200902-121107/comptes-partis-exercice-2018.xlsx",
+          "confidence": 5
+        },
+        {
+          "year": 2019,
+          "debt_eur": 13535896.5,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 18930225.1,
+          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20230302-161340/comptes-partis-exercice-2019.xlsx",
+          "confidence": 5
+        },
+        {
+          "year": 2020,
+          "debt_eur": 12904403.56,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 17466747.040000003,
+          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20220317-163630/comptes-partis-exercice-2020.xlsx",
+          "confidence": 5
+        },
+        {
+          "year": 2021,
+          "debt_eur": 12796222.45,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 18949509.04,
+          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20260210-151846/comptes-partis-exercice-2021.csv",
+          "confidence": 5
+        },
+        {
+          "year": 2022,
+          "debt_eur": 12687515.81,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 16954954.0,
+          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20260210-121141/comptes-partis-exercice-2022.csv",
+          "confidence": 5
+        },
+        {
+          "year": 2023,
+          "debt_eur": 11233889.0,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 15318577.0,
+          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20260210-120352/comptes-partis-exercice-2023.csv",
+          "confidence": 5
+        },
+        {
+          "year": 2024,
+          "debt_eur": 8708725.0,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 12292671.0,
+          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20260210-110641/comptes-partis-exercice-2024.csv",
+          "confidence": 5
+        }
+      ]
+    },
+    {
+      "party_id": "modem",
+      "code_cnccfp": "529",
+      "n_points": 8,
+      "series": [
+        {
+          "year": 2017,
+          "debt_eur": 181026.0,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 1794409.0,
+          "libelle_exact": "2017: Emprunts établissements de crédit + Emprunts et dettes financières divers",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20190111-135832/comptes-partis-exercice-2017.ods",
+          "confidence": 4
+        },
+        {
+          "year": 2018,
+          "debt_eur": 1103058.0,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 1426642.0,
+          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20200902-121107/comptes-partis-exercice-2018.xlsx",
+          "confidence": 5
+        },
+        {
+          "year": 2019,
+          "debt_eur": 2340033.0,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 2823209.0,
+          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20230302-161340/comptes-partis-exercice-2019.xlsx",
+          "confidence": 5
+        },
+        {
+          "year": 2020,
+          "debt_eur": 1043905.3400000001,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 1598254.09,
+          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20220317-163630/comptes-partis-exercice-2020.xlsx",
+          "confidence": 5
+        },
+        {
+          "year": 2021,
+          "debt_eur": 844700.66,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 1413871.72,
+          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20260210-151846/comptes-partis-exercice-2021.csv",
+          "confidence": 5
+        },
+        {
+          "year": 2022,
+          "debt_eur": 875752.0,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 1374135.0,
+          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20260210-121141/comptes-partis-exercice-2022.csv",
+          "confidence": 5
+        },
+        {
+          "year": 2023,
+          "debt_eur": 449626.9,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 1395891.24,
+          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20260210-120352/comptes-partis-exercice-2023.csv",
+          "confidence": 5
+        },
+        {
+          "year": 2024,
+          "debt_eur": 37050.0,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 557173.0,
+          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20260210-110641/comptes-partis-exercice-2024.csv",
+          "confidence": 5
+        }
+      ]
+    },
+    {
+      "party_id": "pcf",
+      "code_cnccfp": "60",
+      "n_points": 8,
+      "series": [
+        {
+          "year": 2017,
+          "debt_eur": 823887.0,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 7761767.0,
+          "libelle_exact": "2017: Emprunts établissements de crédit + Emprunts et dettes financières divers",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20190111-135832/comptes-partis-exercice-2017.ods",
+          "confidence": 4
+        },
+        {
+          "year": 2018,
+          "debt_eur": 531021.0,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 6366842.0,
+          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20200902-121107/comptes-partis-exercice-2018.xlsx",
+          "confidence": 5
+        },
+        {
+          "year": 2019,
+          "debt_eur": 1105095.0,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 6162373.0,
+          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20230302-161340/comptes-partis-exercice-2019.xlsx",
+          "confidence": 5
+        },
+        {
+          "year": 2020,
+          "debt_eur": 1378266.31,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 6436032.330000002,
+          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20220317-163630/comptes-partis-exercice-2020.xlsx",
+          "confidence": 5
+        },
+        {
+          "year": 2021,
+          "debt_eur": 1949504.79,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 7545988.24,
+          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20260210-151846/comptes-partis-exercice-2021.csv",
+          "confidence": 5
+        },
+        {
+          "year": 2022,
+          "debt_eur": 1472615.0,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 6082837.0,
+          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20260210-121141/comptes-partis-exercice-2022.csv",
+          "confidence": 5
+        },
+        {
+          "year": 2023,
+          "debt_eur": 1180831.21,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 5569515.65,
+          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20260210-120352/comptes-partis-exercice-2023.csv",
+          "confidence": 5
+        },
+        {
+          "year": 2024,
+          "debt_eur": 1223429.76,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 5297288.42,
+          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20260210-110641/comptes-partis-exercice-2024.csv",
+          "confidence": 5
+        }
+      ]
+    },
+    {
+      "party_id": "ps",
+      "code_cnccfp": "76",
+      "n_points": 8,
+      "series": [
+        {
+          "year": 2017,
+          "debt_eur": 32945295.0,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 46038836.0,
+          "libelle_exact": "2017: Emprunts établissements de crédit + Emprunts et dettes financières divers",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20190111-135832/comptes-partis-exercice-2017.ods",
+          "confidence": 4
+        },
+        {
+          "year": 2018,
+          "debt_eur": 1667078.0,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 11351348.0,
+          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20200902-121107/comptes-partis-exercice-2018.xlsx",
+          "confidence": 5
+        },
+        {
+          "year": 2019,
+          "debt_eur": 3521001.34,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 10444872.440644003,
+          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20230302-161340/comptes-partis-exercice-2019.xlsx",
+          "confidence": 5
+        },
+        {
+          "year": 2020,
+          "debt_eur": 1180347.0,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 8204926.0,
+          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20220317-163630/comptes-partis-exercice-2020.xlsx",
+          "confidence": 5
+        },
+        {
+          "year": 2021,
+          "debt_eur": 1183180.0,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 7183232.0,
+          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20260210-151846/comptes-partis-exercice-2021.csv",
+          "confidence": 5
+        },
+        {
+          "year": 2022,
+          "debt_eur": 1472879.0,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 6562628.0,
+          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20260210-121141/comptes-partis-exercice-2022.csv",
+          "confidence": 5
+        },
+        {
+          "year": 2023,
+          "debt_eur": 842505.0,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 4866896.0,
+          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20260210-120352/comptes-partis-exercice-2023.csv",
+          "confidence": 5
+        },
+        {
+          "year": 2024,
+          "debt_eur": 3474408.0,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 7911998.0,
+          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20260210-110641/comptes-partis-exercice-2024.csv",
+          "confidence": 5
+        }
+      ]
+    },
+    {
+      "party_id": "reconquete",
+      "code_cnccfp": "1307",
+      "n_points": 4,
+      "series": [
+        {
+          "year": 2021,
+          "debt_eur": 1805731.0,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 2587764.82,
+          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20260210-151846/comptes-partis-exercice-2021.csv",
+          "confidence": 5
+        },
+        {
+          "year": 2022,
+          "debt_eur": 3709012.14,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 4435318.58,
+          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20260210-121141/comptes-partis-exercice-2022.csv",
+          "confidence": 5
+        },
+        {
+          "year": 2023,
+          "debt_eur": 503277.08,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 1255185.64,
+          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20260210-120352/comptes-partis-exercice-2023.csv",
+          "confidence": 5
+        },
+        {
+          "year": 2024,
+          "debt_eur": 544430.64,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 1387017.68,
+          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20260210-110641/comptes-partis-exercice-2024.csv",
+          "confidence": 5
+        }
+      ]
+    },
+    {
+      "party_id": "renaissance",
+      "code_cnccfp": "910",
+      "n_points": 8,
+      "series": [
+        {
+          "year": 2017,
+          "debt_eur": 2451778.0,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 5020225.0,
+          "libelle_exact": "2017: Emprunts établissements de crédit + Emprunts et dettes financières divers",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20190111-135832/comptes-partis-exercice-2017.ods",
+          "confidence": 4
+        },
+        {
+          "year": 2018,
+          "debt_eur": 5470.0,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 3177382.0,
+          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20200902-121107/comptes-partis-exercice-2018.xlsx",
+          "confidence": 5
+        },
+        {
+          "year": 2019,
+          "debt_eur": 0,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 2462761.0,
+          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20230302-161340/comptes-partis-exercice-2019.xlsx",
+          "confidence": 5
+        },
+        {
+          "year": 2020,
+          "debt_eur": 7657514.779999999,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 9702784.379999999,
+          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20220317-163630/comptes-partis-exercice-2020.xlsx",
+          "confidence": 5
+        },
+        {
+          "year": 2021,
+          "debt_eur": 19636092.87,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 22954184.15,
+          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20260210-151846/comptes-partis-exercice-2021.csv",
+          "confidence": 5
+        },
+        {
+          "year": 2022,
+          "debt_eur": 27115745.55,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 29639376.5,
+          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20260210-121141/comptes-partis-exercice-2022.csv",
+          "confidence": 5
+        },
+        {
+          "year": 2023,
+          "debt_eur": 14501776.02,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 16407932.64,
+          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20260210-120352/comptes-partis-exercice-2023.csv",
+          "confidence": 5
+        },
+        {
+          "year": 2024,
+          "debt_eur": 17024529.0,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 19354236.0,
+          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20260210-110641/comptes-partis-exercice-2024.csv",
+          "confidence": 5
+        }
+      ]
+    },
+    {
+      "party_id": "resistons",
+      "code_cnccfp": "975",
+      "n_points": 8,
+      "series": [
+        {
+          "year": 2017,
+          "debt_eur": 0,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 25085.0,
+          "libelle_exact": "2017: Emprunts établissements de crédit + Emprunts et dettes financières divers",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20190111-135832/comptes-partis-exercice-2017.ods",
+          "confidence": 4
+        },
+        {
+          "year": 2018,
+          "debt_eur": 0,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 13589.0,
+          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20200902-121107/comptes-partis-exercice-2018.xlsx",
+          "confidence": 5
+        },
+        {
+          "year": 2019,
+          "debt_eur": 0,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 25380.0,
+          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20230302-161340/comptes-partis-exercice-2019.xlsx",
+          "confidence": 5
+        },
+        {
+          "year": 2020,
+          "debt_eur": 30000.0,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 60845.43,
+          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20220317-163630/comptes-partis-exercice-2020.xlsx",
+          "confidence": 5
+        },
+        {
+          "year": 2021,
+          "debt_eur": 30000.0,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 78648.0,
+          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20260210-151846/comptes-partis-exercice-2021.csv",
+          "confidence": 5
+        },
+        {
+          "year": 2022,
+          "debt_eur": 600000.0,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 702591.0,
+          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20260210-121141/comptes-partis-exercice-2022.csv",
+          "confidence": 5
+        },
+        {
+          "year": 2023,
+          "debt_eur": 0,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 132400.15,
+          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20260210-120352/comptes-partis-exercice-2023.csv",
+          "confidence": 5
+        },
+        {
+          "year": 2024,
+          "debt_eur": 0,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 154812.0,
+          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20260210-110641/comptes-partis-exercice-2024.csv",
+          "confidence": 5
+        }
+      ]
+    },
+    {
+      "party_id": "rn",
+      "code_cnccfp": "40",
+      "n_points": 8,
+      "series": [
+        {
+          "year": 2017,
+          "debt_eur": 24256399.0,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 30561837.0,
+          "libelle_exact": "2017: Emprunts établissements de crédit + Emprunts et dettes financières divers",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20190111-135832/comptes-partis-exercice-2017.ods",
+          "confidence": 4
+        },
+        {
+          "year": 2018,
+          "debt_eur": 17915944.0,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 24399043.0,
+          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20200902-121107/comptes-partis-exercice-2018.xlsx",
+          "confidence": 5
+        },
+        {
+          "year": 2019,
+          "debt_eur": 17075288.0,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 22923783.0,
+          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20230302-161340/comptes-partis-exercice-2019.xlsx",
+          "confidence": 5
+        },
+        {
+          "year": 2020,
+          "debt_eur": 19382239.0,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 23782531.0,
+          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20220317-163630/comptes-partis-exercice-2020.xlsx",
+          "confidence": 5
+        },
+        {
+          "year": 2021,
+          "debt_eur": 22739232.0,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 26622961.0,
+          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20260210-151846/comptes-partis-exercice-2021.csv",
+          "confidence": 5
+        },
+        {
+          "year": 2022,
+          "debt_eur": 26750497.0,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 29003189.0,
+          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20260210-121141/comptes-partis-exercice-2022.csv",
+          "confidence": 5
+        },
+        {
+          "year": 2023,
+          "debt_eur": 20441753.0,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 22258842.0,
+          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20260210-120352/comptes-partis-exercice-2023.csv",
+          "confidence": 5
+        },
+        {
+          "year": 2024,
+          "debt_eur": 16232743.0,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 18913105.0,
+          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20260210-110641/comptes-partis-exercice-2024.csv",
+          "confidence": 5
+        }
+      ]
+    },
+    {
+      "party_id": "sp",
+      "code_cnccfp": "210",
+      "n_points": 8,
+      "series": [
+        {
+          "year": 2017,
+          "debt_eur": 246400.0,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 464506.0,
+          "libelle_exact": "2017: Emprunts établissements de crédit + Emprunts et dettes financières divers",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20190111-135832/comptes-partis-exercice-2017.ods",
+          "confidence": 4
+        },
+        {
+          "year": 2018,
+          "debt_eur": 135400.0,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 317689.0,
+          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20200902-121107/comptes-partis-exercice-2018.xlsx",
+          "confidence": 5
+        },
+        {
+          "year": 2019,
+          "debt_eur": 127375.0,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 302220.0,
+          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20230302-161340/comptes-partis-exercice-2019.xlsx",
+          "confidence": 5
+        },
+        {
+          "year": 2020,
+          "debt_eur": 108775.0,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 258889.0,
+          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20220317-163630/comptes-partis-exercice-2020.xlsx",
+          "confidence": 5
+        },
+        {
+          "year": 2021,
+          "debt_eur": 153849.0,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 222156.0,
+          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20260210-151846/comptes-partis-exercice-2021.csv",
+          "confidence": 5
+        },
+        {
+          "year": 2022,
+          "debt_eur": 124984.0,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 204947.0,
+          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20260210-121141/comptes-partis-exercice-2022.csv",
+          "confidence": 5
+        },
+        {
+          "year": 2023,
+          "debt_eur": 82133.25,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 142083.1,
+          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20260210-120352/comptes-partis-exercice-2023.csv",
+          "confidence": 5
+        },
+        {
+          "year": 2024,
+          "debt_eur": 69319.0,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 133520.0,
+          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20260210-110641/comptes-partis-exercice-2024.csv",
+          "confidence": 5
+        }
+      ]
+    },
+    {
+      "party_id": "upr",
+      "code_cnccfp": "806",
+      "n_points": 8,
+      "series": [
+        {
+          "year": 2017,
+          "debt_eur": 0,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 677066.0,
+          "libelle_exact": "2017: Emprunts établissements de crédit + Emprunts et dettes financières divers",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20190111-135832/comptes-partis-exercice-2017.ods",
+          "confidence": 4
+        },
+        {
+          "year": 2018,
+          "debt_eur": 0,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 246709.0,
+          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20200902-121107/comptes-partis-exercice-2018.xlsx",
+          "confidence": 5
+        },
+        {
+          "year": 2019,
+          "debt_eur": 0,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 125611.0,
+          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20230302-161340/comptes-partis-exercice-2019.xlsx",
+          "confidence": 5
+        },
+        {
+          "year": 2020,
+          "debt_eur": 0,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 79898.22,
+          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20220317-163630/comptes-partis-exercice-2020.xlsx",
+          "confidence": 5
+        },
+        {
+          "year": 2021,
+          "debt_eur": 0,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 113247.22,
+          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20260210-151846/comptes-partis-exercice-2021.csv",
+          "confidence": 5
+        },
+        {
+          "year": 2022,
+          "debt_eur": 0,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 95681.23,
+          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20260210-121141/comptes-partis-exercice-2022.csv",
+          "confidence": 5
+        },
+        {
+          "year": 2023,
+          "debt_eur": 0,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 91432.0,
+          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20260210-120352/comptes-partis-exercice-2023.csv",
+          "confidence": 5
+        },
+        {
+          "year": 2024,
+          "debt_eur": 0,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 281328.0,
+          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20260210-110641/comptes-partis-exercice-2024.csv",
+          "confidence": 5
+        }
+      ]
+    }
+  ]
+}
