@@ -1,17 +1,180 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Finances des partis — présidentielles</title>
-  <style>
-    body { font-family: system-ui, sans-serif; max-width: 42rem; margin: 2rem auto; padding: 0 1rem; line-height: 1.5; color: #1a1a1a; }
-    .muted { color: #555; }
-  </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Finances des partis — CNCCFP 2017–2024</title>
+  <meta name="description" content="Emprunts et dettes des partis politiques français (CNCCFP), focus UPR, listes présidentielles 2017 / 2022 / 2027.">
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js" defer></script>
+  <script src="js/charts.js" defer></script>
 </head>
 <body>
-  <h1>Finances des partis politiques français</h1>
-  <p class="muted">Présidentielles 2017 · 2022 · 2027 (à venir) — sources CNCCFP</p>
-  <p>Site en construction. Données comptables, synthèse et graphique d’évolution de la dette (référence UPR) à venir.</p>
+  <header class="site">
+    <div class="wrap">
+      <h1>Finances des partis politiques</h1>
+      <p class="sub">
+        Comptes d’ensemble CNCCFP (exercices 2017–2024) via data.gouv.fr.
+        Aucun chiffre inventé — uniquement les JSON du dépôt.
+        <span id="data-status" class="badge">Chargement…</span>
+      </p>
+      <nav>
+        <a href="#emprunts">Emprunts</a>
+        <a href="#bilan">Dettes bilan</a>
+        <a href="#upr">Point UPR</a>
+        <a href="#candidats">Candidats</a>
+        <a href="sources.html">Sources</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section id="metrics">
+      <h2>Deux métriques distinctes</h2>
+      <p class="lead">
+        Ne pas confondre <strong>emprunts financiers</strong>
+        (<code>debt_eur</code> / somme_emprunts) et le
+        <strong>total des dettes au passif</strong>
+        (<code>debt_total_bilan_III_eur</code>). Ne jamais additionner les deux.
+      </p>
+      <div class="metric-legend">
+        <span><i class="dot emprunts"></i> Emprunts financiers (banques + PP + autres partis)</span>
+        <span><i class="dot bilan"></i> Total III passif (inclut fournisseurs, fiscales…)</span>
+        <span><i class="dot upr"></i> UPR (série en pointillés)</span>
+      </div>
+    </section>
+
+    <section id="emprunts">
+      <h2>Emprunts financiers 2017–2024</h2>
+      <p class="lead">
+        Champ <code>debt_eur</code> (<code>somme_emprunts</code>) —
+        sens usuel de « endetté auprès des banques / personnes physiques ».
+        Attention 2017 : ancien plan comptable ; pour les tendances, préférer 2018–2024.
+        L’UPR reste à <strong>0</strong> sur toute la période (ligne orange en pointillés).
+      </p>
+      <div class="card chart">
+        <div class="chart-wrap">
+          <canvas id="chart-emprunts" aria-label="Graphique emprunts financiers par parti"></canvas>
+        </div>
+        <p class="chart-note">Source : <code>series_dette.json</code> — CNCCFP / data.gouv.fr</p>
+      </div>
+    </section>
+
+    <section id="bilan">
+      <h2>Dettes au bilan (Total III du passif)</h2>
+      <p class="lead">
+        Champ <code>debt_total_bilan_III_eur</code> —
+        passif dettes complet (emprunts <em>et</em> dettes d’exploitation :
+        fournisseurs, fiscales et sociales, etc.).
+        Un parti peut avoir <strong>zéro emprunt</strong> tout en ayant des dettes au bilan.
+      </p>
+      <div class="card chart">
+        <div class="chart-wrap">
+          <canvas id="chart-bilan" aria-label="Graphique dettes bilan Total III par parti"></canvas>
+        </div>
+        <p class="chart-note">Source : <code>series_dette.json</code> — ne pas confondre avec le graphique emprunts ci-dessus</p>
+      </div>
+    </section>
+
+    <section id="upr">
+      <h2>Point UPR — claim « zéro dette, financement par cotisations »</h2>
+      <p class="lead">
+        Verdict nuancé d’après <code>synthese.md</code> et les comptes CNCCFP
+        (code 806). Les montants du tableau viennent de <code>comptes_annuels.json</code>.
+      </p>
+      <div class="callout">
+        <article class="verdict true">
+          <div class="label">Emprunts bancaires / financiers</div>
+          <div class="status">Vrai — 0 €</div>
+          <p>
+            <code>somme_emprunts_eur = 0</code> chaque année 2017–2024.
+            Aucun emprunt crédit, PP ou autres partis dans les fichiers CNCCFP.
+          </p>
+        </article>
+        <article class="verdict false">
+          <div class="label">Zéro dette au bilan</div>
+          <div class="status">Faux</div>
+          <p>
+            Total dettes (Total_III) non nul :
+            677&nbsp;k€ (2017) → 91&nbsp;k€ (2023) → 281&nbsp;k€ (2024)
+            (fournisseurs + fiscales/sociales).
+          </p>
+        </article>
+        <article class="verdict partial">
+          <div class="label">Financement uniquement par cotisations</div>
+          <div class="status">Partiel</div>
+          <p>
+            Cotisations adhérents importantes <strong>et</strong> dons PP du même ordre ;
+            aide publique ≈ 0 (sauf 2&nbsp;567&nbsp;€ en 2021). En 2024, les dons dépassent les cotisations.
+          </p>
+        </article>
+      </div>
+
+      <h3>Chiffres UPR (CNCCFP)</h3>
+      <div class="table-wrap">
+        <table id="upr-table">
+          <thead>
+            <tr>
+              <th>Année</th>
+              <th>Emprunts</th>
+              <th>Dettes bilan (Total III)</th>
+              <th>Cotisations adhérents</th>
+              <th>Dons PP</th>
+              <th>Aide publique</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td colspan="6" class="loading">Chargement des comptes…</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="candidats">
+      <h2>Listes présidentielles</h2>
+      <p class="lead">
+        2017 et 2022 : listes officielles Conseil constitutionnel.
+        2027 : annonces presse / sites uniquement — <strong>non officielles</strong>
+        (pas de décision PDR au 2026-09-23).
+      </p>
+      <div class="lists">
+        <div class="list-card" id="list-2017">
+          <h3>2017 <span class="badge ok">officiel</span></h3>
+          <ol></ol>
+          <p class="meta-src"></p>
+        </div>
+        <div class="list-card" id="list-2022">
+          <h3>2022 <span class="badge ok">officiel</span></h3>
+          <ol></ol>
+          <p class="meta-src"></p>
+        </div>
+        <div class="list-card provisional" id="list-2027">
+          <h3>2027 <span class="badge warn">prévisionnel</span></h3>
+          <ul></ul>
+          <p class="meta-src">Annonces au 2026-09-23 — voir <a href="sources.html">sources</a>. Aucun compte CNCCFP 2025+ publié.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="limites">
+      <h2>Limites</h2>
+      <div class="card">
+        <ul>
+          <li>Comptes de <strong>parti</strong> ≠ comptes de <strong>campagne</strong> présidentielle.</li>
+          <li>Changement de plan comptable 2018 (ANC 2018-03) : comparabilité 2017 vs post-2018 imparfaite.</li>
+          <li>Exercices 2025–2027 non publiés au 2026-09-23.</li>
+          <li>Données : Licence Ouverte, producteur CNCCFP / data.gouv.fr.</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site">
+    <div class="wrap">
+      Données CNCCFP · site statique GitHub Pages ·
+      <a href="sources.html">Inventaire des sources</a> ·
+      généré 2026-09-23 (Europe/Paris)
+    </div>
+  </footer>
 </body>
 </html>
