@@ -49,6 +49,42 @@
     }).format(n);
   }
 
+  /** Y ticks on the log scale, in millions of euros (1 M€, 10 M€, 0,1 M€…). */
+  function formatMillionsEur(value) {
+    const millions = value / 1e6;
+    const abs = Math.abs(millions);
+    let digits = 0;
+    if (abs > 0 && abs < 1) {
+      digits = Math.min(6, Math.max(0, Math.ceil(-Math.log10(abs))));
+    }
+    const rounded = Number(millions.toFixed(digits));
+    return (
+      rounded.toLocaleString("fr-FR", {
+        minimumFractionDigits: digits,
+        maximumFractionDigits: digits,
+      }) + " M€"
+    );
+  }
+
+  function axisTitle(titleY, logarithmic) {
+    if (!logarithmic) return titleY;
+    if (titleY.endsWith("— €")) return titleY.slice(0, -1) + "M€";
+    return titleY + " (M€)";
+  }
+
+  /**
+   * Chart.js logarithmic scale rejects non-positive values (log undefined)
+   * and would otherwise draw a 0 at the axis minimum. Omit those points
+   * instead of substituting an epsilon, so a true zero is not plotted as debt.
+   */
+  function seriesForScale(raw, logarithmic) {
+    return raw.map((v) => {
+      if (v == null || Number.isNaN(v)) return null;
+      if (logarithmic && !(v > 0)) return null;
+      return v;
+    });
+  }
+
   function partyLabel(id, partis) {
     if (SHORT_LABELS[id]) return SHORT_LABELS[id];
     const p = (partis || []).find((x) => x.id === id);
@@ -89,6 +125,79 @@
     };
   }
 
+  function legendLabelOptions() {
+    return {
+      color: "#c5d4e8",
+      boxWidth: 14,
+      padding: 8,
+      font(ctx) {
+        const w = ctx && ctx.chart ? ctx.chart.width : 800;
+        return { size: w < 520 ? 10 : 11 };
+      },
+    };
+  }
+
+  function yScaleOptions(titleY, logarithmic) {
+    if (!logarithmic) {
+      return {
+        type: "linear",
+        title: {
+          display: true,
+          text: titleY,
+          color: "#9aabbd",
+        },
+        ticks: {
+          color: "#9aabbd",
+          maxRotation: 0,
+          callback(v) {
+            if (Math.abs(v) >= 1e6)
+              return (
+                (v / 1e6).toLocaleString("fr-FR", {
+                  maximumFractionDigits: 1,
+                }) + " M€"
+              );
+            if (Math.abs(v) >= 1e3)
+              return (
+                (v / 1e3).toLocaleString("fr-FR", {
+                  maximumFractionDigits: 0,
+                }) + " k€"
+              );
+            return v;
+          },
+        },
+        grid: { color: "rgba(45,58,77,0.5)" },
+      };
+    }
+
+    return {
+      type: "logarithmic",
+      title: {
+        display: true,
+        text: axisTitle(titleY, true),
+        color: "#9aabbd",
+      },
+      ticks: {
+        color: "#9aabbd",
+        maxRotation: 0,
+        autoSkip: true,
+        callback(value, index, ticks) {
+          const tick = ticks && ticks[index];
+          const n = Number(value);
+          if (!Number.isFinite(n) || n <= 0) return "";
+          if (tick && tick.major === false) return "";
+          return formatMillionsEur(n);
+        },
+      },
+      afterBuildTicks(scale) {
+        const major = scale.ticks.filter((t) => t.major && t.value > 0);
+        if (major.length >= 2) scale.ticks = major;
+      },
+      grid: { color: "rgba(45,58,77,0.55)" },
+    };
+  }
+
+  const euroCharts = [];
+
   function makeChart(canvasId, seriesMap, partis, field, titleY) {
     const el = document.getElementById(canvasId);
     if (!el || typeof Chart === "undefined") return null;
@@ -99,11 +208,14 @@
       return partyLabel(a, partis).localeCompare(partyLabel(b, partis), "fr");
     });
 
-    const datasets = partyIds.map((id) =>
-      buildDataset(id, seriesMap[id], field, partis)
-    );
+    const datasets = partyIds.map((id) => {
+      const ds = buildDataset(id, seriesMap[id], field, partis);
+      ds.rawValues = ds.data.slice();
+      ds.pointHitRadius = id === "upr" ? 12 : 8;
+      return ds;
+    });
 
-    return new Chart(el, {
+    const chart = new Chart(el, {
       type: "line",
       data: { labels: YEARS, datasets },
       options: {
@@ -113,53 +225,55 @@
         plugins: {
           legend: {
             position: "bottom",
-            labels: {
-              color: "#c5d4e8",
-              boxWidth: 14,
-              padding: 10,
-              font: { size: 11 },
-            },
+            labels: legendLabelOptions(),
           },
           tooltip: {
             callbacks: {
               label(ctx) {
-                const v = ctx.parsed.y;
-                return v == null
-                  ? ctx.dataset.label + " : n/a"
-                  : ctx.dataset.label + " : " + eur(v);
+                const raw =
+                  ctx.dataset.rawValues &&
+                  ctx.dataset.rawValues[ctx.dataIndex];
+                const v = raw != null ? raw : ctx.parsed.y;
+                if (v == null) return ctx.dataset.label + " : n/a";
+                const omitted = !(v > 0) && document.body.classList.contains("log-scale");
+                return (
+                  ctx.dataset.label +
+                  " : " +
+                  eur(v) +
+                  (omitted ? " (non tracé en log)" : "")
+                );
               },
             },
           },
         },
         scales: {
           x: {
-            ticks: { color: "#9aabbd" },
+            ticks: { color: "#9aabbd", maxRotation: 0 },
             grid: { color: "rgba(45,58,77,0.5)" },
           },
-          y: {
-            title: {
-              display: true,
-              text: titleY,
-              color: "#9aabbd",
-            },
-            ticks: {
-              color: "#9aabbd",
-              callback(v) {
-                if (Math.abs(v) >= 1e6)
-                  return (v / 1e6).toLocaleString("fr-FR", {
-                    maximumFractionDigits: 1,
-                  }) + " M€";
-                if (Math.abs(v) >= 1e3)
-                  return (v / 1e3).toLocaleString("fr-FR", {
-                    maximumFractionDigits: 0,
-                  }) + " k€";
-                return v;
-              },
-            },
-            grid: { color: "rgba(45,58,77,0.5)" },
-          },
+          y: yScaleOptions(titleY, false),
         },
       },
+    });
+
+    euroCharts.push({ chart, titleY });
+    return chart;
+  }
+
+  function setLogScale(on) {
+    document.body.classList.toggle("log-scale", on);
+    document.querySelectorAll(".js-log-scale").forEach((el) => {
+      el.checked = on;
+    });
+    document.querySelectorAll(".log-hint").forEach((el) => {
+      el.hidden = !on;
+    });
+    euroCharts.forEach(({ chart, titleY }) => {
+      chart.data.datasets.forEach((ds) => {
+        ds.data = seriesForScale(ds.rawValues || ds.data, on);
+      });
+      chart.options.scales.y = yScaleOptions(titleY, on);
+      chart.update();
     });
   }
 
@@ -283,6 +397,10 @@
 
       fillUprTable(comptes);
       fillCandidateLists(partis);
+
+      document.querySelectorAll(".js-log-scale").forEach((el) => {
+        el.addEventListener("change", () => setLogScale(el.checked));
+      });
 
       if (status) {
         status.textContent =

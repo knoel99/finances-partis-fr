@@ -12,6 +12,7 @@
   --border: #2d3a4d;
   --radius: 12px;
   --font: "Segoe UI", system-ui, -apple-system, sans-serif;
+  color-scheme: dark;
 }
 
 * { box-sizing: border-box; }
@@ -22,6 +23,15 @@ body {
   background: var(--bg);
   color: var(--text);
   line-height: 1.55;
+  font-size: 16px;
+  overflow-x: clip;
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
+}
+img, svg, video, canvas { max-width: 100%; }
+code {
+  overflow-wrap: anywhere;
+  font-size: 0.88em;
 }
 
 a { color: var(--accent); text-decoration: none; }
@@ -52,14 +62,17 @@ header.site .sub {
 nav {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.75rem 1.25rem;
+  gap: 0.35rem 1rem;
   font-size: 0.95rem;
 }
 nav a {
   color: var(--text);
   opacity: 0.85;
   border-bottom: 2px solid transparent;
-  padding-bottom: 2px;
+  padding: 0.45rem 0.1rem;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
 }
 nav a:hover, nav a.active {
   opacity: 1;
@@ -110,10 +123,53 @@ section h3 {
 .card.chart {
   padding: 1rem 1rem 0.5rem;
 }
+.chart-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 0 0 0.75rem;
+}
+.scale-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  min-height: 44px;
+  padding: 0.4rem 0.95rem 0.4rem 0.7rem;
+  background: var(--bg-soft);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  color: var(--text);
+  font-size: 1rem;
+  line-height: 1.2;
+  cursor: pointer;
+  user-select: none;
+}
+.scale-toggle input {
+  width: 1.35rem;
+  height: 1.35rem;
+  margin: 0;
+  accent-color: var(--accent);
+  flex: 0 0 auto;
+}
+.scale-toggle:focus-within {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+.scale-toggle:has(input:checked) {
+  border-color: var(--accent);
+  background: #163056;
+}
 .chart-wrap {
   position: relative;
-  height: min(420px, 55vh);
+  height: 420px;
   width: 100%;
+  max-width: 100%;
+}
+.chart-wrap canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
 }
 .chart-note {
   font-size: 0.82rem;
@@ -162,6 +218,8 @@ section h3 {
 
 .table-wrap {
   overflow-x: auto;
+  max-width: 100%;
+  -webkit-overflow-scrolling: touch;
   border-radius: var(--radius);
   border: 1px solid var(--border);
 }
@@ -264,7 +322,9 @@ footer.site {
   margin: 1rem 0;
   font-size: 0.85rem;
 }
-.sources-body td, .sources-body th {
+.sources-body td, .sources-body th,
+.sources-body a, .table-wrap a {
+  overflow-wrap: anywhere;
   word-break: break-word;
 }
 .sources-body p { color: var(--muted); }
@@ -281,4 +341,23 @@ footer.site {
   border: 1px solid #5c2a2a;
   padding: 0.75rem 1rem;
   border-radius: 8px;
+}
+
+@media (max-width: 640px) {
+  .wrap { padding: 0 1rem 2rem; }
+  header.site { padding: 1.15rem 0 0.85rem; margin-bottom: 1rem; }
+  header.site .wrap { padding-bottom: 0.15rem; }
+  header.site h1 { font-size: 1.45rem; }
+  section { margin: 1.75rem 0; }
+  section h2 { font-size: 1.2rem; }
+  .card { padding: 1rem; }
+  .chart-wrap { height: 560px; }
+  .lists, .callout { grid-template-columns: 1fr; }
+  .metric-legend { gap: 0.55rem 1rem; }
+  th, td { padding: 0.45rem 0.55rem; }
+  table { font-size: 0.82rem; }
+  .sources-body { padding: 0 1rem 2rem; }
+  .sources-body h1 { font-size: 1.35rem; }
+  .sources-body table { font-size: 0.8rem; }
+  footer.site { margin-top: 2rem; }
 }
