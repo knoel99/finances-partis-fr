@@ -6,21 +6,23 @@
   <meta name="color-scheme" content="light">
   <meta name="theme-color" content="#ffffff">
   <title>Sources — Finances des partis CNCCFP</title>
-  <link rel="stylesheet" href="css/styles.css?v=20260923src">
+  <link rel="stylesheet" href="css/styles.css?v=20260923dette">
 </head>
 <body>
   <header class="site">
     <div class="wrap">
       <h1>Sources</h1>
-      <p class="sub">Inventaire des URLs et dates de consultation. Aucun chiffre inventé.</p>
-      <nav>
-        <a href="index.html">← Accueil</a>
-        <a href="sources.html" class="active">Sources</a>
+      <p class="sub">URLs et dates de consultation. Aucun chiffre inventé.</p>
+      <nav class="view-nav" aria-label="Vues">
+        <a href="index.html#graphiques">Graphiques</a>
+        <a href="index.html#donnees">Données</a>
+        <a href="index.html#definitions">Définitions</a>
+        <a href="sources.html" class="nav-quiet active">Sources</a>
       </nav>
     </div>
   </header>
   <main class="sources-body">
-<h1>Inventaire des sources — finances partis FR</h1>
+<h1>Fichiers consultés</h1>
 <p><strong>Date de consultation :</strong> 2026-09-23 (Europe/Paris, UTC+2)  </p>
 <p><strong>Règle :</strong> aucun chiffre inventé ; URL + année indiquées.</p>
 <p><strong>Couverture des comptes :</strong> le jeu data.gouv commence à l’exercice 2008. Les cinq métriques affichées (emprunts, Total III, cotisations, dons, aide publique) ont au moins une valeur dès 2008 et vont jusqu’à 2024. Certaines cases d’un parti-année restent vides dans le fichier : elles ne sont pas mises à zéro. <strong>Exercice 2025 : non publié au 2026-09-23</strong> (aucune ressource 2025 dans le jeu, dernière mise à jour du jeu consultée : 2026-09-22).</p>
@@ -53,7 +55,7 @@
 <p><strong>Portail HTML (JS) :</strong> <a href="https://liste.cnccfp.fr/publications/comptes_partis_2024.html" target="_blank" rel="noopener">https://liste.cnccfp.fr/publications/comptes_partis_2024.html</a> — charge les données en AJAX ; extraction faite via les CSV/XLSX data.gouv (même producteur).  </p>
 <p><strong>Page CNCCFP partis :</strong> <a href="https://cnccfp.fr/partis-politiques/" target="_blank" rel="noopener">https://cnccfp.fr/partis-politiques/</a>  </p>
 <p><strong>Avis 2024 (PDF) :</strong> <a href="https://cnccfp.fr/wp-content/uploads/2026/02/Avis-relatif-a-la-publication-generale-des-comptes-des-partis-et-groupements-politiques-au-titre-de-lexercice-2024.pdf" target="_blank" rel="noopener">https://cnccfp.fr/wp-content/uploads/2026/02/Avis-relatif-a-la-publication-generale-des-comptes-des-partis-et-groupements-politiques-au-titre-de-lexercice-2024.pdf</a>  </p>
-<h2>Résultats présidentiels (ministère de l’Intérieur)</h2>
+<h2 id="resultats">Résultats présidentiels (ministère de l’Intérieur)</h2>
 <p>Fichier <code>docs/data/elections_presidentielles.json</code>. Périmètre : France entière. Années chargées : 2002, 2007, 2012, 2017, 2022 (tours 1 et 2). Les législatives ne sont pas agrégées : les fichiers ouverts sont au grain circonscription, avec une nuance et non le code CNCCFP.</p>
 <div class="table-wrap"><table>
 <thead><tr><th>Scrutin</th><th>Fichier utilisé</th><th>Jeu</th></tr></thead>
@@ -74,7 +76,7 @@
 <a href="https://www.data.gouv.fr/datasets?q=comptes%20de%20campagne%20election%20presidentielle%202022" target="_blank" rel="noopener">variante 2022</a>,
 <a href="https://www.data.gouv.fr/datasets?q=comptes%20de%20campagne%20election%20presidentielle%202017" target="_blank" rel="noopener">variante 2017</a>.
 Les pages CNCCFP ci-dessous existent ; elles ne sont pas un fichier ouvert repris dans le JSON. Pas de série « dépenses de campagne », donc pas de graphique voix / argent.</p>
-<h2>Listes officielles de candidats</h2>
+<h2 id="candidats">Listes officielles de candidats</h2>
 <div class="table-wrap"><table>
 <thead><tr><th>Scrutin</th><th>Source</th><th>URL</th></tr></thead>
 <tbody>

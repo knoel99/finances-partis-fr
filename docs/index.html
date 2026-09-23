@@ -6,135 +6,110 @@
   <meta name="color-scheme" content="light">
   <meta name="theme-color" content="#ffffff">
   <title>Finances des partis — CNCCFP</title>
-  <meta name="description" content="Comptes CNCCFP des partis politiques français et résultats présidentiels officiels. Classement, petits multiples et tableaux filtrables. Aucun chiffre inventé.">
-  <link rel="stylesheet" href="css/styles.css?v=20260923src">
+  <meta name="description" content="Dette des partis politiques français (emprunts financiers CNCCFP) : évolution en barres et classement par année. Tableaux et définitions. Aucun chiffre inventé.">
+  <link rel="stylesheet" href="css/styles.css?v=20260923dette">
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js" defer></script>
-  <script src="js/charts.js?v=20260923src" defer></script>
+  <script src="js/charts.js?v=20260923dette" defer></script>
 </head>
 <body>
   <header class="site">
     <div class="wrap">
       <h1>Finances des partis politiques</h1>
       <p class="sub">
-        Comptes d’ensemble CNCCFP, exercices <span id="year-span">chargés depuis le JSON</span>,
-        <a href="https://www.data.gouv.fr/datasets/comptes-des-partis-et-groupements-politiques" target="_blank" rel="noopener">jeu data.gouv « Comptes des partis et groupements politiques »</a>.
-        Aucun chiffre inventé : uniquement les JSON du dépôt.
+        Comptes d’ensemble CNCCFP, exercices <span id="year-span">chargés depuis le JSON</span>.
+        Chiffres lus dans les JSON du dépôt.
         <span id="data-status" class="badge">Chargement…</span>
       </p>
-      <nav>
-        <a href="#lecture">Comment lire</a>
-        <a href="#filtres">Filtres</a>
-        <a href="#vue">Graphique</a>
-        <a href="#tableaux">Tableaux</a>
-        <a href="#glossaire">Définitions</a>
-        <a href="#elections">Élections</a>
-        <a href="#jeux">Sources</a>
-        <a href="sources.html">Inventaire</a>
+      <p id="exercice-2025" class="notice" hidden></p>
+      <nav class="view-nav" aria-label="Vues">
+        <a href="#graphiques" role="tab" id="tab-graphiques" aria-controls="graphiques" aria-selected="true">Graphiques</a>
+        <a href="#donnees" role="tab" id="tab-donnees" aria-controls="donnees" aria-selected="false">Données</a>
+        <a href="#definitions" role="tab" id="tab-definitions" aria-controls="definitions" aria-selected="false">Définitions</a>
+        <a href="sources.html" class="nav-quiet">Sources</a>
       </nav>
     </div>
   </header>
 
   <main class="wrap">
     <noscript>
-      <p class="error">Activez JavaScript pour afficher les filtres, les graphiques et les tableaux.</p>
+      <p class="error">Activez JavaScript pour afficher les graphiques, les filtres et les tableaux.</p>
     </noscript>
 
-    <p id="exercice-2025" class="notice" hidden></p>
-
-    <section id="lecture">
-      <h2>Comment lire</h2>
-      <ul>
-        <li><strong>Classement</strong> — barres horizontales triées, pour une année et une métrique. C’est la vue par défaut : un rang se lit mieux qu’un faisceau de courbes.</li>
-        <li><strong>Petits multiples</strong> — une courbe par parti, sur la même échelle verticale. Au-delà de trois ou quatre lignes sur un seul graphique, cette séparation reste lisible.</li>
-        <li><strong>Évolution</strong> — courbes superposées, seulement lorsque quatre partis au plus sont cochés.</li>
-        <li><strong>Tableaux</strong> — montants exacts en euros, triables. Le graphique ne remplace pas le chiffre.</li>
-      </ul>
-      <p class="lead">
-        Même principe que les pages finances de Ballotpedia (peu de courbes, et des tableaux),
-        DonationWatch (vue par année et par parti) et Open Mandats (les filtres pilotent le graphique et le tableau).
-      </p>
-    </section>
-
-    <section id="filtres" class="card filters">
-      <h2>Filtres</h2>
-      <p class="lead">Les mêmes filtres mettent à jour le graphique et les deux tableaux.</p>
-
-      <div class="party-actions">
-        <button type="button" id="parties-all">Tout sélectionner</button>
-        <button type="button" id="parties-none">Tout effacer</button>
-        <span id="party-count" class="chart-note"></span>
-      </div>
-      <div id="party-filters" class="party-grid" role="group" aria-label="Partis"></div>
-
-      <div class="filter-row">
-        <label for="metric">Métrique
-          <select id="metric"></select>
-        </label>
-        <label for="year-from">De
-          <select id="year-from"></select>
-        </label>
-        <label for="year-to">À
-          <select id="year-to"></select>
-        </label>
-        <label for="year-focus">Année du classement
-          <select id="year-focus"></select>
-        </label>
-      </div>
-      <p id="metric-hint" class="chart-note"></p>
-      <p class="chart-note">L’année du classement sert aux barres et au tableau des métriques. L’intervalle sert aux courbes et au tableau parti × année.</p>
-    </section>
-
-    <section id="vue">
-      <h2>Graphique</h2>
+    <section id="graphiques" data-view="graphiques" role="tabpanel" aria-labelledby="tab-graphiques">
+      <h2>Évolution de la dette</h2>
+      <p class="lead" id="debt-def">Emprunts financiers, en barres verticales. Le libellé exact est dans Définitions.</p>
       <div class="card">
-        <div class="chart-toolbar">
-          <div class="modes" role="radiogroup" aria-label="Mode de graphique">
-            <label><input type="radio" name="mode" value="rank" checked> Classement</label>
-            <label><input type="radio" name="mode" value="multiples"> Petits multiples</label>
-            <label><input type="radio" name="mode" value="evolution"> Évolution (sélection)</label>
+        <div class="party-actions">
+          <button type="button" data-parties="all">Tout sélectionner</button>
+          <button type="button" data-parties="none">Tout effacer</button>
+          <span class="party-count chart-note"></span>
+        </div>
+        <div class="party-grid" data-party-filters role="group" aria-label="Partis affichés sur l’évolution"></div>
+        <p class="chart-note">Au chargement, les six emprunts les plus élevés de la dernière année publiée sont cochés. Décochez des partis si les barres se serrent.</p>
+        <p id="evo-empty" class="empty" hidden></p>
+        <div class="chart-scroll">
+          <div class="chart-wrap" id="wrap-evo">
+            <canvas id="canvas-evo" aria-label="Barres verticales : emprunts financiers par année et par parti"></canvas>
           </div>
-          <label class="scale-toggle">
-            <input type="checkbox" id="log-scale">
-            <span>Échelle logarithmique</span>
+        </div>
+        <p class="chart-note scroll-hint">Écran étroit : faites défiler le graphique horizontalement pour séparer les années.</p>
+        <p id="evo-note" class="chart-note"></p>
+        <p id="evo-source" class="source-line"></p>
+      </div>
+
+      <h2>Tous les partis, une année</h2>
+      <p class="lead">Classement des emprunts financiers pour chaque parti présent dans le fichier, sur l’année choisie.</p>
+      <div class="card">
+        <div class="filter-row single">
+          <label for="year-rank">Année
+            <select id="year-rank" data-year-focus></select>
           </label>
         </div>
-        <p id="view-status" class="lead"></p>
-        <div id="chart-panel"></div>
-        <p id="log-hint" class="chart-note" hidden>Graduation en millions d’euros. Les valeurs nulles ou négatives sont omises : elles ne sont pas définies sur une échelle logarithmique.</p>
-        <p id="chart-source" class="source-line"></p>
+        <p id="rank-empty" class="empty" hidden></p>
+        <div class="chart-scroll">
+          <div class="chart-wrap" id="wrap-rank">
+            <canvas id="canvas-rank" aria-label="Classement des emprunts financiers de tous les partis pour l’année choisie"></canvas>
+          </div>
+        </div>
+        <p class="chart-note scroll-hint">Écran étroit : faites défiler le graphique horizontalement pour lire les noms en entier.</p>
+        <p id="rank-note" class="chart-note"></p>
+        <p id="rank-source" class="source-line"></p>
       </div>
     </section>
 
-    <section id="tableaux">
-      <h2>Tableaux</h2>
-      <p class="lead">Montants en euros tels que publiés. « — » veut dire que le JSON n’a pas de valeur pour cette case : ce n’est pas un zéro.</p>
-
-      <h3 id="matrix-title">Parti × année</h3>
+    <section id="donnees" data-view="donnees" role="tabpanel" aria-labelledby="tab-donnees" hidden>
+      <h2>Emprunts par parti et par année</h2>
+      <p class="lead">Même sélection de partis que le graphique d’évolution. Montants en euros publiés. « — » signifie qu’il n’y a pas de ligne pour ce parti cette année : ce n’est pas un zéro.</p>
+      <div class="card filters">
+        <div class="party-actions">
+          <button type="button" data-parties="all">Tout sélectionner</button>
+          <button type="button" data-parties="none">Tout effacer</button>
+          <span class="party-count chart-note"></span>
+        </div>
+        <div class="party-grid" data-party-filters role="group" aria-label="Partis des tableaux d’évolution"></div>
+      </div>
+      <h3 id="matrix-title">Emprunts financiers</h3>
       <div class="table-wrap">
         <table id="table-matrix"></table>
       </div>
       <p id="matrix-source" class="source-line"></p>
 
+      <h2>Toutes les métriques, une année</h2>
+      <p class="lead">Tous les partis du fichier, pour l’année choisie. La colonne Emprunts est celle des graphiques. Le Total III est plus large : il inclut aussi les fournisseurs et les dettes fiscales.</p>
+      <div class="filter-row single">
+        <label for="year-table">Année
+          <select id="year-table" data-year-focus></select>
+        </label>
+      </div>
       <h3 id="metrics-title">Métriques de l’année</h3>
       <div class="table-wrap">
         <table id="table-metrics"></table>
       </div>
       <p id="metrics-source" class="source-line"></p>
-    </section>
 
-    <section id="glossaire">
-      <h2>Définitions des métriques</h2>
-      <p class="lead">Chaque montant affiché vient d’un poste des comptes d’ensemble. Le libellé change en 2018 avec le plan ANC 2018-03.</p>
-      <div id="glossaire-list" class="glossary"></div>
-    </section>
-
-    <section id="elections">
       <h2>Résultats présidentiels</h2>
-      <p class="lead">
-        France entière, fichiers du ministère de l’Intérieur.
-        Le tableau sert de base à une comparaison ultérieure voix / dépenses de campagne.
-      </p>
-      <div class="filter-row">
+      <p class="lead">France entière, fichiers du ministère de l’Intérieur. Ce tableau ne mesure pas la dette des partis.</p>
+      <div class="filter-row single">
         <label for="elec-tour">Scrutin
           <select id="elec-tour"></select>
         </label>
@@ -144,9 +119,7 @@
         <table id="table-elections"></table>
       </div>
       <p id="elec-hook" class="chart-note"></p>
-    </section>
 
-    <section id="candidats">
       <h2>Listes présidentielles</h2>
       <p class="lead">
         2017 et 2022 : listes officielles du Conseil constitutionnel.
@@ -167,74 +140,25 @@
         <div class="list-card provisional" id="list-2027">
           <h3>2027 <span class="badge warn">prévisionnel</span></h3>
           <ul></ul>
-          <p class="meta-src">Annonces au 2026-09-23 — voir <a href="sources.html">sources</a>.</p>
+          <p class="meta-src">Annonces au 2026-09-23 — voir <a href="sources.html">Sources</a>.</p>
         </div>
       </div>
     </section>
 
-    <section id="jeux">
-      <h2>Sources des chiffres</h2>
-      <p class="lead">Liens directs vers les jeux et les fichiers utilisés. L’inventaire complet est sur <a href="sources.html">la page sources</a>.</p>
-      <ul class="source-list">
-        <li>
-          <strong>Comptes de parti.</strong>
-          CNCCFP,
-          <a href="https://www.data.gouv.fr/datasets/comptes-des-partis-et-groupements-politiques" target="_blank" rel="noopener">jeu data.gouv « Comptes des partis et groupements politiques »</a>.
-          Fichier de l’exercice affiché :
-          <a id="compte-fichier" href="https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20260210-110641/comptes-partis-exercice-2024.csv" target="_blank" rel="noopener">exercice 2024</a>.
-          <a href="sources.html#comptes">Tous les exercices, 2008 à 2024</a>.
-        </li>
-        <li>
-          <strong>Présidentielle 2022.</strong>
-          Ministère de l’Intérieur —
-          <a href="https://www.data.gouv.fr/datasets/election-presidentielle-des-10-et-24-avril-2022-resultats-definitifs-du-1er-tour" target="_blank" rel="noopener">1er tour</a>,
-          <a href="https://www.data.gouv.fr/datasets/election-presidentielle-des-10-et-24-avril-2022-resultats-definitifs-du-2nd-tour" target="_blank" rel="noopener">2nd tour</a>.
-          Liste des candidats : <a href="https://www.conseil-constitutionnel.fr/decision/2022/2022187PDR.htm" target="_blank" rel="noopener">Conseil constitutionnel, décision n° 2022-187 PDR</a>.
-        </li>
-        <li>
-          <strong>Présidentielle 2017.</strong>
-          Ministère de l’Intérieur —
-          <a href="https://www.data.gouv.fr/datasets/election-presidentielle-des-23-avril-et-7-mai-2017-resultats-definitifs-du-1er-tour-1" target="_blank" rel="noopener">1er tour</a>,
-          <a href="https://www.data.gouv.fr/datasets/election-presidentielle-des-23-avril-et-7-mai-2017-resultats-definitifs-du-2nd-tour" target="_blank" rel="noopener">2nd tour</a>.
-          Liste des candidats : <a href="https://presidentielle2017.conseil-constitutionnel.fr/liste-officielle-des-candidats-a-lelection-presidentielle/" target="_blank" rel="noopener">Conseil constitutionnel</a>.
-        </li>
-        <li>
-          <strong>Présidentielle 2012.</strong>
-          <a href="https://www.data.gouv.fr/datasets/election-presidentielle-2012-resultats-572124" target="_blank" rel="noopener">Résultats, ministère de l’Intérieur</a>.
-          Le fichier national ne porte pas de code parti.
-        </li>
-        <li>
-          <strong>Présidentielle 2007.</strong>
-          <a href="https://www.data.gouv.fr/datasets/election-presidentielle-2007-resultats-572122" target="_blank" rel="noopener">Résultats communaux, ministère de l’Intérieur</a>.
-          Totaux nationaux = somme des communes.
-        </li>
-        <li>
-          <strong>Présidentielle 2002.</strong>
-          <a href="https://www.data.gouv.fr/datasets/election-presidentielle-2002-resultats-572114" target="_blank" rel="noopener">Résultats, ministère de l’Intérieur</a>.
-        </li>
-        <li>
-          <strong>Comptes de campagne présidentielle.</strong>
-          Aucun jeu ouvert au 2026-09-23 :
-          <a href="https://www.data.gouv.fr/datasets?q=comptes%20de%20campagne%20pr%C3%A9sidentielle" target="_blank" rel="noopener">recherche « comptes de campagne présidentielle »</a>,
-          <a href="https://www.data.gouv.fr/datasets?q=comptes%20de%20campagne%20election%20presidentielle%202022" target="_blank" rel="noopener">2022</a>,
-          <a href="https://www.data.gouv.fr/datasets?q=comptes%20de%20campagne%20election%20presidentielle%202017" target="_blank" rel="noopener">2017</a>
-          (0 résultat). Pages CNCCFP non extraites :
-          <a href="https://cnccfp.fr/election-presidentielle-2022-publication-des-comptes-de-campagne-des-candidats/" target="_blank" rel="noopener">publication 2022</a>,
-          <a href="https://cnccfp.fr/wp-content/uploads/2022/04/De%CC%81cisions_pre%CC%81sidentielle_2017.pdf" target="_blank" rel="noopener">décisions 2017 (PDF)</a>.
-        </li>
-      </ul>
-    </section>
+    <section id="definitions" data-view="definitions" role="tabpanel" aria-labelledby="tab-definitions" hidden>
+      <h2>Définitions</h2>
+      <p class="lead">Textes du glossaire enregistré dans les comptes. Les graphiques utilisent les emprunts financiers, sous l’intitulé « dette », parce que ce poste est la dette d’emprunt — pas le total du passif.</p>
+      <div id="glossaire-list" class="glossary"></div>
 
-    <section id="limites">
       <h2>Limites</h2>
       <div class="card">
         <ul>
           <li>Comptes de <strong>parti</strong> ≠ comptes de <strong>campagne</strong>. Pas de graphique voix / dépenses : aucun jeu ouvert de comptes de campagne présidentielle sur data.gouv au 2026-09-23.</li>
           <li>Changement de plan comptable en 2018 (ANC 2018-03) : la comparaison 2008–2017 / 2018–2024 des emprunts est imparfaite.</li>
           <li id="limite-2025">Exercice 2025 : voir la mention en tête de page.</li>
-          <li>Une case « — » est absente du JSON. Elle n’est jamais remplacée par zéro.</li>
+          <li>Une case « — » est absente du JSON. Elle n’est jamais remplacée par zéro. Un 0 € est un montant publié.</li>
           <li>Montants nominaux : le dépôt ne contient pas de série corrigée de l’inflation.</li>
-          <li>Données : Licence Ouverte. Les liens vers chaque jeu et chaque fichier sont sous les tableaux et dans <a href="#jeux">Sources des chiffres</a>.</li>
+          <li>Producteur CNCCFP, Licence Ouverte. Fichiers et dates : <a href="sources.html">Sources</a>.</li>
         </ul>
       </div>
     </section>
@@ -243,7 +167,7 @@
   <footer class="site">
     <div class="wrap">
       Données CNCCFP · site statique GitHub Pages ·
-      <a href="sources.html">Inventaire des sources</a>
+      <a href="sources.html">Sources</a>
     </div>
   </footer>
 </body>

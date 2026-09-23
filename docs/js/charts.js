@@ -1,7 +1,10 @@
-/* Finances partis FR — filtres, classements, petits multiples, tableaux.
-   Chiffres lus dans les JSON CNCCFP du dépôt. Aucune valeur inventée. */
+/* Finances partis FR — dette (emprunts financiers), tableaux, glossaire.
+   Chiffres lus dans les JSON du dépôt. Aucune valeur inventée. */
 (function () {
   "use strict";
+
+  const DEBT = "somme_emprunts_eur";
+  const DEFAULT_PARTIES = 6;
 
   const METRICS = [
     { id: "somme_emprunts_eur", label: "Emprunts financiers", short: "Emprunts" },
@@ -29,38 +32,21 @@
     resistons: "Résistons",
   };
 
-  const COLORS = {
-    upr: "#ff6b35",
-    rn: "#0a3d6b",
-    lr: "#1e3a8a",
-    ps: "#e11d48",
-    lfi: "#b91c1c",
-    renaissance: "#d97706",
-    eelv: "#16a34a",
-    pcf: "#dc2626",
-    dlf: "#7c3aed",
-    reconquete: "#1e293b",
-    modem: "#ea580c",
-    lo: "#991b1b",
-    generations: "#db2777",
-    sp: "#64748b",
-    resistons: "#0284c7",
-  };
+  const PALETTE = [
+    "#1d4ed8", "#0f766e", "#b45309", "#6d28d9", "#be123c",
+    "#0369a1", "#3f6212", "#c2410c", "#4338ca", "#0e7490",
+    "#a16207", "#7c3aed", "#9f1239", "#1e3a8a", "#115e59",
+  ];
 
   const AXIS = "#475569";
   const GRID = "rgba(15, 23, 42, 0.12)";
-  const MAX_LINES = 4;
+  const VIEWS = ["graphiques", "donnees", "definitions"];
 
   const state = {
     parties: new Set(),
-    yearFrom: 2017,
-    yearTo: 2024,
     focusYear: 2024,
-    metric: METRICS[0].id,
-    mode: "rank",
-    log: false,
     sortMatrix: { key: "2024", dir: "desc" },
-    sortMetrics: { key: METRICS[0].id, dir: "desc" },
+    sortMetrics: { key: DEBT, dir: "desc" },
   };
 
   let store = {
@@ -69,10 +55,8 @@
     years: [],
     libelles: {},
     glossaire: [],
-    couverture: {},
     exercice2025: null,
     elections: null,
-    officiels: {},
     dataset: "https://www.data.gouv.fr/datasets/comptes-des-partis-et-groupements-politiques",
     compteSources: [],
   };
@@ -111,16 +95,12 @@
     if (!Number.isFinite(n)) return "";
     const abs = Math.abs(n);
     if (abs >= 1e6) {
-      return (
-        (n / 1e6).toLocaleString("fr-FR", {
-          maximumFractionDigits: abs >= 1e7 ? 0 : 1,
-        }) + " M€"
-      );
+      return (n / 1e6).toLocaleString("fr-FR", {
+        maximumFractionDigits: abs >= 1e7 ? 0 : 1,
+      }) + " M€";
     }
     if (abs >= 1e3) {
-      return (
-        (n / 1e3).toLocaleString("fr-FR", { maximumFractionDigits: 0 }) + " k€"
-      );
+      return (n / 1e3).toLocaleString("fr-FR", { maximumFractionDigits: 0 }) + " k€";
     }
     return n.toLocaleString("fr-FR", { maximumFractionDigits: 0 });
   }
@@ -141,18 +121,22 @@
     return p ? partyName(p) : id;
   }
 
+  function displayName(p) {
+    const names = (p && p.noms_historiques) || [];
+    const current = names[names.length - 1] || shortName(p && p.id);
+    if (/\s/.test(current) || current.length > 8) return current;
+    for (let i = names.length - 2; i >= 0; i -= 1) {
+      const previous = names[i];
+      if (/\s/.test(previous) && previous.length > current.length) {
+        return previous + " (" + current + ")";
+      }
+    }
+    return current;
+  }
+
   function colorOf(id) {
-    return COLORS[id] || "#64748b";
-  }
-
-  function metricById(id) {
-    return METRICS.find((m) => m.id === id) || METRICS[0];
-  }
-
-  function yearsInRange() {
-    const out = [];
-    for (let y = state.yearFrom; y <= state.yearTo; y += 1) out.push(y);
-    return out;
+    const index = store.partis.findIndex((p) => p.id === id);
+    return PALETTE[(index < 0 ? 0 : index) % PALETTE.length];
   }
 
   function selectedParties() {
@@ -165,10 +149,37 @@
     return Number(row[metric]);
   }
 
+  function hasRow(partyId, year) {
+    return store.rows.some((r) => r.party_id === partyId && r.year === year);
+  }
+
+  function formatYearSpans(years) {
+    const ys = years.slice().sort((a, b) => a - b);
+    if (!ys.length) return "";
+    const parts = [];
+    let start = ys[0];
+    let prev = ys[0];
+    for (let i = 1; i <= ys.length; i += 1) {
+      const y = ys[i];
+      if (y === prev + 1) {
+        prev = y;
+        continue;
+      }
+      parts.push(start === prev ? String(start) : start + "–" + prev);
+      start = y;
+      prev = y;
+    }
+    return parts.join(", ");
+  }
+
+  function missingYears(party) {
+    return store.years.filter((year) => !hasRow(party.id, year));
+  }
+
   function destroyCharts() {
     while (charts.length) {
-      const c = charts.pop();
-      try { c.destroy(); } catch (e) { /* already gone */ }
+      const chart = charts.pop();
+      try { chart.destroy(); } catch (e) { /* already gone */ }
     }
   }
 
@@ -184,14 +195,6 @@
       Chart.defaults.scale.ticks = Chart.defaults.scale.ticks || {};
       Chart.defaults.scale.ticks.color = AXIS;
     }
-    const tip = Chart.defaults.plugins && Chart.defaults.plugins.tooltip;
-    if (tip) {
-      tip.backgroundColor = "#ffffff";
-      tip.titleColor = "#1e293b";
-      tip.bodyColor = "#334155";
-      tip.borderColor = "#d5dee8";
-      tip.borderWidth = 1;
-    }
   }
 
   const whiteBackground = {
@@ -205,7 +208,7 @@
     },
   };
 
-  function tooltipOptions() {
+  function debtTooltip(axis) {
     return {
       backgroundColor: "#ffffff",
       titleColor: "#1e293b",
@@ -214,60 +217,12 @@
       borderWidth: 1,
       callbacks: {
         label(ctx) {
-          const raw = ctx.dataset.rawValues
-            ? ctx.dataset.rawValues[ctx.dataIndex]
-            : null;
-          const v = raw != null ? raw : (ctx.parsed.x != null && ctx.dataset.indexAxis === "y"
-            ? ctx.parsed.x
-            : ctx.parsed.y);
-          if (v == null || Number.isNaN(v)) return ctx.dataset.label + " : —";
-          return ctx.dataset.label + " : " + eur(v);
+          const raw = ctx.dataset.rawValues ? ctx.dataset.rawValues[ctx.dataIndex] : null;
+          const name = ctx.dataset.fullName || ctx.dataset.label;
+          if (raw == null || Number.isNaN(raw)) return name + " : pas de compte";
+          return name + " : " + eur(raw);
         },
       },
-    };
-  }
-
-  function valueScale(log, min, max) {
-    if (log) {
-      const positiveMin = min > 0 ? min : 1;
-      const positiveMax = max > 0 ? max : positiveMin * 10;
-      const lo = positiveMin / 10;
-      const hi = positiveMax > positiveMin ? positiveMax * 1.15 : positiveMin * 10;
-      return {
-        type: "logarithmic",
-        min: lo,
-        max: hi,
-        ticks: {
-          color: AXIS,
-          maxRotation: 0,
-          callback(value, index, ticks) {
-            const n = Number(value);
-            if (!Number.isFinite(n) || n <= 0) return "";
-            const tick = ticks && ticks[index];
-            if (tick && tick.major === false) return "";
-            return formatAxis(n);
-          },
-        },
-        grid: { color: GRID },
-      };
-    }
-    return {
-      type: "linear",
-      min: 0,
-      max: max > 0 ? max : 1,
-      ticks: {
-        color: AXIS,
-        maxRotation: 0,
-        callback: (v) => formatAxis(v),
-      },
-      grid: { color: GRID },
-    };
-  }
-
-  function categoryScale() {
-    return {
-      ticks: { color: "#334155", autoSkip: false, maxRotation: 0 },
-      grid: { display: false },
     };
   }
 
@@ -277,68 +232,173 @@
     return chart;
   }
 
-  function sharedExtent(log) {
-    const vals = [];
-    selectedParties().forEach((p) => {
-      yearsInRange().forEach((y) => {
-        const v = valueAt(p.id, y, state.metric);
-        if (v == null) return;
-        if (log && !(v > 0)) return;
-        vals.push(v);
-      });
-    });
-    if (!vals.length) return { min: log ? 1 : 0, max: log ? 10 : 1, empty: true };
-    return { min: Math.min(...vals), max: Math.max(...vals), empty: false };
+  function viewFromHash() {
+    const hash = (location.hash || "").replace(/^#/, "");
+    if (hash === "donnees" || hash === "definitions") return hash;
+    if (hash === "glossaire") return "definitions";
+    return "graphiques";
   }
 
-  function seriesFor(partyId, log) {
-    const years = yearsInRange();
-    const raw = years.map((y) => valueAt(partyId, y, state.metric));
-    const data = raw.map((v) => {
-      if (v == null) return null;
-      if (log && !(v > 0)) return null;
-      return v;
+  function showView(name) {
+    VIEWS.forEach((view) => {
+      const panel = document.getElementById(view);
+      const tab = document.getElementById("tab-" + view);
+      const on = view === name;
+      if (panel) panel.hidden = !on;
+      if (tab) {
+        tab.setAttribute("aria-selected", on ? "true" : "false");
+        tab.classList.toggle("active", on);
+      }
     });
-    return { raw, data, years };
   }
 
-  function renderRank(panel) {
-    const log = state.log;
-    const ranked = selectedParties()
-      .map((p) => ({ p, v: valueAt(p.id, state.focusYear, state.metric) }))
-      .filter((d) => d.v != null && (!log || d.v > 0))
-      .sort((a, b) => b.v - a.v || shortName(a.p.id).localeCompare(shortName(b.p.id), "fr"));
+  function renderDebtIntro() {
+    const el = document.getElementById("debt-def");
+    if (!el) return;
+    const item = (store.glossaire || []).find((entry) => entry.champ === DEBT);
+    const sentence = item && item.definition
+      ? item.definition.split(/(?<=\.)\s/)[0]
+      : "Dettes d’emprunt, pas l’ensemble du passif.";
+    el.innerHTML = "Barres verticales des <strong>emprunts financiers</strong>. " +
+      esc(sentence) +
+      " Ce n’est pas le Total III du passif. Détail dans <a href=\"#definitions\">Définitions</a>.";
+  }
 
-    const missing = selectedParties().filter((p) => valueAt(p.id, state.focusYear, state.metric) == null);
-    const zeros = selectedParties().filter((p) => valueAt(p.id, state.focusYear, state.metric) === 0);
-
-    if (!ranked.length) {
-      panel.dataset.chart = "empty";
-      panel.innerHTML = '<p class="empty">Aucun montant affichable pour cette année, cette métrique et cette sélection.</p>';
+  function renderEvolution() {
+    const wrap = document.getElementById("wrap-evo");
+    const empty = document.getElementById("evo-empty");
+    const note = document.getElementById("evo-note");
+    const parties = selectedParties();
+    if (!wrap || !empty) return;
+    if (typeof Chart === "undefined") {
+      wrap.hidden = true;
+      empty.hidden = false;
+      empty.textContent = "Chart.js n’a pas pu être chargé.";
       return;
     }
-
-    const height = Math.max(300, ranked.length * 34 + 72);
-    panel.dataset.chart = "bar";
-    panel.innerHTML =
-      '<div class="chart-wrap" style="height:' + height + 'px">' +
-      '<canvas id="chart-rank" aria-label="Classement en barres horizontales"></canvas></div>';
-    const max = Math.max(...ranked.map((d) => d.v));
-    const padded = max === 0 ? 1 : max * 1.06;
-    mountChart(document.getElementById("chart-rank"), {
+    if (!parties.length) {
+      wrap.hidden = true;
+      empty.hidden = false;
+      empty.textContent = "Cochez au moins un parti pour afficher l’évolution.";
+      if (note) note.textContent = "";
+      return;
+    }
+    wrap.hidden = false;
+    empty.hidden = true;
+    void wrap.offsetWidth;
+    const years = store.years;
+    const max = parties.reduce((acc, party) => {
+      years.forEach((year) => {
+        const value = valueAt(party.id, year, DEBT);
+        if (value != null && value > acc) acc = value;
+      });
+      return acc;
+    }, 0);
+    mountChart(document.getElementById("canvas-evo"), {
       type: "bar",
       plugins: [whiteBackground],
       data: {
-        labels: ranked.map((d) => shortName(d.p.id)),
+        labels: years.map(String),
+        datasets: parties.map((party) => ({
+          label: shortName(party.id),
+          fullName: displayName(party),
+          partyId: party.id,
+          data: years.map((year) => valueAt(party.id, year, DEBT)),
+          rawValues: years.map((year) => (hasRow(party.id, year) ? valueAt(party.id, year, DEBT) : null)),
+          backgroundColor: colorOf(party.id),
+          borderColor: colorOf(party.id),
+          borderWidth: 1,
+          maxBarThickness: 28,
+        })),
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        animation: false,
+        interaction: { mode: "nearest", intersect: true },
+        plugins: {
+          legend: {
+            position: "bottom",
+            labels: { color: "#334155", boxWidth: 12, padding: 10, font: { size: 12 } },
+          },
+          tooltip: debtTooltip("y"),
+        },
+        scales: {
+          x: {
+            title: { display: true, text: "Année", color: "#334155" },
+            ticks: { color: AXIS, autoSkip: false, maxRotation: 50, minRotation: 0 },
+            grid: { display: false },
+          },
+          y: {
+            beginAtZero: true,
+            suggestedMax: max > 0 ? max * 1.08 : 1,
+            title: { display: true, text: "Emprunts financiers", color: "#334155" },
+            ticks: { color: AXIS, callback: (value) => formatAxis(value) },
+            grid: { color: GRID },
+          },
+        },
+      },
+    });
+    if (note) {
+      const gaps = parties
+        .map((party) => {
+          const missing = missingYears(party);
+          return missing.length ? displayName(party) + " (" + formatYearSpans(missing) + ")" : "";
+        })
+        .filter(Boolean);
+      const bits = [];
+      if (parties.length > 8) {
+        bits.push(parties.length + " partis affichés : les barres sont fines. Décochez-en pour aérer le graphique.");
+      }
+      if (gaps.length) {
+        bits.push("Pas de ligne dans le JSON (barre absente, pas un zéro) : " + gaps.join(" ; ") + ".");
+      }
+      note.textContent = bits.join(" ");
+    }
+  }
+
+  function renderRank() {
+    const wrap = document.getElementById("wrap-rank");
+    const empty = document.getElementById("rank-empty");
+    const note = document.getElementById("rank-note");
+    if (!wrap || !empty) return;
+    const ranked = store.partis
+      .map((party) => ({ party, value: valueAt(party.id, state.focusYear, DEBT), row: hasRow(party.id, state.focusYear) }))
+      .filter((item) => item.row && item.value != null)
+      .sort((a, b) => b.value - a.value || displayName(a.party).localeCompare(displayName(b.party), "fr"));
+    const absent = store.partis.filter((party) => !hasRow(party.id, state.focusYear));
+    if (typeof Chart === "undefined") {
+      wrap.hidden = true;
+      empty.hidden = false;
+      empty.textContent = "Chart.js n’a pas pu être chargé.";
+      return;
+    }
+    if (!ranked.length) {
+      wrap.hidden = true;
+      empty.hidden = false;
+      empty.textContent = "Aucun montant d’emprunts pour " + state.focusYear + ".";
+      if (note) note.textContent = "";
+      return;
+    }
+    wrap.hidden = false;
+    empty.hidden = true;
+    wrap.style.height = Math.max(320, ranked.length * 36 + 72) + "px";
+    void wrap.offsetWidth;
+    const max = Math.max(...ranked.map((item) => item.value));
+    mountChart(document.getElementById("canvas-rank"), {
+      type: "bar",
+      plugins: [whiteBackground],
+      data: {
+        labels: ranked.map((item) => displayName(item.party)),
         datasets: [{
-          label: metricById(state.metric).label,
-          data: ranked.map((d) => d.v),
-          rawValues: ranked.map((d) => d.v),
-          backgroundColor: ranked.map((d) => colorOf(d.p.id)),
-          borderColor: ranked.map((d) => colorOf(d.p.id)),
+          label: "Emprunts financiers",
+          fullName: "Emprunts financiers",
+          data: ranked.map((item) => item.value),
+          rawValues: ranked.map((item) => item.value),
+          backgroundColor: ranked.map((item) => colorOf(item.party.id)),
+          borderColor: ranked.map((item) => colorOf(item.party.id)),
           borderWidth: 1,
           maxBarThickness: 22,
-          indexAxis: "y",
         }],
       },
       options: {
@@ -348,182 +408,51 @@
         animation: false,
         plugins: {
           legend: { display: false },
-          tooltip: tooltipOptions(),
-        },
-        scales: {
-          x: valueScale(log, Math.min(...ranked.map((d) => d.v)), log ? max : padded),
-          y: categoryScale(),
-        },
-      },
-    });
-
-    const notes = [];
-    if (missing.length) {
-      notes.push("Sans montant publié pour " + state.focusYear + " : " + missing.map((p) => shortName(p.id)).join(", ") + ".");
-    }
-    if (log && zeros.length) {
-      notes.push("À 0 €, donc absents du graphique logarithmique : " + zeros.map((p) => shortName(p.id)).join(", ") + ".");
-    }
-    if (notes.length) {
-      panel.insertAdjacentHTML("beforeend", '<p class="chart-note">' + esc(notes.join(" ")) + "</p>");
-    }
-  }
-
-  function renderMultiples(panel) {
-    const parties = selectedParties();
-    if (!parties.length) {
-      panel.dataset.chart = "empty";
-      panel.innerHTML = '<p class="empty">Sélectionnez au moins un parti.</p>';
-      return;
-    }
-    const extent = sharedExtent(state.log);
-    panel.dataset.chart = "multiples";
-    const cards = parties.map((p) => {
-      return (
-        '<figure class="mini">' +
-        "<h3>" + esc(shortName(p.id)) + "</h3>" +
-        '<div class="chart-wrap"><canvas id="chart-' + esc(p.id) + '" aria-label="Évolution de ' + esc(shortName(p.id)) + '"></canvas></div>' +
-        "</figure>"
-      );
-    }).join("");
-    panel.innerHTML =
-      '<p class="chart-note">Échelle verticale commune à tous les graphiques.</p>' +
-      '<div class="multiples">' + cards + "</div>";
-
-    parties.forEach((p) => {
-      const series = seriesFor(p.id, state.log);
-      const scale = valueScale(
-        state.log,
-        extent.min,
-        state.log ? extent.max : (extent.max > 0 ? extent.max * 1.05 : 1)
-      );
-      scale.ticks.font = { size: 10 };
-      scale.ticks.maxTicksLimit = 4;
-      mountChart(document.getElementById("chart-" + p.id), {
-        type: "line",
-        plugins: [whiteBackground],
-        data: {
-          labels: series.years,
-          datasets: [{
-            label: shortName(p.id),
-            data: series.data,
-            rawValues: series.raw,
-            borderColor: colorOf(p.id),
-            backgroundColor: "transparent",
-            borderWidth: 2,
-            tension: 0,
-            spanGaps: false,
-            pointRadius: 2,
-            pointHoverRadius: 4,
-          }],
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          animation: false,
-          plugins: {
-            legend: { display: false },
-            tooltip: tooltipOptions(),
-          },
-          scales: {
-            x: {
-              ticks: { color: AXIS, maxRotation: 0, font: { size: 10 } },
-              grid: { color: "rgba(15, 23, 42, 0.08)" },
+          tooltip: {
+            backgroundColor: "#ffffff",
+            titleColor: "#1e293b",
+            bodyColor: "#334155",
+            borderColor: "#d5dee8",
+            borderWidth: 1,
+            callbacks: {
+              label(ctx) {
+                return eur(ctx.parsed.x);
+              },
             },
-            y: scale,
           },
-        },
-      });
-    });
-  }
-
-  function renderEvolution(panel) {
-    const parties = selectedParties();
-    if (!parties.length) {
-      panel.dataset.chart = "empty";
-      panel.innerHTML = '<p class="empty">Sélectionnez au moins un parti.</p>';
-      return;
-    }
-    if (parties.length > MAX_LINES) {
-      panel.dataset.chart = "blocked";
-      panel.innerHTML =
-        '<p class="empty">L’évolution superposée est limitée à ' + MAX_LINES +
-        " partis, pour éviter un graphique illisible. " +
-        parties.length + " sont cochés : décochez-en dans le filtre, ou passez aux petits multiples.</p>";
-      return;
-    }
-    const extent = sharedExtent(state.log);
-    if (extent.empty) {
-      panel.dataset.chart = "empty";
-      panel.innerHTML = '<p class="empty">Aucun montant affichable pour cette sélection.</p>';
-      return;
-    }
-    panel.dataset.chart = "lines";
-    panel.innerHTML =
-      '<div class="chart-wrap" style="height:440px">' +
-      '<canvas id="chart-evo" aria-label="Évolution des partis sélectionnés"></canvas></div>';
-    const years = yearsInRange();
-    const scale = valueScale(state.log, extent.min, state.log ? extent.max : extent.max * 1.05);
-    mountChart(document.getElementById("chart-evo"), {
-      type: "line",
-      plugins: [whiteBackground],
-      data: {
-        labels: years,
-        datasets: parties.map((p) => {
-          const series = seriesFor(p.id, state.log);
-          return {
-            label: shortName(p.id),
-            data: series.data,
-            rawValues: series.raw,
-            borderColor: colorOf(p.id),
-            backgroundColor: "transparent",
-            borderWidth: 2,
-            tension: 0,
-            spanGaps: false,
-            pointRadius: 3,
-            pointHoverRadius: 5,
-          };
-        }),
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        animation: false,
-        interaction: { mode: "nearest", axis: "x", intersect: false },
-        plugins: {
-          legend: {
-            position: "bottom",
-            labels: { color: "#334155", boxWidth: 14, padding: 10 },
-          },
-          tooltip: tooltipOptions(),
         },
         scales: {
           x: {
-            ticks: { color: AXIS, maxRotation: 0 },
+            beginAtZero: true,
+            suggestedMax: max > 0 ? max * 1.06 : 1,
+            title: { display: true, text: "Emprunts financiers", color: "#334155" },
+            ticks: { color: AXIS, callback: (value) => formatAxis(value) },
             grid: { color: GRID },
           },
-          y: scale,
+          y: {
+            ticks: { color: "#334155", autoSkip: false, font: { size: 12 } },
+            grid: { display: false },
+          },
         },
       },
     });
+    if (note) {
+      const zeros = ranked.filter((item) => item.value === 0).map((item) => displayName(item.party));
+      const bits = [];
+      bits.push(ranked.length + " partis avec un compte en " + state.focusYear + ", triés par emprunts financiers.");
+      if (zeros.length) bits.push("Montant publié à 0 € : " + zeros.join(", ") + ".");
+      if (absent.length) {
+        bits.push("Sans ligne en " + state.focusYear + " : " + absent.map(displayName).join(", ") + ".");
+      }
+      note.textContent = bits.join(" ");
+    }
   }
 
-  function renderChart() {
-    const panel = document.getElementById("chart-panel");
-    if (!panel) return;
+  function renderCharts() {
     destroyCharts();
-    panel.dataset.mode = state.mode;
-    if (typeof Chart === "undefined") {
-      panel.dataset.chart = "empty";
-      panel.innerHTML = '<p class="error">Chart.js n’a pas pu être chargé.</p>';
-      return;
-    }
-    if (state.mode === "multiples") renderMultiples(panel);
-    else if (state.mode === "evolution") renderEvolution(panel);
-    else renderRank(panel);
-
-    const hint = document.getElementById("log-hint");
-    if (hint) hint.hidden = !state.log;
+    if (viewFromHash() !== "graphiques") return;
+    renderEvolution();
+    renderRank();
   }
 
   function arrow(sort, key) {
@@ -542,66 +471,64 @@
     if (aMissing && bMissing) return 0;
     if (aMissing) return 1;
     if (bMissing) return -1;
-    const diff = av - bv;
-    return dir === "asc" ? diff : -diff;
+    return dir === "asc" ? av - bv : bv - av;
   }
 
-  function sortedParties(sort, valueFor) {
-    const rows = selectedParties().slice();
+  function sortedParties(list, sort, valueFor) {
+    const rows = list.slice();
     rows.sort((a, b) => {
       if (sort.key === "party") {
-        const c = partyName(a).localeCompare(partyName(b), "fr", { sensitivity: "base" });
-        return sort.dir === "asc" ? c : -c;
+        const cmp = displayName(a).localeCompare(displayName(b), "fr", { sensitivity: "base" });
+        return sort.dir === "asc" ? cmp : -cmp;
       }
       const byVal = compareNullable(valueFor(a), valueFor(b), sort.dir);
       if (byVal) return byVal;
-      return partyName(a).localeCompare(partyName(b), "fr", { sensitivity: "base" });
+      return displayName(a).localeCompare(displayName(b), "fr", { sensitivity: "base" });
     });
     return rows;
   }
 
   function headerCell(sort, key, label, extraClass) {
-    return (
-      '<th scope="col" class="' + (extraClass || "") + '" aria-sort="' + ariaSort(sort, key) + '">' +
-      '<button type="button" data-sort="' + esc(key) + '">' + esc(label) + arrow(sort, key) + "</button></th>"
-    );
+    return '<th scope="col" class="' + (extraClass || "") + '" aria-sort="' + ariaSort(sort, key) + '">' +
+      '<button type="button" data-sort="' + esc(key) + '">' + esc(label) + arrow(sort, key) + "</button></th>";
   }
 
   function renderMatrix() {
     const table = document.getElementById("table-matrix");
     const title = document.getElementById("matrix-title");
     if (!table) return;
-    const years = yearsInRange();
-    const metric = metricById(state.metric);
+    const years = store.years;
     if (title) {
-      title.textContent = metric.label + " — parti × année (" + state.yearFrom + "–" + state.yearTo + ")";
+      const from = years[0];
+      const to = years[years.length - 1];
+      title.textContent = "Emprunts financiers — partis cochés, " + from + "–" + to;
     }
     if (state.sortMatrix.key !== "party" && years.indexOf(Number(state.sortMatrix.key)) === -1) {
       state.sortMatrix = { key: String(state.focusYear), dir: "desc" };
     }
-    const rows = sortedParties(state.sortMatrix, (p) => {
+    const rows = sortedParties(selectedParties(), state.sortMatrix, (party) => {
       if (state.sortMatrix.key === "party") return null;
-      return valueAt(p.id, Number(state.sortMatrix.key), state.metric);
+      return valueAt(party.id, Number(state.sortMatrix.key), DEBT);
     });
     const head = "<tr>" + headerCell(state.sortMatrix, "party", "Parti") +
-      years.map((y) => headerCell(
+      years.map((year) => headerCell(
         state.sortMatrix,
-        String(y),
-        String(y),
-        y === state.focusYear ? "is-focus" : ""
+        String(year),
+        String(year),
+        year === state.focusYear ? "is-focus" : ""
       )).join("") + "</tr>";
     const body = rows.length
-      ? rows.map((p) => {
-        const cells = years.map((y) => {
-          const v = valueAt(p.id, y, state.metric);
-          const cls = "num" + (y === state.focusYear ? " is-focus" : "");
-          return '<td class="' + cls + '">' + esc(eur(v)) + "</td>";
+      ? rows.map((party) => {
+        const cells = years.map((year) => {
+          const value = valueAt(party.id, year, DEBT);
+          const cls = "num" + (year === state.focusYear ? " is-focus" : "");
+          return '<td class="' + cls + '">' + esc(eur(value)) + "</td>";
         }).join("");
-        return "<tr><th scope=\"row\" class=\"party\">" + esc(partyName(p)) + "</th>" + cells + "</tr>";
+        return "<tr><th scope=\"row\" class=\"party\">" + esc(displayName(party)) + "</th>" + cells + "</tr>";
       }).join("")
       : '<tr><td colspan="' + (years.length + 1) + '">Aucun parti sélectionné.</td></tr>';
     table.innerHTML =
-      "<caption>Champ " + esc(state.metric) + ". Tri en cliquant sur un en-tête.</caption>" +
+      "<caption>Champ somme_emprunts_eur. Tri en cliquant sur un en-tête. La colonne surlignée est l’année du classement.</caption>" +
       "<thead>" + head + "</thead><tbody>" + body + "</tbody>";
   }
 
@@ -610,29 +537,29 @@
     const title = document.getElementById("metrics-title");
     if (!table) return;
     if (title) title.textContent = "Toutes les métriques en " + state.focusYear;
-    const rows = sortedParties(state.sortMetrics, (p) => {
+    const rows = sortedParties(store.partis, state.sortMetrics, (party) => {
       if (state.sortMetrics.key === "party") return null;
-      return valueAt(p.id, state.focusYear, state.sortMetrics.key);
+      return valueAt(party.id, state.focusYear, state.sortMetrics.key);
     });
     const head = "<tr>" + headerCell(state.sortMetrics, "party", "Parti") +
-      METRICS.map((m) => headerCell(
+      METRICS.map((metric) => headerCell(
         state.sortMetrics,
-        m.id,
-        m.short,
-        m.id === state.metric ? "is-focus" : ""
+        metric.id,
+        metric.short,
+        metric.id === DEBT ? "is-focus" : ""
       )).join("") + "</tr>";
     const body = rows.length
-      ? rows.map((p) => {
-        const cells = METRICS.map((m) => {
-          const v = valueAt(p.id, state.focusYear, m.id);
-          const cls = "num" + (m.id === state.metric ? " is-focus" : "");
-          return '<td class="' + cls + '">' + esc(eur(v)) + "</td>";
+      ? rows.map((party) => {
+        const cells = METRICS.map((metric) => {
+          const value = valueAt(party.id, state.focusYear, metric.id);
+          const cls = "num" + (metric.id === DEBT ? " is-focus" : "");
+          return '<td class="' + cls + '">' + esc(eur(value)) + "</td>";
         }).join("");
-        return "<tr><th scope=\"row\" class=\"party\">" + esc(partyName(p)) + "</th>" + cells + "</tr>";
+        return "<tr><th scope=\"row\" class=\"party\">" + esc(displayName(party)) + "</th>" + cells + "</tr>";
       }).join("")
-      : '<tr><td colspan="' + (METRICS.length + 1) + '">Aucun parti sélectionné.</td></tr>';
+      : '<tr><td colspan="' + (METRICS.length + 1) + '">Aucun parti dans le fichier.</td></tr>';
     table.innerHTML =
-      "<caption>Exercice " + state.focusYear + ". La colonne surlignée est la métrique du graphique.</caption>" +
+      "<caption>Exercice " + state.focusYear + ", tous les partis du fichier. La colonne Emprunts est la dette des graphiques.</caption>" +
       "<thead>" + head + "</thead><tbody>" + body + "</tbody>";
   }
 
@@ -647,70 +574,49 @@
   }
 
   function comptesSourceHtml(years) {
-    const dataset = sourceAnchor(store.dataset, "Comptes des partis et groupements politiques");
+    const page = '<a href="sources.html#comptes">Sources</a>';
+    const dataset = sourceAnchor(store.dataset, "jeu data.gouv");
     const list = (years || []).filter((year, index, all) => all.indexOf(year) === index);
+    if (!list.length) return "Source : " + page + ".";
     if (list.length === 1) {
       const file = fileForYear(list[0]);
-      const fileLink = file ? sourceAnchor(file.url, "fichier exercice " + list[0]) : "";
-      return "Source : CNCCFP — " + dataset + (fileLink ? " · " + fileLink : "") + ".";
+      const fileLink = file ? sourceAnchor(file.url, "fichier " + list[0]) : "";
+      return "Source : " + page + " · CNCCFP — " + dataset + (fileLink ? " · " + fileLink : "") + ".";
     }
-    const from = list[0];
-    const to = list[list.length - 1];
-    return "Source : CNCCFP — " + dataset +
-      " · exercices " + from + "–" + to + " · " +
-      sourceAnchor("sources.html#comptes", "un fichier par exercice") + ".";
+    return "Source : " + page + " · CNCCFP — " + dataset +
+      " · exercices " + list[0] + "–" + list[list.length - 1] + ".";
   }
 
   function renderSourceLines() {
-    const chart = document.getElementById("chart-source");
+    const evo = document.getElementById("evo-source");
+    const rank = document.getElementById("rank-source");
     const matrix = document.getElementById("matrix-source");
     const metrics = document.getElementById("metrics-source");
-    const chartYears = state.mode === "rank" ? [state.focusYear] : yearsInRange();
-    if (chart) chart.innerHTML = comptesSourceHtml(chartYears);
-    if (matrix) matrix.innerHTML = comptesSourceHtml(yearsInRange());
+    if (evo) evo.innerHTML = comptesSourceHtml(store.years);
+    if (rank) rank.innerHTML = comptesSourceHtml([state.focusYear]);
+    if (matrix) matrix.innerHTML = comptesSourceHtml(store.years);
     if (metrics) metrics.innerHTML = comptesSourceHtml([state.focusYear]);
-    const file = fileForYear(state.focusYear);
-    const fileLink = document.getElementById("compte-fichier");
-    if (fileLink && file) {
-      fileLink.href = file.url;
-      fileLink.textContent = "exercice " + state.focusYear;
-    }
   }
 
-  function renderStatus() {
-    const metric = metricById(state.metric);
+  function renderPartyCounts() {
     const n = selectedParties().length;
-    const modeLabel = state.mode === "multiples"
-      ? "Petits multiples"
-      : state.mode === "evolution"
-        ? "Évolution"
-        : "Classement";
-    const el = document.getElementById("view-status");
-    if (el) {
-      el.textContent = modeLabel + " · " + metric.label + " · " +
-        (state.mode === "rank" ? String(state.focusYear) : state.yearFrom + "–" + state.yearTo) +
-        " · " + n + (n > 1 ? " partis" : " parti");
-    }
-    const count = document.getElementById("party-count");
-    if (count) count.textContent = n + " / " + store.partis.length + " partis";
-    const hint = document.getElementById("metric-hint");
-    if (hint) {
-      const fromJson = store.libelles[state.metric];
-      hint.textContent = fromJson || ("Champ " + state.metric + " des comptes annuels CNCCFP.");
-    }
+    document.querySelectorAll(".party-count").forEach((el) => {
+      el.textContent = n + " / " + store.partis.length + " partis";
+    });
   }
 
   function render() {
-    renderStatus();
-    renderChart();
+    renderPartyCounts();
     renderMatrix();
     renderMetricTable();
     renderSourceLines();
+    renderCharts();
   }
 
   function renderTables() {
     renderMatrix();
     renderMetricTable();
+    renderSourceLines();
   }
 
   function bindSort(tableId, sort) {
@@ -729,93 +635,77 @@
     });
   }
 
-  function setAllParties(on) {
-    state.parties = on ? new Set(store.partis.map((p) => p.id)) : new Set();
-    document.querySelectorAll("#party-filters input").forEach((el) => {
-      el.checked = on;
+  function partyFilterHtml() {
+    return store.partis.map((party) =>
+      '<label title="' + esc(displayName(party)) + '">' +
+      '<input type="checkbox" value="' + esc(party.id) + '"' +
+      (state.parties.has(party.id) ? " checked" : "") + "> " +
+      esc(shortName(party.id)) + "</label>"
+    ).join("");
+  }
+
+  function syncPartyChecks() {
+    document.querySelectorAll("[data-party-filters] input").forEach((input) => {
+      input.checked = state.parties.has(input.value);
     });
+  }
+
+  function setAllParties(on) {
+    state.parties = on ? new Set(store.partis.map((party) => party.id)) : new Set();
+    syncPartyChecks();
     render();
   }
 
-  function fillSelect(id, options, value) {
-    const el = document.getElementById(id);
-    el.innerHTML = options.map((o) =>
-      '<option value="' + esc(o.value) + '">' + esc(o.label) + "</option>"
-    ).join("");
-    el.value = String(value);
+  function defaultPartyIds() {
+    const latest = store.years[store.years.length - 1];
+    return store.partis
+      .map((party) => ({ id: party.id, value: valueAt(party.id, latest, DEBT) }))
+      .sort((a, b) => {
+        const av = a.value == null ? -Infinity : a.value;
+        const bv = b.value == null ? -Infinity : b.value;
+        if (bv !== av) return bv - av;
+        return shortName(a.id).localeCompare(shortName(b.id), "fr");
+      })
+      .slice(0, DEFAULT_PARTIES)
+      .map((item) => item.id);
   }
 
-  function syncFocusOptions(keep) {
-    const years = yearsInRange();
-    const next = years.indexOf(keep) !== -1 ? keep : years[years.length - 1];
-    state.focusYear = next;
-    fillSelect("year-focus", years.map((y) => ({ value: y, label: String(y) })), next);
-    state.sortMatrix = { key: String(next), dir: "desc" };
+  function fillYearSelects() {
+    const options = store.years.map((year) =>
+      '<option value="' + year + '">' + year + "</option>"
+    ).join("");
+    document.querySelectorAll("[data-year-focus]").forEach((el) => {
+      el.innerHTML = options;
+      el.value = String(state.focusYear);
+    });
   }
 
   function buildFilters() {
-    const host = document.getElementById("party-filters");
-    host.innerHTML = store.partis.map((p) =>
-      '<label title="' + esc(partyName(p)) + '">' +
-      '<input type="checkbox" value="' + esc(p.id) + '" checked> ' +
-      esc(shortName(p.id)) + "</label>"
-    ).join("");
-    state.parties = new Set(store.partis.map((p) => p.id));
-
-    fillSelect("metric", METRICS.map((m) => ({ value: m.id, label: m.label })), state.metric);
-    const yearOpts = store.years.map((y) => ({ value: y, label: String(y) }));
-    fillSelect("year-from", yearOpts, state.yearFrom);
-    fillSelect("year-to", yearOpts, state.yearTo);
-    syncFocusOptions(state.focusYear);
-
-    host.addEventListener("change", (event) => {
-      const input = event.target;
-      if (!input || input.type !== "checkbox") return;
-      if (input.checked) state.parties.add(input.value);
-      else state.parties.delete(input.value);
-      render();
-    });
-    document.getElementById("parties-all").addEventListener("click", () => setAllParties(true));
-    document.getElementById("parties-none").addEventListener("click", () => setAllParties(false));
-
-    document.getElementById("metric").addEventListener("change", (event) => {
-      state.metric = event.target.value;
-      state.sortMetrics = { key: state.metric, dir: "desc" };
-      render();
-    });
-    document.getElementById("year-from").addEventListener("change", (event) => {
-      state.yearFrom = Number(event.target.value);
-      if (state.yearFrom > state.yearTo) {
-        state.yearTo = state.yearFrom;
-        document.getElementById("year-to").value = String(state.yearTo);
-      }
-      syncFocusOptions(state.focusYear);
-      render();
-    });
-    document.getElementById("year-to").addEventListener("change", (event) => {
-      state.yearTo = Number(event.target.value);
-      if (state.yearTo < state.yearFrom) {
-        state.yearFrom = state.yearTo;
-        document.getElementById("year-from").value = String(state.yearFrom);
-      }
-      syncFocusOptions(state.focusYear);
-      render();
-    });
-    document.getElementById("year-focus").addEventListener("change", (event) => {
-      state.focusYear = Number(event.target.value);
-      state.sortMatrix = { key: String(state.focusYear), dir: "desc" };
-      render();
-    });
-    document.querySelectorAll('input[name="mode"]').forEach((el) => {
-      el.addEventListener("change", () => {
-        if (!el.checked) return;
-        state.mode = el.value;
+    state.parties = new Set(defaultPartyIds());
+    document.querySelectorAll("[data-party-filters]").forEach((host) => {
+      host.innerHTML = partyFilterHtml();
+      host.addEventListener("change", (event) => {
+        const input = event.target;
+        if (!input || input.type !== "checkbox") return;
+        if (input.checked) state.parties.add(input.value);
+        else state.parties.delete(input.value);
+        syncPartyChecks();
         render();
       });
     });
-    document.getElementById("log-scale").addEventListener("change", (event) => {
-      state.log = event.target.checked;
-      render();
+    document.querySelectorAll("[data-parties]").forEach((btn) => {
+      btn.addEventListener("click", () => setAllParties(btn.dataset.parties === "all"));
+    });
+    fillYearSelects();
+    document.querySelectorAll("[data-year-focus]").forEach((el) => {
+      el.addEventListener("change", () => {
+        state.focusYear = Number(el.value);
+        if (!store.years.includes(state.focusYear)) return;
+        document.querySelectorAll("[data-year-focus]").forEach((other) => {
+          other.value = String(state.focusYear);
+        });
+        render();
+      });
     });
     bindSort("table-matrix", state.sortMatrix);
     bindSort("table-metrics", state.sortMetrics);
@@ -824,7 +714,7 @@
   function fillCandidateLists(partisData) {
     const officiels = (partisData.meta && partisData.meta.candidats_officiels) || {};
     const nameById = {};
-    store.partis.forEach((p) => { nameById[p.id] = shortName(p.id); });
+    store.partis.forEach((party) => { nameById[party.id] = shortName(party.id); });
 
     function renderOfficial(year, containerId) {
       const block = officiels[String(year)];
@@ -840,8 +730,8 @@
       const src = el.querySelector(".meta-src");
       const href = safeUrl(block.source || "");
       if (src) {
-        src.innerHTML = esc(block.decision || "") +
-          (href ? ' — <a href="' + esc(href) + '" target="_blank" rel="noopener">source</a>' : "");
+        src.innerHTML = '<a href="sources.html#candidats">Sources</a> · ' + esc(block.decision || "") +
+          (href ? ' — <a href="' + esc(href) + '" target="_blank" rel="noopener">texte officiel</a>' : "");
       }
     }
 
@@ -851,11 +741,11 @@
     const el27 = document.getElementById("list-2027");
     if (!el27) return;
     const items = [];
-    store.partis.forEach((p) => {
-      (p.candidats_2027 || []).forEach((c) => {
+    store.partis.forEach((party) => {
+      (party.candidats_2027 || []).forEach((c) => {
         items.push({
           nom: c.nom,
-          parti: shortName(p.id),
+          parti: shortName(party.id),
           statut: c.statut || "",
           annonce: c.annonce || "",
           source: (c.sources && c.sources[0]) || "",
@@ -895,10 +785,14 @@
         ? "Première année renseignée pour au moins un parti suivi : " + span.premiere_annee +
           ". Dernière : " + span.derniere_annee + " (" + span.n + " cases non vides)."
         : "";
+      const chartNote = item.champ === DEBT
+        ? '<p class="chart-note">C’est le poste dessiné dans les graphiques, sous l’intitulé « dette ».</p>'
+        : "";
       return "<article>" +
         "<h3>" + esc(item.titre) + "</h3>" +
         "<p>" + esc(item.definition) + "</p>" +
         (item.avertissement ? '<p class="caveat">' + esc(item.avertissement) + "</p>" : "") +
+        chartNote +
         (years ? '<p class="chart-note">' + esc(years) + "</p>" : "") +
         "</article>";
     }).join("");
@@ -907,9 +801,16 @@
   function fill2025(meta) {
     const el = document.getElementById("exercice-2025");
     const info = meta && meta.exercice_2025;
-    if (!el || !info) return;
-    el.hidden = false;
-    el.textContent = info.texte || "2025 non publié au 2026-09-23";
+    if (!info) return;
+    if (el) {
+      el.hidden = false;
+      el.textContent = info.texte || "2025 non publié au 2026-09-23";
+    }
+    const limite = document.getElementById("limite-2025");
+    if (limite) {
+      limite.textContent = (info.texte || "2025 non publié") +
+        (info.constat ? " " + info.constat : "");
+    }
   }
 
   function elecLabel(tour) {
@@ -972,19 +873,15 @@
         " · exprimés " + intFr(tour.exprimes) +
         " · " + esc(blancs) + ". " +
         esc(tour.methode || "") +
-        " Source : Ministère de l’Intérieur — " +
+        " Source : <a href=\"sources.html#resultats\">Sources</a> · Ministère de l’Intérieur — " +
         (fileHref ? sourceAnchor(fileHref, "fichier") : "") +
         (pageHref ? " · " + sourceAnchor(pageHref, "jeu data.gouv") : "") + ".";
     }
     if (hook && store.elections && store.elections.meta) {
       const cmp = store.elections.meta.comparaison_voix_depenses || {};
       const leg = store.elections.meta.legislatives || {};
-      const searches = (cmp.recherches || []).map((item) =>
-        sourceAnchor(item.url, item.q)
-      ).join(", ");
-      const pages = (cmp.pages_cnccfp_non_extraites || []).map((url) =>
-        sourceAnchor(url, "page CNCCFP")
-      ).join(", ");
+      const searches = (cmp.recherches || []).map((item) => sourceAnchor(item.url, item.q)).join(", ");
+      const pages = (cmp.pages_cnccfp_non_extraites || []).map((url) => sourceAnchor(url, "page CNCCFP")).join(", ");
       hook.innerHTML = esc(cmp.raison || "") +
         (searches ? " Recherches : " + searches + "." : "") +
         (pages ? " Non extraites : " + pages + "." : "") +
@@ -1023,6 +920,14 @@
     return res.json();
   }
 
+  function onHashChange() {
+    const view = viewFromHash();
+    showView(view);
+    if (view === "graphiques") {
+      requestAnimationFrame(() => renderCharts());
+    }
+  }
+
   async function init() {
     const status = document.getElementById("data-status");
     try {
@@ -1033,7 +938,6 @@
       store.rows = comptes.comptes || [];
       store.libelles = (comptes.meta && comptes.meta.libelles) || {};
       store.glossaire = (comptes.meta && comptes.meta.glossaire) || [];
-      store.couverture = (comptes.meta && comptes.meta.couverture) || {};
       store.exercice2025 = comptes.meta && comptes.meta.exercice_2025;
       if (comptes.meta && comptes.meta.dataset) store.dataset = comptes.meta.dataset;
       store.compteSources = (comptes.meta && comptes.meta.sources) || [];
@@ -1042,9 +946,7 @@
       );
       store.years = Array.from(new Set(store.rows.map((r) => r.year))).sort((a, b) => a - b);
       if (store.years.length) {
-        state.yearFrom = store.years[0];
-        state.yearTo = store.years[store.years.length - 1];
-        state.focusYear = state.yearTo;
+        state.focusYear = store.years[store.years.length - 1];
         state.sortMatrix = { key: String(state.focusYear), dir: "desc" };
       }
       const span = document.getElementById("year-span");
@@ -1056,10 +958,13 @@
       }
       fillGlossary(comptes.meta);
       fill2025(comptes.meta);
+      renderDebtIntro();
       applyLightDefaults();
       buildFilters();
       fillCandidateLists(partis);
+      showView(viewFromHash());
       render();
+      window.addEventListener("hashchange", onHashChange);
       try {
         fillElections(await loadJson("data/elections_presidentielles.json"));
       } catch (elecErr) {
@@ -1079,8 +984,11 @@
         status.textContent = String(err.message || err);
         status.className = "error";
       }
-      const panel = document.getElementById("chart-panel");
-      if (panel) panel.innerHTML = '<p class="error">Impossible de charger les données. Ouvrez le site via HTTP.</p>';
+      const empty = document.getElementById("evo-empty");
+      if (empty) {
+        empty.hidden = false;
+        empty.textContent = "Impossible de charger les données. Ouvrez le site via HTTP.";
+      }
     }
   }
 
