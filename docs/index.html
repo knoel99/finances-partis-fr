@@ -7,16 +7,17 @@
   <meta name="theme-color" content="#ffffff">
   <title>Finances des partis — CNCCFP</title>
   <meta name="description" content="Comptes CNCCFP des partis politiques français et résultats présidentiels officiels. Classement, petits multiples et tableaux filtrables. Aucun chiffre inventé.">
-  <link rel="stylesheet" href="css/styles.css?v=20260923hist">
+  <link rel="stylesheet" href="css/styles.css?v=20260923src">
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js" defer></script>
-  <script src="js/charts.js?v=20260923hist" defer></script>
+  <script src="js/charts.js?v=20260923src" defer></script>
 </head>
 <body>
   <header class="site">
     <div class="wrap">
       <h1>Finances des partis politiques</h1>
       <p class="sub">
-        Comptes d’ensemble CNCCFP, exercices <span id="year-span">chargés depuis le JSON</span>, via data.gouv.fr.
+        Comptes d’ensemble CNCCFP, exercices <span id="year-span">chargés depuis le JSON</span>,
+        <a href="https://www.data.gouv.fr/datasets/comptes-des-partis-et-groupements-politiques" target="_blank" rel="noopener">jeu data.gouv « Comptes des partis et groupements politiques »</a>.
         Aucun chiffre inventé : uniquement les JSON du dépôt.
         <span id="data-status" class="badge">Chargement…</span>
       </p>
@@ -27,7 +28,8 @@
         <a href="#tableaux">Tableaux</a>
         <a href="#glossaire">Définitions</a>
         <a href="#elections">Élections</a>
-        <a href="sources.html">Sources</a>
+        <a href="#jeux">Sources</a>
+        <a href="sources.html">Inventaire</a>
       </nav>
     </div>
   </header>
@@ -99,6 +101,7 @@
         <p id="view-status" class="lead"></p>
         <div id="chart-panel"></div>
         <p id="log-hint" class="chart-note" hidden>Graduation en millions d’euros. Les valeurs nulles ou négatives sont omises : elles ne sont pas définies sur une échelle logarithmique.</p>
+        <p id="chart-source" class="source-line"></p>
       </div>
     </section>
 
@@ -110,11 +113,13 @@
       <div class="table-wrap">
         <table id="table-matrix"></table>
       </div>
+      <p id="matrix-source" class="source-line"></p>
 
       <h3 id="metrics-title">Métriques de l’année</h3>
       <div class="table-wrap">
         <table id="table-metrics"></table>
       </div>
+      <p id="metrics-source" class="source-line"></p>
     </section>
 
     <section id="glossaire">
@@ -167,6 +172,59 @@
       </div>
     </section>
 
+    <section id="jeux">
+      <h2>Sources des chiffres</h2>
+      <p class="lead">Liens directs vers les jeux et les fichiers utilisés. L’inventaire complet est sur <a href="sources.html">la page sources</a>.</p>
+      <ul class="source-list">
+        <li>
+          <strong>Comptes de parti.</strong>
+          CNCCFP,
+          <a href="https://www.data.gouv.fr/datasets/comptes-des-partis-et-groupements-politiques" target="_blank" rel="noopener">jeu data.gouv « Comptes des partis et groupements politiques »</a>.
+          Fichier de l’exercice affiché :
+          <a id="compte-fichier" href="https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20260210-110641/comptes-partis-exercice-2024.csv" target="_blank" rel="noopener">exercice 2024</a>.
+          <a href="sources.html#comptes">Tous les exercices, 2008 à 2024</a>.
+        </li>
+        <li>
+          <strong>Présidentielle 2022.</strong>
+          Ministère de l’Intérieur —
+          <a href="https://www.data.gouv.fr/datasets/election-presidentielle-des-10-et-24-avril-2022-resultats-definitifs-du-1er-tour" target="_blank" rel="noopener">1er tour</a>,
+          <a href="https://www.data.gouv.fr/datasets/election-presidentielle-des-10-et-24-avril-2022-resultats-definitifs-du-2nd-tour" target="_blank" rel="noopener">2nd tour</a>.
+          Liste des candidats : <a href="https://www.conseil-constitutionnel.fr/decision/2022/2022187PDR.htm" target="_blank" rel="noopener">Conseil constitutionnel, décision n° 2022-187 PDR</a>.
+        </li>
+        <li>
+          <strong>Présidentielle 2017.</strong>
+          Ministère de l’Intérieur —
+          <a href="https://www.data.gouv.fr/datasets/election-presidentielle-des-23-avril-et-7-mai-2017-resultats-definitifs-du-1er-tour-1" target="_blank" rel="noopener">1er tour</a>,
+          <a href="https://www.data.gouv.fr/datasets/election-presidentielle-des-23-avril-et-7-mai-2017-resultats-definitifs-du-2nd-tour" target="_blank" rel="noopener">2nd tour</a>.
+          Liste des candidats : <a href="https://presidentielle2017.conseil-constitutionnel.fr/liste-officielle-des-candidats-a-lelection-presidentielle/" target="_blank" rel="noopener">Conseil constitutionnel</a>.
+        </li>
+        <li>
+          <strong>Présidentielle 2012.</strong>
+          <a href="https://www.data.gouv.fr/datasets/election-presidentielle-2012-resultats-572124" target="_blank" rel="noopener">Résultats, ministère de l’Intérieur</a>.
+          Le fichier national ne porte pas de code parti.
+        </li>
+        <li>
+          <strong>Présidentielle 2007.</strong>
+          <a href="https://www.data.gouv.fr/datasets/election-presidentielle-2007-resultats-572122" target="_blank" rel="noopener">Résultats communaux, ministère de l’Intérieur</a>.
+          Totaux nationaux = somme des communes.
+        </li>
+        <li>
+          <strong>Présidentielle 2002.</strong>
+          <a href="https://www.data.gouv.fr/datasets/election-presidentielle-2002-resultats-572114" target="_blank" rel="noopener">Résultats, ministère de l’Intérieur</a>.
+        </li>
+        <li>
+          <strong>Comptes de campagne présidentielle.</strong>
+          Aucun jeu ouvert au 2026-09-23 :
+          <a href="https://www.data.gouv.fr/datasets?q=comptes%20de%20campagne%20pr%C3%A9sidentielle" target="_blank" rel="noopener">recherche « comptes de campagne présidentielle »</a>,
+          <a href="https://www.data.gouv.fr/datasets?q=comptes%20de%20campagne%20election%20presidentielle%202022" target="_blank" rel="noopener">2022</a>,
+          <a href="https://www.data.gouv.fr/datasets?q=comptes%20de%20campagne%20election%20presidentielle%202017" target="_blank" rel="noopener">2017</a>
+          (0 résultat). Pages CNCCFP non extraites :
+          <a href="https://cnccfp.fr/election-presidentielle-2022-publication-des-comptes-de-campagne-des-candidats/" target="_blank" rel="noopener">publication 2022</a>,
+          <a href="https://cnccfp.fr/wp-content/uploads/2022/04/De%CC%81cisions_pre%CC%81sidentielle_2017.pdf" target="_blank" rel="noopener">décisions 2017 (PDF)</a>.
+        </li>
+      </ul>
+    </section>
+
     <section id="limites">
       <h2>Limites</h2>
       <div class="card">
@@ -176,7 +234,7 @@
           <li id="limite-2025">Exercice 2025 : voir la mention en tête de page.</li>
           <li>Une case « — » est absente du JSON. Elle n’est jamais remplacée par zéro.</li>
           <li>Montants nominaux : le dépôt ne contient pas de série corrigée de l’inflation.</li>
-          <li>Données : Licence Ouverte, producteur CNCCFP / data.gouv.fr.</li>
+          <li>Données : Licence Ouverte. Les liens vers chaque jeu et chaque fichier sont sous les tableaux et dans <a href="#jeux">Sources des chiffres</a>.</li>
         </ul>
       </div>
     </section>

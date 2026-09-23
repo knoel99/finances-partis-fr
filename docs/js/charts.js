@@ -63,7 +63,19 @@
     sortMetrics: { key: METRICS[0].id, dir: "desc" },
   };
 
-  let store = { rows: [], partis: [], years: [], libelles: {}, glossaire: [], couverture: {}, exercice2025: null, elections: null, officiels: {} };
+  let store = {
+    rows: [],
+    partis: [],
+    years: [],
+    libelles: {},
+    glossaire: [],
+    couverture: {},
+    exercice2025: null,
+    elections: null,
+    officiels: {},
+    dataset: "https://www.data.gouv.fr/datasets/comptes-des-partis-et-groupements-politiques",
+    compteSources: [],
+  };
   const elecSort = { key: "voix", dir: "desc" };
   const charts = [];
 
@@ -624,6 +636,47 @@
       "<thead>" + head + "</thead><tbody>" + body + "</tbody>";
   }
 
+  function sourceAnchor(href, label) {
+    const url = safeUrl(href);
+    if (!url) return esc(label);
+    return '<a href="' + esc(url) + '" target="_blank" rel="noopener">' + esc(label) + "</a>";
+  }
+
+  function fileForYear(year) {
+    return (store.compteSources || []).find((item) => item.annee === year) || null;
+  }
+
+  function comptesSourceHtml(years) {
+    const dataset = sourceAnchor(store.dataset, "Comptes des partis et groupements politiques");
+    const list = (years || []).filter((year, index, all) => all.indexOf(year) === index);
+    if (list.length === 1) {
+      const file = fileForYear(list[0]);
+      const fileLink = file ? sourceAnchor(file.url, "fichier exercice " + list[0]) : "";
+      return "Source : CNCCFP — " + dataset + (fileLink ? " · " + fileLink : "") + ".";
+    }
+    const from = list[0];
+    const to = list[list.length - 1];
+    return "Source : CNCCFP — " + dataset +
+      " · exercices " + from + "–" + to + " · " +
+      sourceAnchor("sources.html#comptes", "un fichier par exercice") + ".";
+  }
+
+  function renderSourceLines() {
+    const chart = document.getElementById("chart-source");
+    const matrix = document.getElementById("matrix-source");
+    const metrics = document.getElementById("metrics-source");
+    const chartYears = state.mode === "rank" ? [state.focusYear] : yearsInRange();
+    if (chart) chart.innerHTML = comptesSourceHtml(chartYears);
+    if (matrix) matrix.innerHTML = comptesSourceHtml(yearsInRange());
+    if (metrics) metrics.innerHTML = comptesSourceHtml([state.focusYear]);
+    const file = fileForYear(state.focusYear);
+    const fileLink = document.getElementById("compte-fichier");
+    if (fileLink && file) {
+      fileLink.href = file.url;
+      fileLink.textContent = "exercice " + state.focusYear;
+    }
+  }
+
   function renderStatus() {
     const metric = metricById(state.metric);
     const n = selectedParties().length;
@@ -652,6 +705,7 @@
     renderChart();
     renderMatrix();
     renderMetricTable();
+    renderSourceLines();
   }
 
   function renderTables() {
@@ -907,7 +961,8 @@
     const blancs = tour.blancs != null
       ? "Blancs " + intFr(tour.blancs) + " · nuls " + intFr(tour.nuls)
       : "Blancs et nuls (non séparés) " + intFr(tour.blancs_et_nuls);
-    const href = safeUrl(tour.source_url);
+    const fileHref = safeUrl(tour.source_url);
+    const pageHref = safeUrl(tour.source_page || tour.source_dataset || "");
     table.innerHTML =
       "<caption>" + esc(elecLabel(tour)) + " · " + esc(tour.perimetre) + "</caption>" +
       "<thead>" + head + "</thead><tbody>" + body + "</tbody>";
@@ -917,12 +972,23 @@
         " · exprimés " + intFr(tour.exprimes) +
         " · " + esc(blancs) + ". " +
         esc(tour.methode || "") +
-        (href ? ' <a href="' + esc(href) + '" target="_blank" rel="noopener">Fichier source</a>.' : "");
+        " Source : Ministère de l’Intérieur — " +
+        (fileHref ? sourceAnchor(fileHref, "fichier") : "") +
+        (pageHref ? " · " + sourceAnchor(pageHref, "jeu data.gouv") : "") + ".";
     }
     if (hook && store.elections && store.elections.meta) {
       const cmp = store.elections.meta.comparaison_voix_depenses || {};
       const leg = store.elections.meta.legislatives || {};
-      hook.textContent = (cmp.raison || "") + " " + (leg.raison || "");
+      const searches = (cmp.recherches || []).map((item) =>
+        sourceAnchor(item.url, item.q)
+      ).join(", ");
+      const pages = (cmp.pages_cnccfp_non_extraites || []).map((url) =>
+        sourceAnchor(url, "page CNCCFP")
+      ).join(", ");
+      hook.innerHTML = esc(cmp.raison || "") +
+        (searches ? " Recherches : " + searches + "." : "") +
+        (pages ? " Non extraites : " + pages + "." : "") +
+        (leg.raison ? " " + esc(leg.raison) : "");
     }
   }
 
@@ -969,6 +1035,8 @@
       store.glossaire = (comptes.meta && comptes.meta.glossaire) || [];
       store.couverture = (comptes.meta && comptes.meta.couverture) || {};
       store.exercice2025 = comptes.meta && comptes.meta.exercice_2025;
+      if (comptes.meta && comptes.meta.dataset) store.dataset = comptes.meta.dataset;
+      store.compteSources = (comptes.meta && comptes.meta.sources) || [];
       store.partis = (partis.partis || []).slice().sort((a, b) =>
         shortName(a.id).localeCompare(shortName(b.id), "fr", { sensitivity: "base" })
       );
