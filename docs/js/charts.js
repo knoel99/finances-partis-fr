@@ -63,7 +63,8 @@
     sortMetrics: { key: METRICS[0].id, dir: "desc" },
   };
 
-  let store = { rows: [], partis: [], years: [], libelles: {}, officiels: {} };
+  let store = { rows: [], partis: [], years: [], libelles: {}, glossaire: [], couverture: {}, exercice2025: null, elections: null, officiels: {} };
+  const elecSort = { key: "voix", dir: "desc" };
   const charts = [];
 
   function esc(s) {
@@ -819,6 +820,137 @@
     }
   }
 
+  function intFr(n) {
+    if (n == null || Number.isNaN(Number(n))) return "—";
+    return new Intl.NumberFormat("fr-FR", { maximumFractionDigits: 0 }).format(n);
+  }
+
+  function pctFr(n) {
+    if (n == null || Number.isNaN(Number(n))) return "—";
+    return new Intl.NumberFormat("fr-FR", { maximumFractionDigits: 2 }).format(n) + " %";
+  }
+
+  function fillGlossary(meta) {
+    const host = document.getElementById("glossaire-list");
+    if (!host) return;
+    const items = (meta && meta.glossaire) || [];
+    const cover = (meta && meta.couverture) || {};
+    host.innerHTML = items.map((item) => {
+      const span = cover[item.champ];
+      const years = span && span.premiere_annee
+        ? "Première année renseignée pour au moins un parti suivi : " + span.premiere_annee +
+          ". Dernière : " + span.derniere_annee + " (" + span.n + " cases non vides)."
+        : "";
+      return "<article>" +
+        "<h3>" + esc(item.titre) + "</h3>" +
+        "<p>" + esc(item.definition) + "</p>" +
+        (item.avertissement ? '<p class="caveat">' + esc(item.avertissement) + "</p>" : "") +
+        (years ? '<p class="chart-note">' + esc(years) + "</p>" : "") +
+        "</article>";
+    }).join("");
+  }
+
+  function fill2025(meta) {
+    const el = document.getElementById("exercice-2025");
+    const info = meta && meta.exercice_2025;
+    if (!el || !info) return;
+    el.hidden = false;
+    el.textContent = info.texte || "2025 non publié au 2026-09-23";
+  }
+
+  function elecLabel(tour) {
+    const round = tour.tour === 1 ? "1er tour" : tour.tour + "e tour";
+    return "Présidentielle " + tour.annee + " · " + round;
+  }
+
+  function currentTour() {
+    const tours = (store.elections && store.elections.tours) || [];
+    const sel = document.getElementById("elec-tour");
+    if (!sel || !tours.length) return null;
+    return tours[Number(sel.value)] || tours[tours.length - 1];
+  }
+
+  function renderElections() {
+    const table = document.getElementById("table-elections");
+    const metaEl = document.getElementById("elec-meta");
+    const hook = document.getElementById("elec-hook");
+    const tour = currentTour();
+    if (!table || !tour) return;
+    const rows = tour.candidats.slice().sort((a, b) => {
+      const dir = elecSort.dir === "asc" ? 1 : -1;
+      if (elecSort.key === "nom") {
+        return dir * (a.nom + a.prenom).localeCompare(b.nom + b.prenom, "fr");
+      }
+      const av = a[elecSort.key];
+      const bv = b[elecSort.key];
+      if (av == null && bv == null) return 0;
+      if (av == null) return 1;
+      if (bv == null) return -1;
+      return dir * (av - bv);
+    });
+    const head = "<tr>" +
+      '<th><button type="button" data-elec-sort="nom">Candidat</button></th>' +
+      "<th>Parti suivi</th>" +
+      '<th><button type="button" data-elec-sort="voix">Voix</button></th>' +
+      '<th><button type="button" data-elec-sort="pct_exprimes">% exprimés</button></th>' +
+      '<th><button type="button" data-elec-sort="pct_inscrits">% inscrits</button></th>' +
+      "</tr>";
+    const body = rows.map((c) => {
+      const who = (c.prenom ? c.prenom + " " : "") + c.nom;
+      let parti = "—";
+      if (c.parti_id) parti = shortName(c.parti_id);
+      else if (c.etiquette) parti = c.etiquette;
+      return "<tr><td>" + esc(who) + "</td><td>" + esc(parti) + "</td><td class=\"num\">" +
+        intFr(c.voix) + "</td><td class=\"num\">" + pctFr(c.pct_exprimes) +
+        "</td><td class=\"num\">" + pctFr(c.pct_inscrits) + "</td></tr>";
+    }).join("");
+    const blancs = tour.blancs != null
+      ? "Blancs " + intFr(tour.blancs) + " · nuls " + intFr(tour.nuls)
+      : "Blancs et nuls (non séparés) " + intFr(tour.blancs_et_nuls);
+    const href = safeUrl(tour.source_url);
+    table.innerHTML =
+      "<caption>" + esc(elecLabel(tour)) + " · " + esc(tour.perimetre) + "</caption>" +
+      "<thead>" + head + "</thead><tbody>" + body + "</tbody>";
+    if (metaEl) {
+      metaEl.innerHTML = "Inscrits " + intFr(tour.inscrits) +
+        " · votants " + intFr(tour.votants) +
+        " · exprimés " + intFr(tour.exprimes) +
+        " · " + esc(blancs) + ". " +
+        esc(tour.methode || "") +
+        (href ? ' <a href="' + esc(href) + '" target="_blank" rel="noopener">Fichier source</a>.' : "");
+    }
+    if (hook && store.elections && store.elections.meta) {
+      const cmp = store.elections.meta.comparaison_voix_depenses || {};
+      const leg = store.elections.meta.legislatives || {};
+      hook.textContent = (cmp.raison || "") + " " + (leg.raison || "");
+    }
+  }
+
+  function fillElections(payload) {
+    store.elections = payload;
+    const sel = document.getElementById("elec-tour");
+    const tours = (payload && payload.tours) || [];
+    if (!sel) return;
+    sel.innerHTML = tours.map((tour, i) =>
+      '<option value="' + i + '">' + esc(elecLabel(tour)) + "</option>"
+    ).join("");
+    if (tours.length) sel.value = String(tours.length - 1);
+    sel.addEventListener("change", renderElections);
+    const table = document.getElementById("table-elections");
+    if (table) {
+      table.addEventListener("click", (event) => {
+        const btn = event.target.closest("button[data-elec-sort]");
+        if (!btn) return;
+        const key = btn.dataset.elecSort;
+        if (elecSort.key === key) elecSort.dir = elecSort.dir === "asc" ? "desc" : "asc";
+        else elecSort.dir = key === "nom" ? "asc" : "desc";
+        elecSort.key = key;
+        renderElections();
+      });
+    }
+    renderElections();
+  }
+
   async function loadJson(path) {
     const res = await fetch(path);
     if (!res.ok) throw new Error("Échec chargement " + path + " (" + res.status + ")");
@@ -834,6 +966,9 @@
       ]);
       store.rows = comptes.comptes || [];
       store.libelles = (comptes.meta && comptes.meta.libelles) || {};
+      store.glossaire = (comptes.meta && comptes.meta.glossaire) || [];
+      store.couverture = (comptes.meta && comptes.meta.couverture) || {};
+      store.exercice2025 = comptes.meta && comptes.meta.exercice_2025;
       store.partis = (partis.partis || []).slice().sort((a, b) =>
         shortName(a.id).localeCompare(shortName(b.id), "fr", { sensitivity: "base" })
       );
@@ -844,12 +979,30 @@
         state.focusYear = state.yearTo;
         state.sortMatrix = { key: String(state.focusYear), dir: "desc" };
       }
+      const span = document.getElementById("year-span");
+      if (span && store.years.length) {
+        span.textContent = store.years[0] + "–" + store.years[store.years.length - 1];
+      }
+      if (store.years.length) {
+        document.title = "Finances des partis — CNCCFP " + store.years[0] + "–" + store.years[store.years.length - 1];
+      }
+      fillGlossary(comptes.meta);
+      fill2025(comptes.meta);
       applyLightDefaults();
       buildFilters();
       fillCandidateLists(partis);
       render();
+      try {
+        fillElections(await loadJson("data/elections_presidentielles.json"));
+      } catch (elecErr) {
+        console.error(elecErr);
+        const metaEl = document.getElementById("elec-meta");
+        if (metaEl) metaEl.textContent = "Résultats électoraux indisponibles : " + (elecErr.message || elecErr);
+      }
       if (status) {
-        status.textContent = store.rows.length + " lignes · " + store.partis.length + " partis · CNCCFP";
+        const y0 = store.years[0];
+        const y1 = store.years[store.years.length - 1];
+        status.textContent = store.rows.length + " lignes · " + store.partis.length + " partis · " + y0 + "–" + y1;
         status.className = "badge ok";
       }
     } catch (err) {

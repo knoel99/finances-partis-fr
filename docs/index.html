@@ -5,18 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="light">
   <meta name="theme-color" content="#ffffff">
-  <title>Finances des partis — CNCCFP 2017–2024</title>
-  <meta name="description" content="Comptes CNCCFP des partis politiques français, 2017–2024 : classement, petits multiples et tableaux filtrables. Aucun chiffre inventé.">
-  <link rel="stylesheet" href="css/styles.css?v=20260923filtres">
+  <title>Finances des partis — CNCCFP</title>
+  <meta name="description" content="Comptes CNCCFP des partis politiques français et résultats présidentiels officiels. Classement, petits multiples et tableaux filtrables. Aucun chiffre inventé.">
+  <link rel="stylesheet" href="css/styles.css?v=20260923hist">
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js" defer></script>
-  <script src="js/charts.js?v=20260923filtres" defer></script>
+  <script src="js/charts.js?v=20260923hist" defer></script>
 </head>
 <body>
   <header class="site">
     <div class="wrap">
       <h1>Finances des partis politiques</h1>
       <p class="sub">
-        Comptes d’ensemble CNCCFP, exercices 2017–2024, via data.gouv.fr.
+        Comptes d’ensemble CNCCFP, exercices <span id="year-span">chargés depuis le JSON</span>, via data.gouv.fr.
         Aucun chiffre inventé : uniquement les JSON du dépôt.
         <span id="data-status" class="badge">Chargement…</span>
       </p>
@@ -25,6 +25,8 @@
         <a href="#filtres">Filtres</a>
         <a href="#vue">Graphique</a>
         <a href="#tableaux">Tableaux</a>
+        <a href="#glossaire">Définitions</a>
+        <a href="#elections">Élections</a>
         <a href="sources.html">Sources</a>
       </nav>
     </div>
@@ -34,6 +36,8 @@
     <noscript>
       <p class="error">Activez JavaScript pour afficher les filtres, les graphiques et les tableaux.</p>
     </noscript>
+
+    <p id="exercice-2025" class="notice" hidden></p>
 
     <section id="lecture">
       <h2>Comment lire</h2>
@@ -113,6 +117,30 @@
       </div>
     </section>
 
+    <section id="glossaire">
+      <h2>Définitions des métriques</h2>
+      <p class="lead">Chaque montant affiché vient d’un poste des comptes d’ensemble. Le libellé change en 2018 avec le plan ANC 2018-03.</p>
+      <div id="glossaire-list" class="glossary"></div>
+    </section>
+
+    <section id="elections">
+      <h2>Résultats présidentiels</h2>
+      <p class="lead">
+        France entière, fichiers du ministère de l’Intérieur.
+        Le tableau sert de base à une comparaison ultérieure voix / dépenses de campagne.
+      </p>
+      <div class="filter-row">
+        <label for="elec-tour">Scrutin
+          <select id="elec-tour"></select>
+        </label>
+      </div>
+      <p id="elec-meta" class="chart-note"></p>
+      <div class="table-wrap">
+        <table id="table-elections"></table>
+      </div>
+      <p id="elec-hook" class="chart-note"></p>
+    </section>
+
     <section id="candidats">
       <h2>Listes présidentielles</h2>
       <p class="lead">
@@ -143,9 +171,9 @@
       <h2>Limites</h2>
       <div class="card">
         <ul>
-          <li>Comptes de <strong>parti</strong> ≠ comptes de <strong>campagne</strong> présidentielle.</li>
-          <li>Changement de plan comptable en 2018 (ANC 2018-03) : la comparaison 2017 / 2018–2024 est imparfaite.</li>
-          <li>Exercices 2025–2027 non publiés au 2026-09-23.</li>
+          <li>Comptes de <strong>parti</strong> ≠ comptes de <strong>campagne</strong>. Pas de graphique voix / dépenses : aucun jeu ouvert de comptes de campagne présidentielle sur data.gouv au 2026-09-23.</li>
+          <li>Changement de plan comptable en 2018 (ANC 2018-03) : la comparaison 2008–2017 / 2018–2024 des emprunts est imparfaite.</li>
+          <li id="limite-2025">Exercice 2025 : voir la mention en tête de page.</li>
           <li>Une case « — » est absente du JSON. Elle n’est jamais remplacée par zéro.</li>
           <li>Montants nominaux : le dépôt ne contient pas de série corrigée de l’inflation.</li>
           <li>Données : Licence Ouverte, producteur CNCCFP / data.gouv.fr.</li>

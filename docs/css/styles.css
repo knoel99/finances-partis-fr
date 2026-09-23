@@ -429,6 +429,32 @@ footer.site {
 .sources-body p { color: var(--muted); }
 .sources-body strong { color: var(--text); }
 
+.notice {
+  background: #fffbeb;
+  border: 1px solid #e6d3a1;
+  color: #92400e;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  font-weight: 600;
+}
+.glossary {
+  display: grid;
+  gap: 0.75rem;
+}
+.glossary article {
+  background: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.85rem 1rem;
+}
+.glossary h3 {
+  margin: 0 0 0.35rem;
+  font-size: 1rem;
+  color: var(--heading);
+}
+.glossary p { margin: 0.35rem 0; }
+.glossary .caveat { color: #92400e; }
+
 .loading { color: var(--muted); font-style: italic; }
 .error {
   color: #991b1b;

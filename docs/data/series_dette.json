@@ -1,23 +1,104 @@
 {
   "meta": {
-    "description": "debt_eur = emprunts financiers. debt_total_bilan_III_eur = Total_III passif (incl. fournisseurs).",
+    "description": "debt_eur = somme_emprunts_eur. debt_total_bilan_III_eur = Total III publié (2018+) ou somme des postes dettes (2008–2017).",
     "generated_at": "2026-09-23 (Europe/Paris, UTC+2)",
     "n_parties": 15,
-    "n_debt_points": 115,
-    "parties_with_ge3": 15
+    "n_debt_points": 202,
+    "source": "dérivé de comptes_annuels.json, mêmes fichiers CNCCFP"
   },
   "parties": [
     {
       "party_id": "dlf",
       "code_cnccfp": "410",
-      "n_points": 8,
+      "n_points": 17,
       "series": [
         {
-          "year": 2017,
-          "debt_eur": 81242.0,
+          "year": 2008,
+          "debt_eur": 0,
           "debt_metric": "somme_emprunts",
-          "debt_total_bilan_III_eur": 1727271.0,
-          "libelle_exact": "2017: Emprunts établissements de crédit + Emprunts et dettes financières divers",
+          "debt_total_bilan_III_eur": 26190,
+          "libelle_exact": "Avis 95-02. somme_emprunts = crédit + dettes financières divers. Total dettes = somme des postes dettes (crédit, divers, fournisseurs, fiscales, autres), pas le total du passif.",
+          "source_url": "https://www.data.gouv.fr/storage/f/2014-01-09T16-40-46/Comptes_partis_exercice_2008.xlsx",
+          "confidence": 4
+        },
+        {
+          "year": 2009,
+          "debt_eur": 0,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 246478,
+          "libelle_exact": "Avis 95-02. somme_emprunts = crédit + dettes financières divers. Total dettes = somme des postes dettes (crédit, divers, fournisseurs, fiscales, autres), pas le total du passif.",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20231109-122134/comptes-partis-exercice-2009.xlsx",
+          "confidence": 4
+        },
+        {
+          "year": 2010,
+          "debt_eur": 14634,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 361784,
+          "libelle_exact": "Avis 95-02. somme_emprunts = crédit + dettes financières divers. Total dettes = somme des postes dettes (crédit, divers, fournisseurs, fiscales, autres), pas le total du passif.",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20231109-121651/comptes-partis-exercice-2010.xlsx",
+          "confidence": 4
+        },
+        {
+          "year": 2011,
+          "debt_eur": 36064,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 402162,
+          "libelle_exact": "Avis 95-02. somme_emprunts = crédit + dettes financières divers. Total dettes = somme des postes dettes (crédit, divers, fournisseurs, fiscales, autres), pas le total du passif.",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20231109-121903/comptes-partis-exercice-2011.xlsx",
+          "confidence": 4
+        },
+        {
+          "year": 2012,
+          "debt_eur": 70145,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 916724,
+          "libelle_exact": "Avis 95-02. somme_emprunts = crédit + dettes financières divers. Total dettes = somme des postes dettes (crédit, divers, fournisseurs, fiscales, autres), pas le total du passif.",
+          "source_url": "https://www.data.gouv.fr/storage/f/2014-01-23T15-52-05/Comptes_partis_exercice_2012.xlsx",
+          "confidence": 4
+        },
+        {
+          "year": 2013,
+          "debt_eur": 0,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 587493,
+          "libelle_exact": "Avis 95-02. somme_emprunts = crédit + dettes financières divers. Total dettes = somme des postes dettes (crédit, divers, fournisseurs, fiscales, autres), pas le total du passif.",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20180827-165744/comptes-partis-exercice-2013.xlsx",
+          "confidence": 4
+        },
+        {
+          "year": 2014,
+          "debt_eur": 474121,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 767118,
+          "libelle_exact": "Avis 95-02. somme_emprunts = crédit + dettes financières divers. Total dettes = somme des postes dettes (crédit, divers, fournisseurs, fiscales, autres), pas le total du passif.",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20160104-114601/Comptes_partis_exercice_2014.xlsx",
+          "confidence": 4
+        },
+        {
+          "year": 2015,
+          "debt_eur": 152946,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 1336648,
+          "libelle_exact": "Avis 95-02. somme_emprunts = crédit + dettes financières divers. Total dettes = somme des postes dettes (crédit, divers, fournisseurs, fiscales, autres), pas le total du passif.",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20170207-153221/Comptes_partis_exercice_2015.ods",
+          "confidence": 4
+        },
+        {
+          "year": 2016,
+          "debt_eur": 861030,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 881713,
+          "libelle_exact": "Avis 95-02. somme_emprunts = crédit + dettes financières divers. Total dettes = somme des postes dettes (crédit, divers, fournisseurs, fiscales, autres), pas le total du passif.",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20180413-154917/Comptes_partis_exercice_2016.ods",
+          "confidence": 4
+        },
+        {
+          "year": 2017,
+          "debt_eur": 81242,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 1727271,
+          "libelle_exact": "Avis 95-02. somme_emprunts = crédit + dettes financières divers. Total dettes = somme des postes dettes (crédit, divers, fournisseurs, fiscales, autres), pas le total du passif.",
           "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20190111-135832/comptes-partis-exercice-2017.ods",
           "confidence": 4
         },
@@ -25,8 +106,8 @@
           "year": 2018,
           "debt_eur": 0,
           "debt_metric": "somme_emprunts",
-          "debt_total_bilan_III_eur": 1363730.0,
-          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "debt_total_bilan_III_eur": 1363730,
+          "libelle_exact": "Plan ANC 2018-03. somme_emprunts = crédit + PP préférentiel + PP autres + autres partis. Total III = colonne publiée.",
           "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20200902-121107/comptes-partis-exercice-2018.xlsx",
           "confidence": 5
         },
@@ -35,7 +116,7 @@
           "debt_eur": 0,
           "debt_metric": "somme_emprunts",
           "debt_total_bilan_III_eur": 1101821.11,
-          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "libelle_exact": "Plan ANC 2018-03. somme_emprunts = crédit + PP préférentiel + PP autres + autres partis. Total III = colonne publiée.",
           "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20230302-161340/comptes-partis-exercice-2019.xlsx",
           "confidence": 5
         },
@@ -44,16 +125,16 @@
           "debt_eur": 24844.22,
           "debt_metric": "somme_emprunts",
           "debt_total_bilan_III_eur": 1001100.47,
-          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "libelle_exact": "Plan ANC 2018-03. somme_emprunts = crédit + PP préférentiel + PP autres + autres partis. Total III = colonne publiée.",
           "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20220317-163630/comptes-partis-exercice-2020.xlsx",
           "confidence": 5
         },
         {
           "year": 2021,
-          "debt_eur": 328480.0,
+          "debt_eur": 328480,
           "debt_metric": "somme_emprunts",
-          "debt_total_bilan_III_eur": 996810.0,
-          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "debt_total_bilan_III_eur": 996810,
+          "libelle_exact": "Plan ANC 2018-03. somme_emprunts = crédit + PP préférentiel + PP autres + autres partis. Total III = colonne publiée.",
           "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20260210-151846/comptes-partis-exercice-2021.csv",
           "confidence": 5
         },
@@ -62,7 +143,7 @@
           "debt_eur": 445596.6,
           "debt_metric": "somme_emprunts",
           "debt_total_bilan_III_eur": 793625.14,
-          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "libelle_exact": "Plan ANC 2018-03. somme_emprunts = crédit + PP préférentiel + PP autres + autres partis. Total III = colonne publiée.",
           "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20260210-121141/comptes-partis-exercice-2022.csv",
           "confidence": 5
         },
@@ -70,8 +151,8 @@
           "year": 2023,
           "debt_eur": 233894.5,
           "debt_metric": "somme_emprunts",
-          "debt_total_bilan_III_eur": 270022.3501,
-          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "debt_total_bilan_III_eur": 270022.35,
+          "libelle_exact": "Plan ANC 2018-03. somme_emprunts = crédit + PP préférentiel + PP autres + autres partis. Total III = colonne publiée.",
           "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20260210-120352/comptes-partis-exercice-2023.csv",
           "confidence": 5
         },
@@ -80,7 +161,7 @@
           "debt_eur": 432885.49,
           "debt_metric": "somme_emprunts",
           "debt_total_bilan_III_eur": 634662.75,
-          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "libelle_exact": "Plan ANC 2018-03. somme_emprunts = crédit + PP préférentiel + PP autres + autres partis. Total III = colonne publiée.",
           "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20260210-110641/comptes-partis-exercice-2024.csv",
           "confidence": 5
         }
@@ -89,32 +170,113 @@
     {
       "party_id": "eelv",
       "code_cnccfp": "104",
-      "n_points": 8,
+      "n_points": 17,
       "series": [
         {
-          "year": 2017,
-          "debt_eur": 785528.0,
+          "year": 2008,
+          "debt_eur": 3814738,
           "debt_metric": "somme_emprunts",
-          "debt_total_bilan_III_eur": 1959387.0,
-          "libelle_exact": "2017: Emprunts établissements de crédit + Emprunts et dettes financières divers",
+          "debt_total_bilan_III_eur": 4290477,
+          "libelle_exact": "Avis 95-02. somme_emprunts = crédit + dettes financières divers. Total dettes = somme des postes dettes (crédit, divers, fournisseurs, fiscales, autres), pas le total du passif.",
+          "source_url": "https://www.data.gouv.fr/storage/f/2014-01-09T16-40-46/Comptes_partis_exercice_2008.xlsx",
+          "confidence": 4
+        },
+        {
+          "year": 2009,
+          "debt_eur": 3116283,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 3882901,
+          "libelle_exact": "Avis 95-02. somme_emprunts = crédit + dettes financières divers. Total dettes = somme des postes dettes (crédit, divers, fournisseurs, fiscales, autres), pas le total du passif.",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20231109-122134/comptes-partis-exercice-2009.xlsx",
+          "confidence": 4
+        },
+        {
+          "year": 2010,
+          "debt_eur": 3722695,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 5917826,
+          "libelle_exact": "Avis 95-02. somme_emprunts = crédit + dettes financières divers. Total dettes = somme des postes dettes (crédit, divers, fournisseurs, fiscales, autres), pas le total du passif.",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20231109-121651/comptes-partis-exercice-2010.xlsx",
+          "confidence": 4
+        },
+        {
+          "year": 2011,
+          "debt_eur": 3347791,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 5010686,
+          "libelle_exact": "Avis 95-02. somme_emprunts = crédit + dettes financières divers. Total dettes = somme des postes dettes (crédit, divers, fournisseurs, fiscales, autres), pas le total du passif.",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20231109-121903/comptes-partis-exercice-2011.xlsx",
+          "confidence": 4
+        },
+        {
+          "year": 2012,
+          "debt_eur": 4653778,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 6125452,
+          "libelle_exact": "Avis 95-02. somme_emprunts = crédit + dettes financières divers. Total dettes = somme des postes dettes (crédit, divers, fournisseurs, fiscales, autres), pas le total du passif.",
+          "source_url": "https://www.data.gouv.fr/storage/f/2014-01-23T15-52-05/Comptes_partis_exercice_2012.xlsx",
+          "confidence": 4
+        },
+        {
+          "year": 2013,
+          "debt_eur": 4419251,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 6093218,
+          "libelle_exact": "Avis 95-02. somme_emprunts = crédit + dettes financières divers. Total dettes = somme des postes dettes (crédit, divers, fournisseurs, fiscales, autres), pas le total du passif.",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20180827-165744/comptes-partis-exercice-2013.xlsx",
+          "confidence": 4
+        },
+        {
+          "year": 2014,
+          "debt_eur": 4553593,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 6340045,
+          "libelle_exact": "Avis 95-02. somme_emprunts = crédit + dettes financières divers. Total dettes = somme des postes dettes (crédit, divers, fournisseurs, fiscales, autres), pas le total du passif.",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20160104-114601/Comptes_partis_exercice_2014.xlsx",
+          "confidence": 4
+        },
+        {
+          "year": 2015,
+          "debt_eur": 3440971,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 5062569,
+          "libelle_exact": "Avis 95-02. somme_emprunts = crédit + dettes financières divers. Total dettes = somme des postes dettes (crédit, divers, fournisseurs, fiscales, autres), pas le total du passif.",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20170207-153221/Comptes_partis_exercice_2015.ods",
+          "confidence": 4
+        },
+        {
+          "year": 2016,
+          "debt_eur": 1826728,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 3132081,
+          "libelle_exact": "Avis 95-02. somme_emprunts = crédit + dettes financières divers. Total dettes = somme des postes dettes (crédit, divers, fournisseurs, fiscales, autres), pas le total du passif.",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20180413-154917/Comptes_partis_exercice_2016.ods",
+          "confidence": 4
+        },
+        {
+          "year": 2017,
+          "debt_eur": 785528,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 1959387,
+          "libelle_exact": "Avis 95-02. somme_emprunts = crédit + dettes financières divers. Total dettes = somme des postes dettes (crédit, divers, fournisseurs, fiscales, autres), pas le total du passif.",
           "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20190111-135832/comptes-partis-exercice-2017.ods",
           "confidence": 4
         },
         {
           "year": 2018,
-          "debt_eur": 633249.0,
+          "debt_eur": 633249,
           "debt_metric": "somme_emprunts",
-          "debt_total_bilan_III_eur": 1193441.0,
-          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "debt_total_bilan_III_eur": 1193441,
+          "libelle_exact": "Plan ANC 2018-03. somme_emprunts = crédit + PP préférentiel + PP autres + autres partis. Total III = colonne publiée.",
           "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20200902-121107/comptes-partis-exercice-2018.xlsx",
           "confidence": 5
         },
         {
           "year": 2019,
-          "debt_eur": 538506.0,
+          "debt_eur": 538506,
           "debt_metric": "somme_emprunts",
-          "debt_total_bilan_III_eur": 1310887.0,
-          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "debt_total_bilan_III_eur": 1310887,
+          "libelle_exact": "Plan ANC 2018-03. somme_emprunts = crédit + PP préférentiel + PP autres + autres partis. Total III = colonne publiée.",
           "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20230302-161340/comptes-partis-exercice-2019.xlsx",
           "confidence": 5
         },
@@ -122,8 +284,8 @@
           "year": 2020,
           "debt_eur": 470021.03,
           "debt_metric": "somme_emprunts",
-          "debt_total_bilan_III_eur": 916777.3600000001,
-          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "debt_total_bilan_III_eur": 916777.36,
+          "libelle_exact": "Plan ANC 2018-03. somme_emprunts = crédit + PP préférentiel + PP autres + autres partis. Total III = colonne publiée.",
           "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20220317-163630/comptes-partis-exercice-2020.xlsx",
           "confidence": 5
         },
@@ -132,34 +294,34 @@
           "debt_eur": 7300031.77,
           "debt_metric": "somme_emprunts",
           "debt_total_bilan_III_eur": 7823245.55,
-          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "libelle_exact": "Plan ANC 2018-03. somme_emprunts = crédit + PP préférentiel + PP autres + autres partis. Total III = colonne publiée.",
           "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20260210-151846/comptes-partis-exercice-2021.csv",
           "confidence": 5
         },
         {
           "year": 2022,
-          "debt_eur": 7176528.0,
+          "debt_eur": 7176528,
           "debt_metric": "somme_emprunts",
-          "debt_total_bilan_III_eur": 8318944.0,
-          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "debt_total_bilan_III_eur": 8318944,
+          "libelle_exact": "Plan ANC 2018-03. somme_emprunts = crédit + PP préférentiel + PP autres + autres partis. Total III = colonne publiée.",
           "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20260210-121141/comptes-partis-exercice-2022.csv",
           "confidence": 5
         },
         {
           "year": 2023,
-          "debt_eur": 1020819.0,
+          "debt_eur": 1020819,
           "debt_metric": "somme_emprunts",
-          "debt_total_bilan_III_eur": 2007873.0,
-          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "debt_total_bilan_III_eur": 2007873,
+          "libelle_exact": "Plan ANC 2018-03. somme_emprunts = crédit + PP préférentiel + PP autres + autres partis. Total III = colonne publiée.",
           "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20260210-120352/comptes-partis-exercice-2023.csv",
           "confidence": 5
         },
         {
           "year": 2024,
-          "debt_eur": 5549484.0,
+          "debt_eur": 5549484,
           "debt_metric": "somme_emprunts",
-          "debt_total_bilan_III_eur": 7912847.0,
-          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "debt_total_bilan_III_eur": 7912847,
+          "libelle_exact": "Plan ANC 2018-03. somme_emprunts = crédit + PP préférentiel + PP autres + autres partis. Total III = colonne publiée.",
           "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20260210-110641/comptes-partis-exercice-2024.csv",
           "confidence": 5
         }
@@ -168,23 +330,41 @@
     {
       "party_id": "generations",
       "code_cnccfp": "945",
-      "n_points": 7,
+      "n_points": 9,
       "series": [
+        {
+          "year": 2016,
+          "debt_eur": 0,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 60153,
+          "libelle_exact": "Avis 95-02. somme_emprunts = crédit + dettes financières divers. Total dettes = somme des postes dettes (crédit, divers, fournisseurs, fiscales, autres), pas le total du passif.",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20180413-154917/Comptes_partis_exercice_2016.ods",
+          "confidence": 4
+        },
+        {
+          "year": 2017,
+          "debt_eur": 0,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 41053,
+          "libelle_exact": "Avis 95-02. somme_emprunts = crédit + dettes financières divers. Total dettes = somme des postes dettes (crédit, divers, fournisseurs, fiscales, autres), pas le total du passif.",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20190111-135832/comptes-partis-exercice-2017.ods",
+          "confidence": 4
+        },
         {
           "year": 2018,
           "debt_eur": 0,
           "debt_metric": "somme_emprunts",
-          "debt_total_bilan_III_eur": 76736.0,
-          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "debt_total_bilan_III_eur": 76736,
+          "libelle_exact": "Plan ANC 2018-03. somme_emprunts = crédit + PP préférentiel + PP autres + autres partis. Total III = colonne publiée.",
           "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20200902-121107/comptes-partis-exercice-2018.xlsx",
           "confidence": 5
         },
         {
           "year": 2019,
-          "debt_eur": 250000.0,
+          "debt_eur": 250000,
           "debt_metric": "somme_emprunts",
           "debt_total_bilan_III_eur": 289518.75,
-          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "libelle_exact": "Plan ANC 2018-03. somme_emprunts = crédit + PP préférentiel + PP autres + autres partis. Total III = colonne publiée.",
           "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20230302-161340/comptes-partis-exercice-2019.xlsx",
           "confidence": 5
         },
@@ -192,8 +372,8 @@
           "year": 2020,
           "debt_eur": 0,
           "debt_metric": "somme_emprunts",
-          "debt_total_bilan_III_eur": 40772.0,
-          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "debt_total_bilan_III_eur": 40772,
+          "libelle_exact": "Plan ANC 2018-03. somme_emprunts = crédit + PP préférentiel + PP autres + autres partis. Total III = colonne publiée.",
           "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20220317-163630/comptes-partis-exercice-2020.xlsx",
           "confidence": 5
         },
@@ -202,7 +382,7 @@
           "debt_eur": 0,
           "debt_metric": "somme_emprunts",
           "debt_total_bilan_III_eur": 44311.11,
-          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "libelle_exact": "Plan ANC 2018-03. somme_emprunts = crédit + PP préférentiel + PP autres + autres partis. Total III = colonne publiée.",
           "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20260210-151846/comptes-partis-exercice-2021.csv",
           "confidence": 5
         },
@@ -211,7 +391,7 @@
           "debt_eur": 0,
           "debt_metric": "somme_emprunts",
           "debt_total_bilan_III_eur": 78938.09,
-          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "libelle_exact": "Plan ANC 2018-03. somme_emprunts = crédit + PP préférentiel + PP autres + autres partis. Total III = colonne publiée.",
           "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20260210-121141/comptes-partis-exercice-2022.csv",
           "confidence": 5
         },
@@ -220,7 +400,7 @@
           "debt_eur": 0,
           "debt_metric": "somme_emprunts",
           "debt_total_bilan_III_eur": 59088.96,
-          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "libelle_exact": "Plan ANC 2018-03. somme_emprunts = crédit + PP préférentiel + PP autres + autres partis. Total III = colonne publiée.",
           "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20260210-120352/comptes-partis-exercice-2023.csv",
           "confidence": 5
         },
@@ -229,7 +409,7 @@
           "debt_eur": 0,
           "debt_metric": "somme_emprunts",
           "debt_total_bilan_III_eur": 64042.43,
-          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "libelle_exact": "Plan ANC 2018-03. somme_emprunts = crédit + PP préférentiel + PP autres + autres partis. Total III = colonne publiée.",
           "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20260210-110641/comptes-partis-exercice-2024.csv",
           "confidence": 5
         }
@@ -242,10 +422,10 @@
       "series": [
         {
           "year": 2017,
-          "debt_eur": 350000.0,
+          "debt_eur": 350000,
           "debt_metric": "somme_emprunts",
-          "debt_total_bilan_III_eur": 1010698.0,
-          "libelle_exact": "2017: Emprunts établissements de crédit + Emprunts et dettes financières divers",
+          "debt_total_bilan_III_eur": 1010698,
+          "libelle_exact": "Avis 95-02. somme_emprunts = crédit + dettes financières divers. Total dettes = somme des postes dettes (crédit, divers, fournisseurs, fiscales, autres), pas le total du passif.",
           "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20190111-135832/comptes-partis-exercice-2017.ods",
           "confidence": 4
         },
@@ -253,8 +433,8 @@
           "year": 2018,
           "debt_eur": 0,
           "debt_metric": "somme_emprunts",
-          "debt_total_bilan_III_eur": 284706.0,
-          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "debt_total_bilan_III_eur": 284706,
+          "libelle_exact": "Plan ANC 2018-03. somme_emprunts = crédit + PP préférentiel + PP autres + autres partis. Total III = colonne publiée.",
           "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20200902-121107/comptes-partis-exercice-2018.xlsx",
           "confidence": 5
         },
@@ -263,7 +443,7 @@
           "debt_eur": 0,
           "debt_metric": "somme_emprunts",
           "debt_total_bilan_III_eur": 200566.32,
-          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "libelle_exact": "Plan ANC 2018-03. somme_emprunts = crédit + PP préférentiel + PP autres + autres partis. Total III = colonne publiée.",
           "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20230302-161340/comptes-partis-exercice-2019.xlsx",
           "confidence": 5
         },
@@ -271,8 +451,8 @@
           "year": 2020,
           "debt_eur": 0,
           "debt_metric": "somme_emprunts",
-          "debt_total_bilan_III_eur": 332658.1566666667,
-          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "debt_total_bilan_III_eur": 332658.16,
+          "libelle_exact": "Plan ANC 2018-03. somme_emprunts = crédit + PP préférentiel + PP autres + autres partis. Total III = colonne publiée.",
           "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20220317-163630/comptes-partis-exercice-2020.xlsx",
           "confidence": 5
         },
@@ -281,16 +461,16 @@
           "debt_eur": 0,
           "debt_metric": "somme_emprunts",
           "debt_total_bilan_III_eur": 353564.08,
-          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "libelle_exact": "Plan ANC 2018-03. somme_emprunts = crédit + PP préférentiel + PP autres + autres partis. Total III = colonne publiée.",
           "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20260210-151846/comptes-partis-exercice-2021.csv",
           "confidence": 5
         },
         {
           "year": 2022,
-          "debt_eur": 6400000.0,
+          "debt_eur": 6400000,
           "debt_metric": "somme_emprunts",
           "debt_total_bilan_III_eur": 6967571.3,
-          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "libelle_exact": "Plan ANC 2018-03. somme_emprunts = crédit + PP préférentiel + PP autres + autres partis. Total III = colonne publiée.",
           "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20260210-121141/comptes-partis-exercice-2022.csv",
           "confidence": 5
         },
@@ -299,16 +479,16 @@
           "debt_eur": 0,
           "debt_metric": "somme_emprunts",
           "debt_total_bilan_III_eur": 452805.37,
-          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "libelle_exact": "Plan ANC 2018-03. somme_emprunts = crédit + PP préférentiel + PP autres + autres partis. Total III = colonne publiée.",
           "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20260210-120352/comptes-partis-exercice-2023.csv",
           "confidence": 5
         },
         {
           "year": 2024,
-          "debt_eur": 4446005.0,
+          "debt_eur": 4446005,
           "debt_metric": "somme_emprunts",
-          "debt_total_bilan_III_eur": 5890845.0,
-          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "debt_total_bilan_III_eur": 5890845,
+          "libelle_exact": "Plan ANC 2018-03. somme_emprunts = crédit + PP préférentiel + PP autres + autres partis. Total III = colonne publiée.",
           "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20260210-110641/comptes-partis-exercice-2024.csv",
           "confidence": 5
         }
@@ -317,14 +497,95 @@
     {
       "party_id": "lo",
       "code_cnccfp": "96",
-      "n_points": 8,
+      "n_points": 17,
       "series": [
         {
-          "year": 2017,
-          "debt_eur": 262.0,
+          "year": 2008,
+          "debt_eur": 608,
           "debt_metric": "somme_emprunts",
-          "debt_total_bilan_III_eur": 161810.0,
-          "libelle_exact": "2017: Emprunts établissements de crédit + Emprunts et dettes financières divers",
+          "debt_total_bilan_III_eur": 211177,
+          "libelle_exact": "Avis 95-02. somme_emprunts = crédit + dettes financières divers. Total dettes = somme des postes dettes (crédit, divers, fournisseurs, fiscales, autres), pas le total du passif.",
+          "source_url": "https://www.data.gouv.fr/storage/f/2014-01-09T16-40-46/Comptes_partis_exercice_2008.xlsx",
+          "confidence": 4
+        },
+        {
+          "year": 2009,
+          "debt_eur": 0,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 279531,
+          "libelle_exact": "Avis 95-02. somme_emprunts = crédit + dettes financières divers. Total dettes = somme des postes dettes (crédit, divers, fournisseurs, fiscales, autres), pas le total du passif.",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20231109-122134/comptes-partis-exercice-2009.xlsx",
+          "confidence": 4
+        },
+        {
+          "year": 2010,
+          "debt_eur": 23,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 218511,
+          "libelle_exact": "Avis 95-02. somme_emprunts = crédit + dettes financières divers. Total dettes = somme des postes dettes (crédit, divers, fournisseurs, fiscales, autres), pas le total du passif.",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20231109-121651/comptes-partis-exercice-2010.xlsx",
+          "confidence": 4
+        },
+        {
+          "year": 2011,
+          "debt_eur": 48,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 203772,
+          "libelle_exact": "Avis 95-02. somme_emprunts = crédit + dettes financières divers. Total dettes = somme des postes dettes (crédit, divers, fournisseurs, fiscales, autres), pas le total du passif.",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20231109-121903/comptes-partis-exercice-2011.xlsx",
+          "confidence": 4
+        },
+        {
+          "year": 2012,
+          "debt_eur": 0,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 209241,
+          "libelle_exact": "Avis 95-02. somme_emprunts = crédit + dettes financières divers. Total dettes = somme des postes dettes (crédit, divers, fournisseurs, fiscales, autres), pas le total du passif.",
+          "source_url": "https://www.data.gouv.fr/storage/f/2014-01-23T15-52-05/Comptes_partis_exercice_2012.xlsx",
+          "confidence": 4
+        },
+        {
+          "year": 2013,
+          "debt_eur": 7279,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 179933,
+          "libelle_exact": "Avis 95-02. somme_emprunts = crédit + dettes financières divers. Total dettes = somme des postes dettes (crédit, divers, fournisseurs, fiscales, autres), pas le total du passif.",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20180827-165744/comptes-partis-exercice-2013.xlsx",
+          "confidence": 4
+        },
+        {
+          "year": 2014,
+          "debt_eur": 5640,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 153026,
+          "libelle_exact": "Avis 95-02. somme_emprunts = crédit + dettes financières divers. Total dettes = somme des postes dettes (crédit, divers, fournisseurs, fiscales, autres), pas le total du passif.",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20160104-114601/Comptes_partis_exercice_2014.xlsx",
+          "confidence": 4
+        },
+        {
+          "year": 2015,
+          "debt_eur": 140,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 149151,
+          "libelle_exact": "Avis 95-02. somme_emprunts = crédit + dettes financières divers. Total dettes = somme des postes dettes (crédit, divers, fournisseurs, fiscales, autres), pas le total du passif.",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20170207-153221/Comptes_partis_exercice_2015.ods",
+          "confidence": 4
+        },
+        {
+          "year": 2016,
+          "debt_eur": 0,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 175616,
+          "libelle_exact": "Avis 95-02. somme_emprunts = crédit + dettes financières divers. Total dettes = somme des postes dettes (crédit, divers, fournisseurs, fiscales, autres), pas le total du passif.",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20180413-154917/Comptes_partis_exercice_2016.ods",
+          "confidence": 4
+        },
+        {
+          "year": 2017,
+          "debt_eur": 262,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 161810,
+          "libelle_exact": "Avis 95-02. somme_emprunts = crédit + dettes financières divers. Total dettes = somme des postes dettes (crédit, divers, fournisseurs, fiscales, autres), pas le total du passif.",
           "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20190111-135832/comptes-partis-exercice-2017.ods",
           "confidence": 4
         },
@@ -332,17 +593,17 @@
           "year": 2018,
           "debt_eur": 0,
           "debt_metric": "somme_emprunts",
-          "debt_total_bilan_III_eur": 167041.0,
-          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "debt_total_bilan_III_eur": 167041,
+          "libelle_exact": "Plan ANC 2018-03. somme_emprunts = crédit + PP préférentiel + PP autres + autres partis. Total III = colonne publiée.",
           "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20200902-121107/comptes-partis-exercice-2018.xlsx",
           "confidence": 5
         },
         {
           "year": 2019,
-          "debt_eur": 560525.0,
+          "debt_eur": 560525,
           "debt_metric": "somme_emprunts",
-          "debt_total_bilan_III_eur": 836919.0,
-          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "debt_total_bilan_III_eur": 836919,
+          "libelle_exact": "Plan ANC 2018-03. somme_emprunts = crédit + PP préférentiel + PP autres + autres partis. Total III = colonne publiée.",
           "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20230302-161340/comptes-partis-exercice-2019.xlsx",
           "confidence": 5
         },
@@ -350,17 +611,17 @@
           "year": 2020,
           "debt_eur": 0,
           "debt_metric": "somme_emprunts",
-          "debt_total_bilan_III_eur": 269117.0,
-          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "debt_total_bilan_III_eur": 269117,
+          "libelle_exact": "Plan ANC 2018-03. somme_emprunts = crédit + PP préférentiel + PP autres + autres partis. Total III = colonne publiée.",
           "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20220317-163630/comptes-partis-exercice-2020.xlsx",
           "confidence": 5
         },
         {
           "year": 2021,
-          "debt_eur": 277.0,
+          "debt_eur": 277,
           "debt_metric": "somme_emprunts",
-          "debt_total_bilan_III_eur": 234162.0,
-          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "debt_total_bilan_III_eur": 234162,
+          "libelle_exact": "Plan ANC 2018-03. somme_emprunts = crédit + PP préférentiel + PP autres + autres partis. Total III = colonne publiée.",
           "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20260210-151846/comptes-partis-exercice-2021.csv",
           "confidence": 5
         },
@@ -368,8 +629,8 @@
           "year": 2022,
           "debt_eur": 0,
           "debt_metric": "somme_emprunts",
-          "debt_total_bilan_III_eur": 229412.0,
-          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "debt_total_bilan_III_eur": 229412,
+          "libelle_exact": "Plan ANC 2018-03. somme_emprunts = crédit + PP préférentiel + PP autres + autres partis. Total III = colonne publiée.",
           "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20260210-121141/comptes-partis-exercice-2022.csv",
           "confidence": 5
         },
@@ -377,8 +638,8 @@
           "year": 2023,
           "debt_eur": 0,
           "debt_metric": "somme_emprunts",
-          "debt_total_bilan_III_eur": 219372.0,
-          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "debt_total_bilan_III_eur": 219372,
+          "libelle_exact": "Plan ANC 2018-03. somme_emprunts = crédit + PP préférentiel + PP autres + autres partis. Total III = colonne publiée.",
           "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20260210-120352/comptes-partis-exercice-2023.csv",
           "confidence": 5
         },
@@ -386,8 +647,8 @@
           "year": 2024,
           "debt_eur": 0,
           "debt_metric": "somme_emprunts",
-          "debt_total_bilan_III_eur": 232375.0,
-          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "debt_total_bilan_III_eur": 232375,
+          "libelle_exact": "Plan ANC 2018-03. somme_emprunts = crédit + PP préférentiel + PP autres + autres partis. Total III = colonne publiée.",
           "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20260210-110641/comptes-partis-exercice-2024.csv",
           "confidence": 5
         }
@@ -396,23 +657,104 @@
     {
       "party_id": "lr",
       "code_cnccfp": "401",
-      "n_points": 8,
+      "n_points": 17,
       "series": [
         {
-          "year": 2017,
-          "debt_eur": 54907873.0,
+          "year": 2008,
+          "debt_eur": 22229971,
           "debt_metric": "somme_emprunts",
-          "debt_total_bilan_III_eur": 61300203.0,
-          "libelle_exact": "2017: Emprunts établissements de crédit + Emprunts et dettes financières divers",
+          "debt_total_bilan_III_eur": 27916163,
+          "libelle_exact": "Avis 95-02. somme_emprunts = crédit + dettes financières divers. Total dettes = somme des postes dettes (crédit, divers, fournisseurs, fiscales, autres), pas le total du passif.",
+          "source_url": "https://www.data.gouv.fr/storage/f/2014-01-09T16-40-46/Comptes_partis_exercice_2008.xlsx",
+          "confidence": 4
+        },
+        {
+          "year": 2009,
+          "debt_eur": 12690100,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 19411951,
+          "libelle_exact": "Avis 95-02. somme_emprunts = crédit + dettes financières divers. Total dettes = somme des postes dettes (crédit, divers, fournisseurs, fiscales, autres), pas le total du passif.",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20231109-122134/comptes-partis-exercice-2009.xlsx",
+          "confidence": 4
+        },
+        {
+          "year": 2010,
+          "debt_eur": 28440215,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 37707852,
+          "libelle_exact": "Avis 95-02. somme_emprunts = crédit + dettes financières divers. Total dettes = somme des postes dettes (crédit, divers, fournisseurs, fiscales, autres), pas le total du passif.",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20231109-121651/comptes-partis-exercice-2010.xlsx",
+          "confidence": 4
+        },
+        {
+          "year": 2011,
+          "debt_eur": 43935248,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 55587061,
+          "libelle_exact": "Avis 95-02. somme_emprunts = crédit + dettes financières divers. Total dettes = somme des postes dettes (crédit, divers, fournisseurs, fiscales, autres), pas le total du passif.",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20231109-121903/comptes-partis-exercice-2011.xlsx",
+          "confidence": 4
+        },
+        {
+          "year": 2012,
+          "debt_eur": 96431526,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 108482234,
+          "libelle_exact": "Avis 95-02. somme_emprunts = crédit + dettes financières divers. Total dettes = somme des postes dettes (crédit, divers, fournisseurs, fiscales, autres), pas le total du passif.",
+          "source_url": "https://www.data.gouv.fr/storage/f/2014-01-23T15-52-05/Comptes_partis_exercice_2012.xlsx",
+          "confidence": 4
+        },
+        {
+          "year": 2013,
+          "debt_eur": 76162198,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 88280213,
+          "libelle_exact": "Avis 95-02. somme_emprunts = crédit + dettes financières divers. Total dettes = somme des postes dettes (crédit, divers, fournisseurs, fiscales, autres), pas le total du passif.",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20180827-165744/comptes-partis-exercice-2013.xlsx",
+          "confidence": 4
+        },
+        {
+          "year": 2014,
+          "debt_eur": 73442579,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 82574490,
+          "libelle_exact": "Avis 95-02. somme_emprunts = crédit + dettes financières divers. Total dettes = somme des postes dettes (crédit, divers, fournisseurs, fiscales, autres), pas le total du passif.",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20160104-114601/Comptes_partis_exercice_2014.xlsx",
+          "confidence": 4
+        },
+        {
+          "year": 2015,
+          "debt_eur": 67718381,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 77067365,
+          "libelle_exact": "Avis 95-02. somme_emprunts = crédit + dettes financières divers. Total dettes = somme des postes dettes (crédit, divers, fournisseurs, fiscales, autres), pas le total du passif.",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20170207-153221/Comptes_partis_exercice_2015.ods",
+          "confidence": 4
+        },
+        {
+          "year": 2016,
+          "debt_eur": 61699446,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 69884643,
+          "libelle_exact": "Avis 95-02. somme_emprunts = crédit + dettes financières divers. Total dettes = somme des postes dettes (crédit, divers, fournisseurs, fiscales, autres), pas le total du passif.",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20180413-154917/Comptes_partis_exercice_2016.ods",
+          "confidence": 4
+        },
+        {
+          "year": 2017,
+          "debt_eur": 54907873,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 61300203,
+          "libelle_exact": "Avis 95-02. somme_emprunts = crédit + dettes financières divers. Total dettes = somme des postes dettes (crédit, divers, fournisseurs, fiscales, autres), pas le total du passif.",
           "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20190111-135832/comptes-partis-exercice-2017.ods",
           "confidence": 4
         },
         {
           "year": 2018,
-          "debt_eur": 50083964.0,
+          "debt_eur": 50083964,
           "debt_metric": "somme_emprunts",
-          "debt_total_bilan_III_eur": 55609241.0,
-          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "debt_total_bilan_III_eur": 55609241,
+          "libelle_exact": "Plan ANC 2018-03. somme_emprunts = crédit + PP préférentiel + PP autres + autres partis. Total III = colonne publiée.",
           "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20200902-121107/comptes-partis-exercice-2018.xlsx",
           "confidence": 5
         },
@@ -421,7 +763,7 @@
           "debt_eur": 13535896.5,
           "debt_metric": "somme_emprunts",
           "debt_total_bilan_III_eur": 18930225.1,
-          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "libelle_exact": "Plan ANC 2018-03. somme_emprunts = crédit + PP préférentiel + PP autres + autres partis. Total III = colonne publiée.",
           "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20230302-161340/comptes-partis-exercice-2019.xlsx",
           "confidence": 5
         },
@@ -429,8 +771,8 @@
           "year": 2020,
           "debt_eur": 12904403.56,
           "debt_metric": "somme_emprunts",
-          "debt_total_bilan_III_eur": 17466747.040000003,
-          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "debt_total_bilan_III_eur": 17466747.04,
+          "libelle_exact": "Plan ANC 2018-03. somme_emprunts = crédit + PP préférentiel + PP autres + autres partis. Total III = colonne publiée.",
           "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20220317-163630/comptes-partis-exercice-2020.xlsx",
           "confidence": 5
         },
@@ -439,7 +781,7 @@
           "debt_eur": 12796222.45,
           "debt_metric": "somme_emprunts",
           "debt_total_bilan_III_eur": 18949509.04,
-          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "libelle_exact": "Plan ANC 2018-03. somme_emprunts = crédit + PP préférentiel + PP autres + autres partis. Total III = colonne publiée.",
           "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20260210-151846/comptes-partis-exercice-2021.csv",
           "confidence": 5
         },
@@ -447,26 +789,26 @@
           "year": 2022,
           "debt_eur": 12687515.81,
           "debt_metric": "somme_emprunts",
-          "debt_total_bilan_III_eur": 16954954.0,
-          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "debt_total_bilan_III_eur": 16954954,
+          "libelle_exact": "Plan ANC 2018-03. somme_emprunts = crédit + PP préférentiel + PP autres + autres partis. Total III = colonne publiée.",
           "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20260210-121141/comptes-partis-exercice-2022.csv",
           "confidence": 5
         },
         {
           "year": 2023,
-          "debt_eur": 11233889.0,
+          "debt_eur": 11233889,
           "debt_metric": "somme_emprunts",
-          "debt_total_bilan_III_eur": 15318577.0,
-          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "debt_total_bilan_III_eur": 15318577,
+          "libelle_exact": "Plan ANC 2018-03. somme_emprunts = crédit + PP préférentiel + PP autres + autres partis. Total III = colonne publiée.",
           "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20260210-120352/comptes-partis-exercice-2023.csv",
           "confidence": 5
         },
         {
           "year": 2024,
-          "debt_eur": 8708725.0,
+          "debt_eur": 8708725,
           "debt_metric": "somme_emprunts",
-          "debt_total_bilan_III_eur": 12292671.0,
-          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "debt_total_bilan_III_eur": 12292671,
+          "libelle_exact": "Plan ANC 2018-03. somme_emprunts = crédit + PP préférentiel + PP autres + autres partis. Total III = colonne publiée.",
           "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20260210-110641/comptes-partis-exercice-2024.csv",
           "confidence": 5
         }
@@ -475,41 +817,122 @@
     {
       "party_id": "modem",
       "code_cnccfp": "529",
-      "n_points": 8,
+      "n_points": 17,
       "series": [
         {
-          "year": 2017,
-          "debt_eur": 181026.0,
+          "year": 2008,
+          "debt_eur": 199453,
           "debt_metric": "somme_emprunts",
-          "debt_total_bilan_III_eur": 1794409.0,
-          "libelle_exact": "2017: Emprunts établissements de crédit + Emprunts et dettes financières divers",
+          "debt_total_bilan_III_eur": 414079,
+          "libelle_exact": "Avis 95-02. somme_emprunts = crédit + dettes financières divers. Total dettes = somme des postes dettes (crédit, divers, fournisseurs, fiscales, autres), pas le total du passif.",
+          "source_url": "https://www.data.gouv.fr/storage/f/2014-01-09T16-40-46/Comptes_partis_exercice_2008.xlsx",
+          "confidence": 4
+        },
+        {
+          "year": 2009,
+          "debt_eur": 813068,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 928511,
+          "libelle_exact": "Avis 95-02. somme_emprunts = crédit + dettes financières divers. Total dettes = somme des postes dettes (crédit, divers, fournisseurs, fiscales, autres), pas le total du passif.",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20231109-122134/comptes-partis-exercice-2009.xlsx",
+          "confidence": 4
+        },
+        {
+          "year": 2010,
+          "debt_eur": 2015202,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 2154995,
+          "libelle_exact": "Avis 95-02. somme_emprunts = crédit + dettes financières divers. Total dettes = somme des postes dettes (crédit, divers, fournisseurs, fiscales, autres), pas le total du passif.",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20231109-121651/comptes-partis-exercice-2010.xlsx",
+          "confidence": 4
+        },
+        {
+          "year": 2011,
+          "debt_eur": 1166970,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 1314366,
+          "libelle_exact": "Avis 95-02. somme_emprunts = crédit + dettes financières divers. Total dettes = somme des postes dettes (crédit, divers, fournisseurs, fiscales, autres), pas le total du passif.",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20231109-121903/comptes-partis-exercice-2011.xlsx",
+          "confidence": 4
+        },
+        {
+          "year": 2012,
+          "debt_eur": 607700,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 814557,
+          "libelle_exact": "Avis 95-02. somme_emprunts = crédit + dettes financières divers. Total dettes = somme des postes dettes (crédit, divers, fournisseurs, fiscales, autres), pas le total du passif.",
+          "source_url": "https://www.data.gouv.fr/storage/f/2014-01-23T15-52-05/Comptes_partis_exercice_2012.xlsx",
+          "confidence": 4
+        },
+        {
+          "year": 2013,
+          "debt_eur": 95124,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 1506370,
+          "libelle_exact": "Avis 95-02. somme_emprunts = crédit + dettes financières divers. Total dettes = somme des postes dettes (crédit, divers, fournisseurs, fiscales, autres), pas le total du passif.",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20180827-165744/comptes-partis-exercice-2013.xlsx",
+          "confidence": 4
+        },
+        {
+          "year": 2014,
+          "debt_eur": 1365563,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 2859032,
+          "libelle_exact": "Avis 95-02. somme_emprunts = crédit + dettes financières divers. Total dettes = somme des postes dettes (crédit, divers, fournisseurs, fiscales, autres), pas le total du passif.",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20160104-114601/Comptes_partis_exercice_2014.xlsx",
+          "confidence": 4
+        },
+        {
+          "year": 2015,
+          "debt_eur": 68616,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 1527194,
+          "libelle_exact": "Avis 95-02. somme_emprunts = crédit + dettes financières divers. Total dettes = somme des postes dettes (crédit, divers, fournisseurs, fiscales, autres), pas le total du passif.",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20170207-153221/Comptes_partis_exercice_2015.ods",
+          "confidence": 4
+        },
+        {
+          "year": 2016,
+          "debt_eur": 76976,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 1581628,
+          "libelle_exact": "Avis 95-02. somme_emprunts = crédit + dettes financières divers. Total dettes = somme des postes dettes (crédit, divers, fournisseurs, fiscales, autres), pas le total du passif.",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20180413-154917/Comptes_partis_exercice_2016.ods",
+          "confidence": 4
+        },
+        {
+          "year": 2017,
+          "debt_eur": 181026,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 1794409,
+          "libelle_exact": "Avis 95-02. somme_emprunts = crédit + dettes financières divers. Total dettes = somme des postes dettes (crédit, divers, fournisseurs, fiscales, autres), pas le total du passif.",
           "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20190111-135832/comptes-partis-exercice-2017.ods",
           "confidence": 4
         },
         {
           "year": 2018,
-          "debt_eur": 1103058.0,
+          "debt_eur": 1103058,
           "debt_metric": "somme_emprunts",
-          "debt_total_bilan_III_eur": 1426642.0,
-          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "debt_total_bilan_III_eur": 1426642,
+          "libelle_exact": "Plan ANC 2018-03. somme_emprunts = crédit + PP préférentiel + PP autres + autres partis. Total III = colonne publiée.",
           "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20200902-121107/comptes-partis-exercice-2018.xlsx",
           "confidence": 5
         },
         {
           "year": 2019,
-          "debt_eur": 2340033.0,
+          "debt_eur": 2340033,
           "debt_metric": "somme_emprunts",
-          "debt_total_bilan_III_eur": 2823209.0,
-          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "debt_total_bilan_III_eur": 2823209,
+          "libelle_exact": "Plan ANC 2018-03. somme_emprunts = crédit + PP préférentiel + PP autres + autres partis. Total III = colonne publiée.",
           "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20230302-161340/comptes-partis-exercice-2019.xlsx",
           "confidence": 5
         },
         {
           "year": 2020,
-          "debt_eur": 1043905.3400000001,
+          "debt_eur": 1043905.34,
           "debt_metric": "somme_emprunts",
           "debt_total_bilan_III_eur": 1598254.09,
-          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "libelle_exact": "Plan ANC 2018-03. somme_emprunts = crédit + PP préférentiel + PP autres + autres partis. Total III = colonne publiée.",
           "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20220317-163630/comptes-partis-exercice-2020.xlsx",
           "confidence": 5
         },
@@ -518,16 +941,16 @@
           "debt_eur": 844700.66,
           "debt_metric": "somme_emprunts",
           "debt_total_bilan_III_eur": 1413871.72,
-          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "libelle_exact": "Plan ANC 2018-03. somme_emprunts = crédit + PP préférentiel + PP autres + autres partis. Total III = colonne publiée.",
           "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20260210-151846/comptes-partis-exercice-2021.csv",
           "confidence": 5
         },
         {
           "year": 2022,
-          "debt_eur": 875752.0,
+          "debt_eur": 875752,
           "debt_metric": "somme_emprunts",
-          "debt_total_bilan_III_eur": 1374135.0,
-          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "debt_total_bilan_III_eur": 1374135,
+          "libelle_exact": "Plan ANC 2018-03. somme_emprunts = crédit + PP préférentiel + PP autres + autres partis. Total III = colonne publiée.",
           "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20260210-121141/comptes-partis-exercice-2022.csv",
           "confidence": 5
         },
@@ -536,16 +959,16 @@
           "debt_eur": 449626.9,
           "debt_metric": "somme_emprunts",
           "debt_total_bilan_III_eur": 1395891.24,
-          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "libelle_exact": "Plan ANC 2018-03. somme_emprunts = crédit + PP préférentiel + PP autres + autres partis. Total III = colonne publiée.",
           "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20260210-120352/comptes-partis-exercice-2023.csv",
           "confidence": 5
         },
         {
           "year": 2024,
-          "debt_eur": 37050.0,
+          "debt_eur": 37050,
           "debt_metric": "somme_emprunts",
-          "debt_total_bilan_III_eur": 557173.0,
-          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "debt_total_bilan_III_eur": 557173,
+          "libelle_exact": "Plan ANC 2018-03. somme_emprunts = crédit + PP préférentiel + PP autres + autres partis. Total III = colonne publiée.",
           "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20260210-110641/comptes-partis-exercice-2024.csv",
           "confidence": 5
         }
@@ -554,32 +977,113 @@
     {
       "party_id": "pcf",
       "code_cnccfp": "60",
-      "n_points": 8,
+      "n_points": 17,
       "series": [
         {
-          "year": 2017,
-          "debt_eur": 823887.0,
+          "year": 2008,
+          "debt_eur": 2223271,
           "debt_metric": "somme_emprunts",
-          "debt_total_bilan_III_eur": 7761767.0,
-          "libelle_exact": "2017: Emprunts établissements de crédit + Emprunts et dettes financières divers",
+          "debt_total_bilan_III_eur": 9064975,
+          "libelle_exact": "Avis 95-02. somme_emprunts = crédit + dettes financières divers. Total dettes = somme des postes dettes (crédit, divers, fournisseurs, fiscales, autres), pas le total du passif.",
+          "source_url": "https://www.data.gouv.fr/storage/f/2014-01-09T16-40-46/Comptes_partis_exercice_2008.xlsx",
+          "confidence": 4
+        },
+        {
+          "year": 2009,
+          "debt_eur": 1845532,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 7988964,
+          "libelle_exact": "Avis 95-02. somme_emprunts = crédit + dettes financières divers. Total dettes = somme des postes dettes (crédit, divers, fournisseurs, fiscales, autres), pas le total du passif.",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20231109-122134/comptes-partis-exercice-2009.xlsx",
+          "confidence": 4
+        },
+        {
+          "year": 2010,
+          "debt_eur": 2241783,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 8748826,
+          "libelle_exact": "Avis 95-02. somme_emprunts = crédit + dettes financières divers. Total dettes = somme des postes dettes (crédit, divers, fournisseurs, fiscales, autres), pas le total du passif.",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20231109-121651/comptes-partis-exercice-2010.xlsx",
+          "confidence": 4
+        },
+        {
+          "year": 2011,
+          "debt_eur": 2627958,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 8996674,
+          "libelle_exact": "Avis 95-02. somme_emprunts = crédit + dettes financières divers. Total dettes = somme des postes dettes (crédit, divers, fournisseurs, fiscales, autres), pas le total du passif.",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20231109-121903/comptes-partis-exercice-2011.xlsx",
+          "confidence": 4
+        },
+        {
+          "year": 2012,
+          "debt_eur": 1796825,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 9670807,
+          "libelle_exact": "Avis 95-02. somme_emprunts = crédit + dettes financières divers. Total dettes = somme des postes dettes (crédit, divers, fournisseurs, fiscales, autres), pas le total du passif.",
+          "source_url": "https://www.data.gouv.fr/storage/f/2014-01-23T15-52-05/Comptes_partis_exercice_2012.xlsx",
+          "confidence": 4
+        },
+        {
+          "year": 2013,
+          "debt_eur": 641928,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 6671143,
+          "libelle_exact": "Avis 95-02. somme_emprunts = crédit + dettes financières divers. Total dettes = somme des postes dettes (crédit, divers, fournisseurs, fiscales, autres), pas le total du passif.",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20180827-165744/comptes-partis-exercice-2013.xlsx",
+          "confidence": 4
+        },
+        {
+          "year": 2014,
+          "debt_eur": 1652049,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 8140618,
+          "libelle_exact": "Avis 95-02. somme_emprunts = crédit + dettes financières divers. Total dettes = somme des postes dettes (crédit, divers, fournisseurs, fiscales, autres), pas le total du passif.",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20160104-114601/Comptes_partis_exercice_2014.xlsx",
+          "confidence": 4
+        },
+        {
+          "year": 2015,
+          "debt_eur": 1781798,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 9286734,
+          "libelle_exact": "Avis 95-02. somme_emprunts = crédit + dettes financières divers. Total dettes = somme des postes dettes (crédit, divers, fournisseurs, fiscales, autres), pas le total du passif.",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20170207-153221/Comptes_partis_exercice_2015.ods",
+          "confidence": 4
+        },
+        {
+          "year": 2016,
+          "debt_eur": 582808,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 6703631,
+          "libelle_exact": "Avis 95-02. somme_emprunts = crédit + dettes financières divers. Total dettes = somme des postes dettes (crédit, divers, fournisseurs, fiscales, autres), pas le total du passif.",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20180413-154917/Comptes_partis_exercice_2016.ods",
+          "confidence": 4
+        },
+        {
+          "year": 2017,
+          "debt_eur": 823887,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 7761767,
+          "libelle_exact": "Avis 95-02. somme_emprunts = crédit + dettes financières divers. Total dettes = somme des postes dettes (crédit, divers, fournisseurs, fiscales, autres), pas le total du passif.",
           "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20190111-135832/comptes-partis-exercice-2017.ods",
           "confidence": 4
         },
         {
           "year": 2018,
-          "debt_eur": 531021.0,
+          "debt_eur": 531021,
           "debt_metric": "somme_emprunts",
-          "debt_total_bilan_III_eur": 6366842.0,
-          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "debt_total_bilan_III_eur": 6366842,
+          "libelle_exact": "Plan ANC 2018-03. somme_emprunts = crédit + PP préférentiel + PP autres + autres partis. Total III = colonne publiée.",
           "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20200902-121107/comptes-partis-exercice-2018.xlsx",
           "confidence": 5
         },
         {
           "year": 2019,
-          "debt_eur": 1105095.0,
+          "debt_eur": 1105095,
           "debt_metric": "somme_emprunts",
-          "debt_total_bilan_III_eur": 6162373.0,
-          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "debt_total_bilan_III_eur": 6162373,
+          "libelle_exact": "Plan ANC 2018-03. somme_emprunts = crédit + PP préférentiel + PP autres + autres partis. Total III = colonne publiée.",
           "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20230302-161340/comptes-partis-exercice-2019.xlsx",
           "confidence": 5
         },
@@ -587,8 +1091,8 @@
           "year": 2020,
           "debt_eur": 1378266.31,
           "debt_metric": "somme_emprunts",
-          "debt_total_bilan_III_eur": 6436032.330000002,
-          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "debt_total_bilan_III_eur": 6436032.33,
+          "libelle_exact": "Plan ANC 2018-03. somme_emprunts = crédit + PP préférentiel + PP autres + autres partis. Total III = colonne publiée.",
           "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20220317-163630/comptes-partis-exercice-2020.xlsx",
           "confidence": 5
         },
@@ -597,16 +1101,16 @@
           "debt_eur": 1949504.79,
           "debt_metric": "somme_emprunts",
           "debt_total_bilan_III_eur": 7545988.24,
-          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "libelle_exact": "Plan ANC 2018-03. somme_emprunts = crédit + PP préférentiel + PP autres + autres partis. Total III = colonne publiée.",
           "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20260210-151846/comptes-partis-exercice-2021.csv",
           "confidence": 5
         },
         {
           "year": 2022,
-          "debt_eur": 1472615.0,
+          "debt_eur": 1472615,
           "debt_metric": "somme_emprunts",
-          "debt_total_bilan_III_eur": 6082837.0,
-          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "debt_total_bilan_III_eur": 6082837,
+          "libelle_exact": "Plan ANC 2018-03. somme_emprunts = crédit + PP préférentiel + PP autres + autres partis. Total III = colonne publiée.",
           "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20260210-121141/comptes-partis-exercice-2022.csv",
           "confidence": 5
         },
@@ -615,7 +1119,7 @@
           "debt_eur": 1180831.21,
           "debt_metric": "somme_emprunts",
           "debt_total_bilan_III_eur": 5569515.65,
-          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "libelle_exact": "Plan ANC 2018-03. somme_emprunts = crédit + PP préférentiel + PP autres + autres partis. Total III = colonne publiée.",
           "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20260210-120352/comptes-partis-exercice-2023.csv",
           "confidence": 5
         },
@@ -624,7 +1128,7 @@
           "debt_eur": 1223429.76,
           "debt_metric": "somme_emprunts",
           "debt_total_bilan_III_eur": 5297288.42,
-          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "libelle_exact": "Plan ANC 2018-03. somme_emprunts = crédit + PP préférentiel + PP autres + autres partis. Total III = colonne publiée.",
           "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20260210-110641/comptes-partis-exercice-2024.csv",
           "confidence": 5
         }
@@ -633,23 +1137,104 @@
     {
       "party_id": "ps",
       "code_cnccfp": "76",
-      "n_points": 8,
+      "n_points": 17,
       "series": [
         {
-          "year": 2017,
-          "debt_eur": 32945295.0,
+          "year": 2008,
+          "debt_eur": 5199019,
           "debt_metric": "somme_emprunts",
-          "debt_total_bilan_III_eur": 46038836.0,
-          "libelle_exact": "2017: Emprunts établissements de crédit + Emprunts et dettes financières divers",
+          "debt_total_bilan_III_eur": 18275394,
+          "libelle_exact": "Avis 95-02. somme_emprunts = crédit + dettes financières divers. Total dettes = somme des postes dettes (crédit, divers, fournisseurs, fiscales, autres), pas le total du passif.",
+          "source_url": "https://www.data.gouv.fr/storage/f/2014-01-09T16-40-46/Comptes_partis_exercice_2008.xlsx",
+          "confidence": 4
+        },
+        {
+          "year": 2009,
+          "debt_eur": 5594439,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 18735267,
+          "libelle_exact": "Avis 95-02. somme_emprunts = crédit + dettes financières divers. Total dettes = somme des postes dettes (crédit, divers, fournisseurs, fiscales, autres), pas le total du passif.",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20231109-122134/comptes-partis-exercice-2009.xlsx",
+          "confidence": 4
+        },
+        {
+          "year": 2010,
+          "debt_eur": 4178657,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 17973460,
+          "libelle_exact": "Avis 95-02. somme_emprunts = crédit + dettes financières divers. Total dettes = somme des postes dettes (crédit, divers, fournisseurs, fiscales, autres), pas le total du passif.",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20231109-121651/comptes-partis-exercice-2010.xlsx",
+          "confidence": 4
+        },
+        {
+          "year": 2011,
+          "debt_eur": 5075852,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 19131761,
+          "libelle_exact": "Avis 95-02. somme_emprunts = crédit + dettes financières divers. Total dettes = somme des postes dettes (crédit, divers, fournisseurs, fiscales, autres), pas le total du passif.",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20231109-121903/comptes-partis-exercice-2011.xlsx",
+          "confidence": 4
+        },
+        {
+          "year": 2012,
+          "debt_eur": 28902621,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 43536964,
+          "libelle_exact": "Avis 95-02. somme_emprunts = crédit + dettes financières divers. Total dettes = somme des postes dettes (crédit, divers, fournisseurs, fiscales, autres), pas le total du passif.",
+          "source_url": "https://www.data.gouv.fr/storage/f/2014-01-23T15-52-05/Comptes_partis_exercice_2012.xlsx",
+          "confidence": 4
+        },
+        {
+          "year": 2013,
+          "debt_eur": 14408678,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 29863288,
+          "libelle_exact": "Avis 95-02. somme_emprunts = crédit + dettes financières divers. Total dettes = somme des postes dettes (crédit, divers, fournisseurs, fiscales, autres), pas le total du passif.",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20180827-165744/comptes-partis-exercice-2013.xlsx",
+          "confidence": 4
+        },
+        {
+          "year": 2014,
+          "debt_eur": 16083035,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 31290404,
+          "libelle_exact": "Avis 95-02. somme_emprunts = crédit + dettes financières divers. Total dettes = somme des postes dettes (crédit, divers, fournisseurs, fiscales, autres), pas le total du passif.",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20160104-114601/Comptes_partis_exercice_2014.xlsx",
+          "confidence": 4
+        },
+        {
+          "year": 2015,
+          "debt_eur": 13447987,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 28204028,
+          "libelle_exact": "Avis 95-02. somme_emprunts = crédit + dettes financières divers. Total dettes = somme des postes dettes (crédit, divers, fournisseurs, fiscales, autres), pas le total du passif.",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20170207-153221/Comptes_partis_exercice_2015.ods",
+          "confidence": 4
+        },
+        {
+          "year": 2016,
+          "debt_eur": 14333061,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 28897528,
+          "libelle_exact": "Avis 95-02. somme_emprunts = crédit + dettes financières divers. Total dettes = somme des postes dettes (crédit, divers, fournisseurs, fiscales, autres), pas le total du passif.",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20180413-154917/Comptes_partis_exercice_2016.ods",
+          "confidence": 4
+        },
+        {
+          "year": 2017,
+          "debt_eur": 32945295,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 46038836,
+          "libelle_exact": "Avis 95-02. somme_emprunts = crédit + dettes financières divers. Total dettes = somme des postes dettes (crédit, divers, fournisseurs, fiscales, autres), pas le total du passif.",
           "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20190111-135832/comptes-partis-exercice-2017.ods",
           "confidence": 4
         },
         {
           "year": 2018,
-          "debt_eur": 1667078.0,
+          "debt_eur": 1667078,
           "debt_metric": "somme_emprunts",
-          "debt_total_bilan_III_eur": 11351348.0,
-          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "debt_total_bilan_III_eur": 11351348,
+          "libelle_exact": "Plan ANC 2018-03. somme_emprunts = crédit + PP préférentiel + PP autres + autres partis. Total III = colonne publiée.",
           "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20200902-121107/comptes-partis-exercice-2018.xlsx",
           "confidence": 5
         },
@@ -657,53 +1242,53 @@
           "year": 2019,
           "debt_eur": 3521001.34,
           "debt_metric": "somme_emprunts",
-          "debt_total_bilan_III_eur": 10444872.440644003,
-          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "debt_total_bilan_III_eur": 10444872.44,
+          "libelle_exact": "Plan ANC 2018-03. somme_emprunts = crédit + PP préférentiel + PP autres + autres partis. Total III = colonne publiée.",
           "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20230302-161340/comptes-partis-exercice-2019.xlsx",
           "confidence": 5
         },
         {
           "year": 2020,
-          "debt_eur": 1180347.0,
+          "debt_eur": 1180347,
           "debt_metric": "somme_emprunts",
-          "debt_total_bilan_III_eur": 8204926.0,
-          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "debt_total_bilan_III_eur": 8204926,
+          "libelle_exact": "Plan ANC 2018-03. somme_emprunts = crédit + PP préférentiel + PP autres + autres partis. Total III = colonne publiée.",
           "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20220317-163630/comptes-partis-exercice-2020.xlsx",
           "confidence": 5
         },
         {
           "year": 2021,
-          "debt_eur": 1183180.0,
+          "debt_eur": 1183180,
           "debt_metric": "somme_emprunts",
-          "debt_total_bilan_III_eur": 7183232.0,
-          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "debt_total_bilan_III_eur": 7183232,
+          "libelle_exact": "Plan ANC 2018-03. somme_emprunts = crédit + PP préférentiel + PP autres + autres partis. Total III = colonne publiée.",
           "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20260210-151846/comptes-partis-exercice-2021.csv",
           "confidence": 5
         },
         {
           "year": 2022,
-          "debt_eur": 1472879.0,
+          "debt_eur": 1472879,
           "debt_metric": "somme_emprunts",
-          "debt_total_bilan_III_eur": 6562628.0,
-          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "debt_total_bilan_III_eur": 6562628,
+          "libelle_exact": "Plan ANC 2018-03. somme_emprunts = crédit + PP préférentiel + PP autres + autres partis. Total III = colonne publiée.",
           "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20260210-121141/comptes-partis-exercice-2022.csv",
           "confidence": 5
         },
         {
           "year": 2023,
-          "debt_eur": 842505.0,
+          "debt_eur": 842505,
           "debt_metric": "somme_emprunts",
-          "debt_total_bilan_III_eur": 4866896.0,
-          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "debt_total_bilan_III_eur": 4866896,
+          "libelle_exact": "Plan ANC 2018-03. somme_emprunts = crédit + PP préférentiel + PP autres + autres partis. Total III = colonne publiée.",
           "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20260210-120352/comptes-partis-exercice-2023.csv",
           "confidence": 5
         },
         {
           "year": 2024,
-          "debt_eur": 3474408.0,
+          "debt_eur": 3474408,
           "debt_metric": "somme_emprunts",
-          "debt_total_bilan_III_eur": 7911998.0,
-          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "debt_total_bilan_III_eur": 7911998,
+          "libelle_exact": "Plan ANC 2018-03. somme_emprunts = crédit + PP préférentiel + PP autres + autres partis. Total III = colonne publiée.",
           "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20260210-110641/comptes-partis-exercice-2024.csv",
           "confidence": 5
         }
@@ -716,10 +1301,10 @@
       "series": [
         {
           "year": 2021,
-          "debt_eur": 1805731.0,
+          "debt_eur": 1805731,
           "debt_metric": "somme_emprunts",
           "debt_total_bilan_III_eur": 2587764.82,
-          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "libelle_exact": "Plan ANC 2018-03. somme_emprunts = crédit + PP préférentiel + PP autres + autres partis. Total III = colonne publiée.",
           "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20260210-151846/comptes-partis-exercice-2021.csv",
           "confidence": 5
         },
@@ -728,7 +1313,7 @@
           "debt_eur": 3709012.14,
           "debt_metric": "somme_emprunts",
           "debt_total_bilan_III_eur": 4435318.58,
-          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "libelle_exact": "Plan ANC 2018-03. somme_emprunts = crédit + PP préférentiel + PP autres + autres partis. Total III = colonne publiée.",
           "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20260210-121141/comptes-partis-exercice-2022.csv",
           "confidence": 5
         },
@@ -737,7 +1322,7 @@
           "debt_eur": 503277.08,
           "debt_metric": "somme_emprunts",
           "debt_total_bilan_III_eur": 1255185.64,
-          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "libelle_exact": "Plan ANC 2018-03. somme_emprunts = crédit + PP préférentiel + PP autres + autres partis. Total III = colonne publiée.",
           "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20260210-120352/comptes-partis-exercice-2023.csv",
           "confidence": 5
         },
@@ -746,7 +1331,7 @@
           "debt_eur": 544430.64,
           "debt_metric": "somme_emprunts",
           "debt_total_bilan_III_eur": 1387017.68,
-          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "libelle_exact": "Plan ANC 2018-03. somme_emprunts = crédit + PP préférentiel + PP autres + autres partis. Total III = colonne publiée.",
           "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20260210-110641/comptes-partis-exercice-2024.csv",
           "confidence": 5
         }
@@ -755,23 +1340,32 @@
     {
       "party_id": "renaissance",
       "code_cnccfp": "910",
-      "n_points": 8,
+      "n_points": 9,
       "series": [
         {
-          "year": 2017,
-          "debt_eur": 2451778.0,
+          "year": 2016,
+          "debt_eur": 0,
           "debt_metric": "somme_emprunts",
-          "debt_total_bilan_III_eur": 5020225.0,
-          "libelle_exact": "2017: Emprunts établissements de crédit + Emprunts et dettes financières divers",
+          "debt_total_bilan_III_eur": 1051652,
+          "libelle_exact": "Avis 95-02. somme_emprunts = crédit + dettes financières divers. Total dettes = somme des postes dettes (crédit, divers, fournisseurs, fiscales, autres), pas le total du passif.",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20180413-154917/Comptes_partis_exercice_2016.ods",
+          "confidence": 4
+        },
+        {
+          "year": 2017,
+          "debt_eur": 2451778,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 5020225,
+          "libelle_exact": "Avis 95-02. somme_emprunts = crédit + dettes financières divers. Total dettes = somme des postes dettes (crédit, divers, fournisseurs, fiscales, autres), pas le total du passif.",
           "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20190111-135832/comptes-partis-exercice-2017.ods",
           "confidence": 4
         },
         {
           "year": 2018,
-          "debt_eur": 5470.0,
+          "debt_eur": 5470,
           "debt_metric": "somme_emprunts",
-          "debt_total_bilan_III_eur": 3177382.0,
-          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "debt_total_bilan_III_eur": 3177382,
+          "libelle_exact": "Plan ANC 2018-03. somme_emprunts = crédit + PP préférentiel + PP autres + autres partis. Total III = colonne publiée.",
           "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20200902-121107/comptes-partis-exercice-2018.xlsx",
           "confidence": 5
         },
@@ -779,17 +1373,17 @@
           "year": 2019,
           "debt_eur": 0,
           "debt_metric": "somme_emprunts",
-          "debt_total_bilan_III_eur": 2462761.0,
-          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "debt_total_bilan_III_eur": 2462761,
+          "libelle_exact": "Plan ANC 2018-03. somme_emprunts = crédit + PP préférentiel + PP autres + autres partis. Total III = colonne publiée.",
           "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20230302-161340/comptes-partis-exercice-2019.xlsx",
           "confidence": 5
         },
         {
           "year": 2020,
-          "debt_eur": 7657514.779999999,
+          "debt_eur": 7657514.78,
           "debt_metric": "somme_emprunts",
-          "debt_total_bilan_III_eur": 9702784.379999999,
-          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "debt_total_bilan_III_eur": 9702784.38,
+          "libelle_exact": "Plan ANC 2018-03. somme_emprunts = crédit + PP préférentiel + PP autres + autres partis. Total III = colonne publiée.",
           "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20220317-163630/comptes-partis-exercice-2020.xlsx",
           "confidence": 5
         },
@@ -798,7 +1392,7 @@
           "debt_eur": 19636092.87,
           "debt_metric": "somme_emprunts",
           "debt_total_bilan_III_eur": 22954184.15,
-          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "libelle_exact": "Plan ANC 2018-03. somme_emprunts = crédit + PP préférentiel + PP autres + autres partis. Total III = colonne publiée.",
           "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20260210-151846/comptes-partis-exercice-2021.csv",
           "confidence": 5
         },
@@ -807,7 +1401,7 @@
           "debt_eur": 27115745.55,
           "debt_metric": "somme_emprunts",
           "debt_total_bilan_III_eur": 29639376.5,
-          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "libelle_exact": "Plan ANC 2018-03. somme_emprunts = crédit + PP préférentiel + PP autres + autres partis. Total III = colonne publiée.",
           "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20260210-121141/comptes-partis-exercice-2022.csv",
           "confidence": 5
         },
@@ -816,16 +1410,16 @@
           "debt_eur": 14501776.02,
           "debt_metric": "somme_emprunts",
           "debt_total_bilan_III_eur": 16407932.64,
-          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "libelle_exact": "Plan ANC 2018-03. somme_emprunts = crédit + PP préférentiel + PP autres + autres partis. Total III = colonne publiée.",
           "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20260210-120352/comptes-partis-exercice-2023.csv",
           "confidence": 5
         },
         {
           "year": 2024,
-          "debt_eur": 17024529.0,
+          "debt_eur": 17024529,
           "debt_metric": "somme_emprunts",
-          "debt_total_bilan_III_eur": 19354236.0,
-          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "debt_total_bilan_III_eur": 19354236,
+          "libelle_exact": "Plan ANC 2018-03. somme_emprunts = crédit + PP préférentiel + PP autres + autres partis. Total III = colonne publiée.",
           "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20260210-110641/comptes-partis-exercice-2024.csv",
           "confidence": 5
         }
@@ -840,8 +1434,8 @@
           "year": 2017,
           "debt_eur": 0,
           "debt_metric": "somme_emprunts",
-          "debt_total_bilan_III_eur": 25085.0,
-          "libelle_exact": "2017: Emprunts établissements de crédit + Emprunts et dettes financières divers",
+          "debt_total_bilan_III_eur": 25085,
+          "libelle_exact": "Avis 95-02. somme_emprunts = crédit + dettes financières divers. Total dettes = somme des postes dettes (crédit, divers, fournisseurs, fiscales, autres), pas le total du passif.",
           "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20190111-135832/comptes-partis-exercice-2017.ods",
           "confidence": 4
         },
@@ -849,8 +1443,8 @@
           "year": 2018,
           "debt_eur": 0,
           "debt_metric": "somme_emprunts",
-          "debt_total_bilan_III_eur": 13589.0,
-          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "debt_total_bilan_III_eur": 13589,
+          "libelle_exact": "Plan ANC 2018-03. somme_emprunts = crédit + PP préférentiel + PP autres + autres partis. Total III = colonne publiée.",
           "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20200902-121107/comptes-partis-exercice-2018.xlsx",
           "confidence": 5
         },
@@ -858,35 +1452,35 @@
           "year": 2019,
           "debt_eur": 0,
           "debt_metric": "somme_emprunts",
-          "debt_total_bilan_III_eur": 25380.0,
-          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "debt_total_bilan_III_eur": 25380,
+          "libelle_exact": "Plan ANC 2018-03. somme_emprunts = crédit + PP préférentiel + PP autres + autres partis. Total III = colonne publiée.",
           "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20230302-161340/comptes-partis-exercice-2019.xlsx",
           "confidence": 5
         },
         {
           "year": 2020,
-          "debt_eur": 30000.0,
+          "debt_eur": 30000,
           "debt_metric": "somme_emprunts",
           "debt_total_bilan_III_eur": 60845.43,
-          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "libelle_exact": "Plan ANC 2018-03. somme_emprunts = crédit + PP préférentiel + PP autres + autres partis. Total III = colonne publiée.",
           "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20220317-163630/comptes-partis-exercice-2020.xlsx",
           "confidence": 5
         },
         {
           "year": 2021,
-          "debt_eur": 30000.0,
+          "debt_eur": 30000,
           "debt_metric": "somme_emprunts",
-          "debt_total_bilan_III_eur": 78648.0,
-          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "debt_total_bilan_III_eur": 78648,
+          "libelle_exact": "Plan ANC 2018-03. somme_emprunts = crédit + PP préférentiel + PP autres + autres partis. Total III = colonne publiée.",
           "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20260210-151846/comptes-partis-exercice-2021.csv",
           "confidence": 5
         },
         {
           "year": 2022,
-          "debt_eur": 600000.0,
+          "debt_eur": 600000,
           "debt_metric": "somme_emprunts",
-          "debt_total_bilan_III_eur": 702591.0,
-          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "debt_total_bilan_III_eur": 702591,
+          "libelle_exact": "Plan ANC 2018-03. somme_emprunts = crédit + PP préférentiel + PP autres + autres partis. Total III = colonne publiée.",
           "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20260210-121141/comptes-partis-exercice-2022.csv",
           "confidence": 5
         },
@@ -895,7 +1489,7 @@
           "debt_eur": 0,
           "debt_metric": "somme_emprunts",
           "debt_total_bilan_III_eur": 132400.15,
-          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "libelle_exact": "Plan ANC 2018-03. somme_emprunts = crédit + PP préférentiel + PP autres + autres partis. Total III = colonne publiée.",
           "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20260210-120352/comptes-partis-exercice-2023.csv",
           "confidence": 5
         },
@@ -903,8 +1497,8 @@
           "year": 2024,
           "debt_eur": 0,
           "debt_metric": "somme_emprunts",
-          "debt_total_bilan_III_eur": 154812.0,
-          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "debt_total_bilan_III_eur": 154812,
+          "libelle_exact": "Plan ANC 2018-03. somme_emprunts = crédit + PP préférentiel + PP autres + autres partis. Total III = colonne publiée.",
           "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20260210-110641/comptes-partis-exercice-2024.csv",
           "confidence": 5
         }
@@ -913,77 +1507,158 @@
     {
       "party_id": "rn",
       "code_cnccfp": "40",
-      "n_points": 8,
+      "n_points": 17,
       "series": [
         {
-          "year": 2017,
-          "debt_eur": 24256399.0,
+          "year": 2008,
+          "debt_eur": 9792636,
           "debt_metric": "somme_emprunts",
-          "debt_total_bilan_III_eur": 30561837.0,
-          "libelle_exact": "2017: Emprunts établissements de crédit + Emprunts et dettes financières divers",
+          "debt_total_bilan_III_eur": 11859078,
+          "libelle_exact": "Avis 95-02. somme_emprunts = crédit + dettes financières divers. Total dettes = somme des postes dettes (crédit, divers, fournisseurs, fiscales, autres), pas le total du passif.",
+          "source_url": "https://www.data.gouv.fr/storage/f/2014-01-09T16-40-46/Comptes_partis_exercice_2008.xlsx",
+          "confidence": 4
+        },
+        {
+          "year": 2009,
+          "debt_eur": 10249424,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 11897696,
+          "libelle_exact": "Avis 95-02. somme_emprunts = crédit + dettes financières divers. Total dettes = somme des postes dettes (crédit, divers, fournisseurs, fiscales, autres), pas le total du passif.",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20231109-122134/comptes-partis-exercice-2009.xlsx",
+          "confidence": 4
+        },
+        {
+          "year": 2010,
+          "debt_eur": 9555212,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 11654374,
+          "libelle_exact": "Avis 95-02. somme_emprunts = crédit + dettes financières divers. Total dettes = somme des postes dettes (crédit, divers, fournisseurs, fiscales, autres), pas le total du passif.",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20231109-121651/comptes-partis-exercice-2010.xlsx",
+          "confidence": 4
+        },
+        {
+          "year": 2011,
+          "debt_eur": 2741436,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 4139730,
+          "libelle_exact": "Avis 95-02. somme_emprunts = crédit + dettes financières divers. Total dettes = somme des postes dettes (crédit, divers, fournisseurs, fiscales, autres), pas le total du passif.",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20231109-121903/comptes-partis-exercice-2011.xlsx",
+          "confidence": 4
+        },
+        {
+          "year": 2012,
+          "debt_eur": 4000799,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 6505191,
+          "libelle_exact": "Avis 95-02. somme_emprunts = crédit + dettes financières divers. Total dettes = somme des postes dettes (crédit, divers, fournisseurs, fiscales, autres), pas le total du passif.",
+          "source_url": "https://www.data.gouv.fr/storage/f/2014-01-23T15-52-05/Comptes_partis_exercice_2012.xlsx",
+          "confidence": 4
+        },
+        {
+          "year": 2013,
+          "debt_eur": 5066006,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 7540174,
+          "libelle_exact": "Avis 95-02. somme_emprunts = crédit + dettes financières divers. Total dettes = somme des postes dettes (crédit, divers, fournisseurs, fiscales, autres), pas le total du passif.",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20180827-165744/comptes-partis-exercice-2013.xlsx",
+          "confidence": 4
+        },
+        {
+          "year": 2014,
+          "debt_eur": 10905748,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 13044844,
+          "libelle_exact": "Avis 95-02. somme_emprunts = crédit + dettes financières divers. Total dettes = somme des postes dettes (crédit, divers, fournisseurs, fiscales, autres), pas le total du passif.",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20160104-114601/Comptes_partis_exercice_2014.xlsx",
+          "confidence": 4
+        },
+        {
+          "year": 2015,
+          "debt_eur": 12736723,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 15462585,
+          "libelle_exact": "Avis 95-02. somme_emprunts = crédit + dettes financières divers. Total dettes = somme des postes dettes (crédit, divers, fournisseurs, fiscales, autres), pas le total du passif.",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20170207-153221/Comptes_partis_exercice_2015.ods",
+          "confidence": 4
+        },
+        {
+          "year": 2016,
+          "debt_eur": 12092939,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 15340070,
+          "libelle_exact": "Avis 95-02. somme_emprunts = crédit + dettes financières divers. Total dettes = somme des postes dettes (crédit, divers, fournisseurs, fiscales, autres), pas le total du passif.",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20180413-154917/Comptes_partis_exercice_2016.ods",
+          "confidence": 4
+        },
+        {
+          "year": 2017,
+          "debt_eur": 24256399,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 30561837,
+          "libelle_exact": "Avis 95-02. somme_emprunts = crédit + dettes financières divers. Total dettes = somme des postes dettes (crédit, divers, fournisseurs, fiscales, autres), pas le total du passif.",
           "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20190111-135832/comptes-partis-exercice-2017.ods",
           "confidence": 4
         },
         {
           "year": 2018,
-          "debt_eur": 17915944.0,
+          "debt_eur": 17915944,
           "debt_metric": "somme_emprunts",
-          "debt_total_bilan_III_eur": 24399043.0,
-          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "debt_total_bilan_III_eur": 24399043,
+          "libelle_exact": "Plan ANC 2018-03. somme_emprunts = crédit + PP préférentiel + PP autres + autres partis. Total III = colonne publiée.",
           "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20200902-121107/comptes-partis-exercice-2018.xlsx",
           "confidence": 5
         },
         {
           "year": 2019,
-          "debt_eur": 17075288.0,
+          "debt_eur": 17075288,
           "debt_metric": "somme_emprunts",
-          "debt_total_bilan_III_eur": 22923783.0,
-          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "debt_total_bilan_III_eur": 22923783,
+          "libelle_exact": "Plan ANC 2018-03. somme_emprunts = crédit + PP préférentiel + PP autres + autres partis. Total III = colonne publiée.",
           "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20230302-161340/comptes-partis-exercice-2019.xlsx",
           "confidence": 5
         },
         {
           "year": 2020,
-          "debt_eur": 19382239.0,
+          "debt_eur": 19382239,
           "debt_metric": "somme_emprunts",
-          "debt_total_bilan_III_eur": 23782531.0,
-          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "debt_total_bilan_III_eur": 23782531,
+          "libelle_exact": "Plan ANC 2018-03. somme_emprunts = crédit + PP préférentiel + PP autres + autres partis. Total III = colonne publiée.",
           "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20220317-163630/comptes-partis-exercice-2020.xlsx",
           "confidence": 5
         },
         {
           "year": 2021,
-          "debt_eur": 22739232.0,
+          "debt_eur": 22739232,
           "debt_metric": "somme_emprunts",
-          "debt_total_bilan_III_eur": 26622961.0,
-          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "debt_total_bilan_III_eur": 26622961,
+          "libelle_exact": "Plan ANC 2018-03. somme_emprunts = crédit + PP préférentiel + PP autres + autres partis. Total III = colonne publiée.",
           "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20260210-151846/comptes-partis-exercice-2021.csv",
           "confidence": 5
         },
         {
           "year": 2022,
-          "debt_eur": 26750497.0,
+          "debt_eur": 26750497,
           "debt_metric": "somme_emprunts",
-          "debt_total_bilan_III_eur": 29003189.0,
-          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "debt_total_bilan_III_eur": 29003189,
+          "libelle_exact": "Plan ANC 2018-03. somme_emprunts = crédit + PP préférentiel + PP autres + autres partis. Total III = colonne publiée.",
           "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20260210-121141/comptes-partis-exercice-2022.csv",
           "confidence": 5
         },
         {
           "year": 2023,
-          "debt_eur": 20441753.0,
+          "debt_eur": 20441753,
           "debt_metric": "somme_emprunts",
-          "debt_total_bilan_III_eur": 22258842.0,
-          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "debt_total_bilan_III_eur": 22258842,
+          "libelle_exact": "Plan ANC 2018-03. somme_emprunts = crédit + PP préférentiel + PP autres + autres partis. Total III = colonne publiée.",
           "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20260210-120352/comptes-partis-exercice-2023.csv",
           "confidence": 5
         },
         {
           "year": 2024,
-          "debt_eur": 16232743.0,
+          "debt_eur": 16232743,
           "debt_metric": "somme_emprunts",
-          "debt_total_bilan_III_eur": 18913105.0,
-          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "debt_total_bilan_III_eur": 18913105,
+          "libelle_exact": "Plan ANC 2018-03. somme_emprunts = crédit + PP préférentiel + PP autres + autres partis. Total III = colonne publiée.",
           "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20260210-110641/comptes-partis-exercice-2024.csv",
           "confidence": 5
         }
@@ -992,59 +1667,140 @@
     {
       "party_id": "sp",
       "code_cnccfp": "210",
-      "n_points": 8,
+      "n_points": 17,
       "series": [
         {
-          "year": 2017,
-          "debt_eur": 246400.0,
+          "year": 2008,
+          "debt_eur": 18717,
           "debt_metric": "somme_emprunts",
-          "debt_total_bilan_III_eur": 464506.0,
-          "libelle_exact": "2017: Emprunts établissements de crédit + Emprunts et dettes financières divers",
+          "debt_total_bilan_III_eur": 48207,
+          "libelle_exact": "Avis 95-02. somme_emprunts = crédit + dettes financières divers. Total dettes = somme des postes dettes (crédit, divers, fournisseurs, fiscales, autres), pas le total du passif.",
+          "source_url": "https://www.data.gouv.fr/storage/f/2014-01-09T16-40-46/Comptes_partis_exercice_2008.xlsx",
+          "confidence": 4
+        },
+        {
+          "year": 2009,
+          "debt_eur": 15233,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 49681,
+          "libelle_exact": "Avis 95-02. somme_emprunts = crédit + dettes financières divers. Total dettes = somme des postes dettes (crédit, divers, fournisseurs, fiscales, autres), pas le total du passif.",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20231109-122134/comptes-partis-exercice-2009.xlsx",
+          "confidence": 4
+        },
+        {
+          "year": 2010,
+          "debt_eur": 11935,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 60293,
+          "libelle_exact": "Avis 95-02. somme_emprunts = crédit + dettes financières divers. Total dettes = somme des postes dettes (crédit, divers, fournisseurs, fiscales, autres), pas le total du passif.",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20231109-121651/comptes-partis-exercice-2010.xlsx",
+          "confidence": 4
+        },
+        {
+          "year": 2011,
+          "debt_eur": 84950,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 124556,
+          "libelle_exact": "Avis 95-02. somme_emprunts = crédit + dettes financières divers. Total dettes = somme des postes dettes (crédit, divers, fournisseurs, fiscales, autres), pas le total du passif.",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20231109-121903/comptes-partis-exercice-2011.xlsx",
+          "confidence": 4
+        },
+        {
+          "year": 2012,
+          "debt_eur": 219812,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 461261,
+          "libelle_exact": "Avis 95-02. somme_emprunts = crédit + dettes financières divers. Total dettes = somme des postes dettes (crédit, divers, fournisseurs, fiscales, autres), pas le total du passif.",
+          "source_url": "https://www.data.gouv.fr/storage/f/2014-01-23T15-52-05/Comptes_partis_exercice_2012.xlsx",
+          "confidence": 4
+        },
+        {
+          "year": 2013,
+          "debt_eur": 185448,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 412021,
+          "libelle_exact": "Avis 95-02. somme_emprunts = crédit + dettes financières divers. Total dettes = somme des postes dettes (crédit, divers, fournisseurs, fiscales, autres), pas le total du passif.",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20180827-165744/comptes-partis-exercice-2013.xlsx",
+          "confidence": 4
+        },
+        {
+          "year": 2014,
+          "debt_eur": 169211,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 364186,
+          "libelle_exact": "Avis 95-02. somme_emprunts = crédit + dettes financières divers. Total dettes = somme des postes dettes (crédit, divers, fournisseurs, fiscales, autres), pas le total du passif.",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20160104-114601/Comptes_partis_exercice_2014.xlsx",
+          "confidence": 4
+        },
+        {
+          "year": 2015,
+          "debt_eur": 162829,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 360284,
+          "libelle_exact": "Avis 95-02. somme_emprunts = crédit + dettes financières divers. Total dettes = somme des postes dettes (crédit, divers, fournisseurs, fiscales, autres), pas le total du passif.",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20170207-153221/Comptes_partis_exercice_2015.ods",
+          "confidence": 4
+        },
+        {
+          "year": 2016,
+          "debt_eur": 157950,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 362433,
+          "libelle_exact": "Avis 95-02. somme_emprunts = crédit + dettes financières divers. Total dettes = somme des postes dettes (crédit, divers, fournisseurs, fiscales, autres), pas le total du passif.",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20180413-154917/Comptes_partis_exercice_2016.ods",
+          "confidence": 4
+        },
+        {
+          "year": 2017,
+          "debt_eur": 246400,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 464506,
+          "libelle_exact": "Avis 95-02. somme_emprunts = crédit + dettes financières divers. Total dettes = somme des postes dettes (crédit, divers, fournisseurs, fiscales, autres), pas le total du passif.",
           "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20190111-135832/comptes-partis-exercice-2017.ods",
           "confidence": 4
         },
         {
           "year": 2018,
-          "debt_eur": 135400.0,
+          "debt_eur": 135400,
           "debt_metric": "somme_emprunts",
-          "debt_total_bilan_III_eur": 317689.0,
-          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "debt_total_bilan_III_eur": 317689,
+          "libelle_exact": "Plan ANC 2018-03. somme_emprunts = crédit + PP préférentiel + PP autres + autres partis. Total III = colonne publiée.",
           "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20200902-121107/comptes-partis-exercice-2018.xlsx",
           "confidence": 5
         },
         {
           "year": 2019,
-          "debt_eur": 127375.0,
+          "debt_eur": 127375,
           "debt_metric": "somme_emprunts",
-          "debt_total_bilan_III_eur": 302220.0,
-          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "debt_total_bilan_III_eur": 302220,
+          "libelle_exact": "Plan ANC 2018-03. somme_emprunts = crédit + PP préférentiel + PP autres + autres partis. Total III = colonne publiée.",
           "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20230302-161340/comptes-partis-exercice-2019.xlsx",
           "confidence": 5
         },
         {
           "year": 2020,
-          "debt_eur": 108775.0,
+          "debt_eur": 108775,
           "debt_metric": "somme_emprunts",
-          "debt_total_bilan_III_eur": 258889.0,
-          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "debt_total_bilan_III_eur": 258889,
+          "libelle_exact": "Plan ANC 2018-03. somme_emprunts = crédit + PP préférentiel + PP autres + autres partis. Total III = colonne publiée.",
           "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20220317-163630/comptes-partis-exercice-2020.xlsx",
           "confidence": 5
         },
         {
           "year": 2021,
-          "debt_eur": 153849.0,
+          "debt_eur": 153849,
           "debt_metric": "somme_emprunts",
-          "debt_total_bilan_III_eur": 222156.0,
-          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "debt_total_bilan_III_eur": 222156,
+          "libelle_exact": "Plan ANC 2018-03. somme_emprunts = crédit + PP préférentiel + PP autres + autres partis. Total III = colonne publiée.",
           "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20260210-151846/comptes-partis-exercice-2021.csv",
           "confidence": 5
         },
         {
           "year": 2022,
-          "debt_eur": 124984.0,
+          "debt_eur": 124984,
           "debt_metric": "somme_emprunts",
-          "debt_total_bilan_III_eur": 204947.0,
-          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "debt_total_bilan_III_eur": 204947,
+          "libelle_exact": "Plan ANC 2018-03. somme_emprunts = crédit + PP préférentiel + PP autres + autres partis. Total III = colonne publiée.",
           "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20260210-121141/comptes-partis-exercice-2022.csv",
           "confidence": 5
         },
@@ -1053,16 +1809,16 @@
           "debt_eur": 82133.25,
           "debt_metric": "somme_emprunts",
           "debt_total_bilan_III_eur": 142083.1,
-          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "libelle_exact": "Plan ANC 2018-03. somme_emprunts = crédit + PP préférentiel + PP autres + autres partis. Total III = colonne publiée.",
           "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20260210-120352/comptes-partis-exercice-2023.csv",
           "confidence": 5
         },
         {
           "year": 2024,
-          "debt_eur": 69319.0,
+          "debt_eur": 69319,
           "debt_metric": "somme_emprunts",
-          "debt_total_bilan_III_eur": 133520.0,
-          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "debt_total_bilan_III_eur": 133520,
+          "libelle_exact": "Plan ANC 2018-03. somme_emprunts = crédit + PP préférentiel + PP autres + autres partis. Total III = colonne publiée.",
           "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20260210-110641/comptes-partis-exercice-2024.csv",
           "confidence": 5
         }
@@ -1071,14 +1827,41 @@
     {
       "party_id": "upr",
       "code_cnccfp": "806",
-      "n_points": 8,
+      "n_points": 11,
       "series": [
+        {
+          "year": 2014,
+          "debt_eur": 0,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 23169,
+          "libelle_exact": "Avis 95-02. somme_emprunts = crédit + dettes financières divers. Total dettes = somme des postes dettes (crédit, divers, fournisseurs, fiscales, autres), pas le total du passif.",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20160104-114601/Comptes_partis_exercice_2014.xlsx",
+          "confidence": 4
+        },
+        {
+          "year": 2015,
+          "debt_eur": 0,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 170112,
+          "libelle_exact": "Avis 95-02. somme_emprunts = crédit + dettes financières divers. Total dettes = somme des postes dettes (crédit, divers, fournisseurs, fiscales, autres), pas le total du passif.",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20170207-153221/Comptes_partis_exercice_2015.ods",
+          "confidence": 4
+        },
+        {
+          "year": 2016,
+          "debt_eur": 0,
+          "debt_metric": "somme_emprunts",
+          "debt_total_bilan_III_eur": 55015,
+          "libelle_exact": "Avis 95-02. somme_emprunts = crédit + dettes financières divers. Total dettes = somme des postes dettes (crédit, divers, fournisseurs, fiscales, autres), pas le total du passif.",
+          "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20180413-154917/Comptes_partis_exercice_2016.ods",
+          "confidence": 4
+        },
         {
           "year": 2017,
           "debt_eur": 0,
           "debt_metric": "somme_emprunts",
-          "debt_total_bilan_III_eur": 677066.0,
-          "libelle_exact": "2017: Emprunts établissements de crédit + Emprunts et dettes financières divers",
+          "debt_total_bilan_III_eur": 677066,
+          "libelle_exact": "Avis 95-02. somme_emprunts = crédit + dettes financières divers. Total dettes = somme des postes dettes (crédit, divers, fournisseurs, fiscales, autres), pas le total du passif.",
           "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20190111-135832/comptes-partis-exercice-2017.ods",
           "confidence": 4
         },
@@ -1086,8 +1869,8 @@
           "year": 2018,
           "debt_eur": 0,
           "debt_metric": "somme_emprunts",
-          "debt_total_bilan_III_eur": 246709.0,
-          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "debt_total_bilan_III_eur": 246709,
+          "libelle_exact": "Plan ANC 2018-03. somme_emprunts = crédit + PP préférentiel + PP autres + autres partis. Total III = colonne publiée.",
           "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20200902-121107/comptes-partis-exercice-2018.xlsx",
           "confidence": 5
         },
@@ -1095,8 +1878,8 @@
           "year": 2019,
           "debt_eur": 0,
           "debt_metric": "somme_emprunts",
-          "debt_total_bilan_III_eur": 125611.0,
-          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "debt_total_bilan_III_eur": 125611,
+          "libelle_exact": "Plan ANC 2018-03. somme_emprunts = crédit + PP préférentiel + PP autres + autres partis. Total III = colonne publiée.",
           "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20230302-161340/comptes-partis-exercice-2019.xlsx",
           "confidence": 5
         },
@@ -1105,7 +1888,7 @@
           "debt_eur": 0,
           "debt_metric": "somme_emprunts",
           "debt_total_bilan_III_eur": 79898.22,
-          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "libelle_exact": "Plan ANC 2018-03. somme_emprunts = crédit + PP préférentiel + PP autres + autres partis. Total III = colonne publiée.",
           "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20220317-163630/comptes-partis-exercice-2020.xlsx",
           "confidence": 5
         },
@@ -1114,7 +1897,7 @@
           "debt_eur": 0,
           "debt_metric": "somme_emprunts",
           "debt_total_bilan_III_eur": 113247.22,
-          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "libelle_exact": "Plan ANC 2018-03. somme_emprunts = crédit + PP préférentiel + PP autres + autres partis. Total III = colonne publiée.",
           "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20260210-151846/comptes-partis-exercice-2021.csv",
           "confidence": 5
         },
@@ -1123,7 +1906,7 @@
           "debt_eur": 0,
           "debt_metric": "somme_emprunts",
           "debt_total_bilan_III_eur": 95681.23,
-          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "libelle_exact": "Plan ANC 2018-03. somme_emprunts = crédit + PP préférentiel + PP autres + autres partis. Total III = colonne publiée.",
           "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20260210-121141/comptes-partis-exercice-2022.csv",
           "confidence": 5
         },
@@ -1131,8 +1914,8 @@
           "year": 2023,
           "debt_eur": 0,
           "debt_metric": "somme_emprunts",
-          "debt_total_bilan_III_eur": 91432.0,
-          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "debt_total_bilan_III_eur": 91432,
+          "libelle_exact": "Plan ANC 2018-03. somme_emprunts = crédit + PP préférentiel + PP autres + autres partis. Total III = colonne publiée.",
           "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20260210-120352/comptes-partis-exercice-2023.csv",
           "confidence": 5
         },
@@ -1140,8 +1923,8 @@
           "year": 2024,
           "debt_eur": 0,
           "debt_metric": "somme_emprunts",
-          "debt_total_bilan_III_eur": 281328.0,
-          "libelle_exact": "Emprunts_et_dettes_aupres_d_etablissement_de_credit + Emprunts_et_dettes_aupres_de_personnes_physiques_a_taux_preferentiel + Autres_emprunts_et_dettes_aupres_de_personnes_physiques + Emprunts_et_dettes_aupres_de_partis_ou_groupements_politiques",
+          "debt_total_bilan_III_eur": 281328,
+          "libelle_exact": "Plan ANC 2018-03. somme_emprunts = crédit + PP préférentiel + PP autres + autres partis. Total III = colonne publiée.",
           "source_url": "https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20260210-110641/comptes-partis-exercice-2024.csv",
           "confidence": 5
         }

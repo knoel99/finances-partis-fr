@@ -1,0 +1,1023 @@
+{
+  "meta": {
+    "description": "Résultats présidentiels, France entière, lus dans les fichiers ouverts du ministère de l'Intérieur. Aucun suffrage saisi à la main.",
+    "generated_at": "2026-09-23 (Europe/Paris, UTC+2)",
+    "consultation": "2026-09-23",
+    "scrutins": [
+      "presidentielle"
+    ],
+    "annees": [
+      2002,
+      2007,
+      2012,
+      2017,
+      2022
+    ],
+    "parti_id": "Renseigné pour 2017 et 2022 depuis partis.json (listes du Conseil constitutionnel déjà versées). Pour 2002, 2007 et 2012, uniquement si la même personne est déjà rattachée à un parti dans ce fichier. Jean-Marie Le Pen n'est pas Marine Le Pen. Mélenchon 2012 n'est pas codé LFI.",
+    "legislatives": {
+      "integre": false,
+      "raison": "Les fichiers ouverts des législatives sont au grain circonscription et portent une nuance, pas le code CNCCFP des partis suivis. Sans table officielle nuance → parti, un total national serait reconstruit. Il n'est pas produit."
+    },
+    "comparaison_voix_depenses": {
+      "graphique": false,
+      "raison": "Les comptes annuels de parti ne sont pas les comptes de campagne. Au 2026-09-23, la recherche data.gouv « comptes de campagne présidentielle », ainsi que les variantes 2017 et 2022, renvoie 0 jeu de données. Aucun montant de campagne n'est dans ce fichier.",
+      "recherches": [
+        {
+          "q": "comptes de campagne présidentielle",
+          "total": 0,
+          "url": "https://www.data.gouv.fr/datasets?q=comptes%20de%20campagne%20pr%C3%A9sidentielle"
+        },
+        {
+          "q": "comptes de campagne election presidentielle 2022",
+          "total": 0,
+          "url": "https://www.data.gouv.fr/datasets?q=comptes%20de%20campagne%20election%20presidentielle%202022"
+        },
+        {
+          "q": "comptes de campagne election presidentielle 2017",
+          "total": 0,
+          "url": "https://www.data.gouv.fr/datasets?q=comptes%20de%20campagne%20election%20presidentielle%202017"
+        }
+      ],
+      "pages_cnccfp_non_extraites": [
+        "https://cnccfp.fr/election-presidentielle-2022-publication-des-comptes-de-campagne-des-candidats/",
+        "https://cnccfp.fr/wp-content/uploads/2022/04/De%CC%81cisions_pre%CC%81sidentielle_2017.pdf"
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://static.data.gouv.fr/resources/election-presidentielle-des-10-et-24-avril-2022-resultats-definitifs-du-1er-tour/20220414-152200/resultats-par-niveau-fe-t1-france-entiere.txt",
+        "dataset": "https://www.data.gouv.fr/datasets/election-presidentielle-des-10-et-24-avril-2022-resultats-definitifs-du-1er-tour",
+        "page": "https://www.data.gouv.fr/datasets/election-presidentielle-des-10-et-24-avril-2022-resultats-definitifs-du-1er-tour",
+        "methode": "Fichier national « France entière » du 1er tour, une ligne. Pourcentages ceux du fichier."
+      },
+      {
+        "url": "https://static.data.gouv.fr/resources/election-presidentielle-des-10-et-24-avril-2022-resultats-definitifs-du-2nd-tour/20220428-141900/resultats-par-niveau-fe-t2-france-entiere.txt",
+        "dataset": "https://www.data.gouv.fr/datasets/election-presidentielle-des-10-et-24-avril-2022-resultats-definitifs-du-2nd-tour",
+        "page": "https://www.data.gouv.fr/datasets/election-presidentielle-des-10-et-24-avril-2022-resultats-definitifs-du-2nd-tour",
+        "methode": "Fichier national « France entière » du 2nd tour, une ligne. Pourcentages ceux du fichier."
+      },
+      {
+        "url": "https://static.data.gouv.fr/resources/election-presidentielle-des-23-avril-et-7-mai-2017-resultats-definitifs-du-1er-tour-1/20170427-100131/Presidentielle_2017_Resultats_Tour_1_c.xls",
+        "dataset": "https://www.data.gouv.fr/datasets/election-presidentielle-des-23-avril-et-7-mai-2017-resultats-definitifs-du-1er-tour-1",
+        "page": "https://www.data.gouv.fr/datasets/election-presidentielle-des-23-avril-et-7-mai-2017-resultats-definitifs-du-1er-tour-1",
+        "methode": "Feuille « FE Metro OM Tour 1 », bloc France entière uniquement (avant Métropole et Outre-mer)."
+      },
+      {
+        "url": "https://static.data.gouv.fr/resources/election-presidentielle-des-23-avril-et-7-mai-2017-resultats-definitifs-du-2nd-tour/20170511-092258/Presidentielle_2017_Resultats_Tour_2_c.xls",
+        "dataset": "https://www.data.gouv.fr/datasets/election-presidentielle-des-23-avril-et-7-mai-2017-resultats-definitifs-du-2nd-tour",
+        "page": "https://www.data.gouv.fr/datasets/election-presidentielle-des-23-avril-et-7-mai-2017-resultats-definitifs-du-2nd-tour",
+        "methode": "Feuille « FE Metro OM Tour 2 », bloc France entière uniquement."
+      },
+      {
+        "url": "https://static.data.gouv.fr/ff/e9c9483d39e00030815089aca1e2939f9cb99a84b0136e43056790e47bb4f0.xls",
+        "dataset": "https://www.data.gouv.fr/datasets/election-presidentielle-2012-resultats-572124",
+        "page": "https://www.data.gouv.fr/datasets/election-presidentielle-2012-resultats-572124",
+        "methode": "Feuille « France entière T1T2 ». Blancs et nuls ne sont pas séparés dans ce fichier."
+      },
+      {
+        "url": "https://static.data.gouv.fr/88/523001571e33cd204af5959a5387961121f2a1f765d2ea9197190fcdf02778.xls",
+        "dataset": "https://www.data.gouv.fr/datasets/election-presidentielle-2007-resultats-572122",
+        "page": "https://www.data.gouv.fr/datasets/election-presidentielle-2007-resultats-572122",
+        "methode": "Pas de feuille France entière. Somme des lignes communales des feuilles Tour 1 et Tour 2. Le total des voix égale les exprimés. Les pourcentages sont voix/exprimés et voix/inscrits, arrondis au centième (half up) : le fichier ne publie pas le pourcentage national."
+      },
+      {
+        "url": "https://static.data.gouv.fr/18/ca642c03c03b775fa08c48d200702048e9c68631e6851ffa34014af8195991.xls",
+        "dataset": "https://www.data.gouv.fr/datasets/election-presidentielle-2002-resultats-572114",
+        "page": "https://www.data.gouv.fr/datasets/election-presidentielle-2002-resultats-572114",
+        "methode": "Feuille « France entière T1T2 » du jeu ministère (pas la somme des communes). Blancs et nuls ne sont pas séparés."
+      }
+    ]
+  },
+  "tours": [
+    {
+      "scrutin": "presidentielle",
+      "annee": 2002,
+      "tour": 1,
+      "perimetre": "France entière",
+      "source_url": "https://static.data.gouv.fr/18/ca642c03c03b775fa08c48d200702048e9c68631e6851ffa34014af8195991.xls",
+      "source_dataset": "https://www.data.gouv.fr/datasets/election-presidentielle-2002-resultats-572114",
+      "source_page": "https://www.data.gouv.fr/datasets/election-presidentielle-2002-resultats-572114",
+      "producteur": "Ministère de l'Intérieur",
+      "licence": "Licence Ouverte",
+      "methode": "Feuille « France entière T1T2 » du jeu ministère (pas la somme des communes). Blancs et nuls ne sont pas séparés.",
+      "inscrits": 41197964,
+      "abstentions": 11700076,
+      "votants": 29497888,
+      "blancs": null,
+      "nuls": null,
+      "blancs_et_nuls": 998401,
+      "exprimes": 28499487,
+      "candidats": [
+        {
+          "nom": "MEGRET",
+          "prenom": "BRUNO",
+          "voix": 667043,
+          "pct_exprimes": 2.34,
+          "pct_exprimes_source": "fichier",
+          "pct_inscrits": 1.62,
+          "parti_id": null,
+          "mapping_source": "Le fichier du ministère et les décisions du Conseil constitutionnel utilisées ne donnent pas de code CNCCFP. Pas de rattachement inventé."
+        },
+        {
+          "nom": "LEPAGE",
+          "prenom": "CORINNE",
+          "voix": 535875,
+          "pct_exprimes": 1.88,
+          "pct_exprimes_source": "fichier",
+          "pct_inscrits": 1.3,
+          "parti_id": null,
+          "mapping_source": "Le fichier du ministère et les décisions du Conseil constitutionnel utilisées ne donnent pas de code CNCCFP. Pas de rattachement inventé."
+        },
+        {
+          "nom": "GLUCKSTEIN",
+          "prenom": "DANIEL",
+          "voix": 132696,
+          "pct_exprimes": 0.47,
+          "pct_exprimes_source": "fichier",
+          "pct_inscrits": 0.32,
+          "parti_id": null,
+          "mapping_source": "Le fichier du ministère et les décisions du Conseil constitutionnel utilisées ne donnent pas de code CNCCFP. Pas de rattachement inventé."
+        },
+        {
+          "nom": "BAYROU",
+          "prenom": "FRANCOIS",
+          "voix": 1949219,
+          "pct_exprimes": 6.84,
+          "pct_exprimes_source": "fichier",
+          "pct_inscrits": 4.73,
+          "parti_id": null,
+          "mapping_source": "Le fichier du ministère et les décisions du Conseil constitutionnel utilisées ne donnent pas de code CNCCFP. Pas de rattachement inventé."
+        },
+        {
+          "nom": "CHIRAC",
+          "prenom": "JACQUES",
+          "voix": 5666021,
+          "pct_exprimes": 19.88,
+          "pct_exprimes_source": "fichier",
+          "pct_inscrits": 13.75,
+          "parti_id": null,
+          "mapping_source": "Le fichier du ministère et les décisions du Conseil constitutionnel utilisées ne donnent pas de code CNCCFP. Pas de rattachement inventé."
+        },
+        {
+          "nom": "LE PEN",
+          "prenom": "JEAN-MARIE",
+          "voix": 4804772,
+          "pct_exprimes": 16.86,
+          "pct_exprimes_source": "fichier",
+          "pct_inscrits": 11.66,
+          "parti_id": null,
+          "mapping_source": "Le fichier du ministère et les décisions du Conseil constitutionnel utilisées ne donnent pas de code CNCCFP. Pas de rattachement inventé."
+        },
+        {
+          "nom": "TAUBIRA",
+          "prenom": "CHRISTIANE",
+          "voix": 660515,
+          "pct_exprimes": 2.32,
+          "pct_exprimes_source": "fichier",
+          "pct_inscrits": 1.6,
+          "parti_id": null,
+          "mapping_source": "Le fichier du ministère et les décisions du Conseil constitutionnel utilisées ne donnent pas de code CNCCFP. Pas de rattachement inventé."
+        },
+        {
+          "nom": "SAINT-JOSSE",
+          "prenom": "JEAN",
+          "voix": 1204801,
+          "pct_exprimes": 4.23,
+          "pct_exprimes_source": "fichier",
+          "pct_inscrits": 2.92,
+          "parti_id": null,
+          "mapping_source": "Le fichier du ministère et les décisions du Conseil constitutionnel utilisées ne donnent pas de code CNCCFP. Pas de rattachement inventé."
+        },
+        {
+          "nom": "MAMERE",
+          "prenom": "NOEL",
+          "voix": 1495774,
+          "pct_exprimes": 5.25,
+          "pct_exprimes_source": "fichier",
+          "pct_inscrits": 3.63,
+          "parti_id": null,
+          "mapping_source": "Le fichier du ministère et les décisions du Conseil constitutionnel utilisées ne donnent pas de code CNCCFP. Pas de rattachement inventé."
+        },
+        {
+          "nom": "JOSPIN",
+          "prenom": "LIONEL",
+          "voix": 4610267,
+          "pct_exprimes": 16.18,
+          "pct_exprimes_source": "fichier",
+          "pct_inscrits": 11.19,
+          "parti_id": null,
+          "mapping_source": "Le fichier du ministère et les décisions du Conseil constitutionnel utilisées ne donnent pas de code CNCCFP. Pas de rattachement inventé."
+        },
+        {
+          "nom": "BOUTIN",
+          "prenom": "CHRISTINE",
+          "voix": 339157,
+          "pct_exprimes": 1.19,
+          "pct_exprimes_source": "fichier",
+          "pct_inscrits": 0.82,
+          "parti_id": null,
+          "mapping_source": "Le fichier du ministère et les décisions du Conseil constitutionnel utilisées ne donnent pas de code CNCCFP. Pas de rattachement inventé."
+        },
+        {
+          "nom": "HUE",
+          "prenom": "ROBERT",
+          "voix": 960548,
+          "pct_exprimes": 3.37,
+          "pct_exprimes_source": "fichier",
+          "pct_inscrits": 2.33,
+          "parti_id": null,
+          "mapping_source": "Le fichier du ministère et les décisions du Conseil constitutionnel utilisées ne donnent pas de code CNCCFP. Pas de rattachement inventé."
+        },
+        {
+          "nom": "CHEVENEMENT",
+          "prenom": "JEAN-PIERRE",
+          "voix": 1518568,
+          "pct_exprimes": 5.33,
+          "pct_exprimes_source": "fichier",
+          "pct_inscrits": 3.69,
+          "parti_id": null,
+          "mapping_source": "Le fichier du ministère et les décisions du Conseil constitutionnel utilisées ne donnent pas de code CNCCFP. Pas de rattachement inventé."
+        },
+        {
+          "nom": "MADELIN",
+          "prenom": "ALAIN",
+          "voix": 1113551,
+          "pct_exprimes": 3.91,
+          "pct_exprimes_source": "fichier",
+          "pct_inscrits": 2.7,
+          "parti_id": null,
+          "mapping_source": "Le fichier du ministère et les décisions du Conseil constitutionnel utilisées ne donnent pas de code CNCCFP. Pas de rattachement inventé."
+        },
+        {
+          "nom": "LAGUILLER",
+          "prenom": "ARLETTE",
+          "voix": 1630118,
+          "pct_exprimes": 5.72,
+          "pct_exprimes_source": "fichier",
+          "pct_inscrits": 3.96,
+          "parti_id": null,
+          "mapping_source": "Le fichier du ministère et les décisions du Conseil constitutionnel utilisées ne donnent pas de code CNCCFP. Pas de rattachement inventé."
+        },
+        {
+          "nom": "BESANCENOT",
+          "prenom": "OLIVIER",
+          "voix": 1210562,
+          "pct_exprimes": 4.25,
+          "pct_exprimes_source": "fichier",
+          "pct_inscrits": 2.94,
+          "parti_id": null,
+          "mapping_source": "Le fichier du ministère et les décisions du Conseil constitutionnel utilisées ne donnent pas de code CNCCFP. Pas de rattachement inventé."
+        }
+      ],
+      "blancs_et_nuls_non_separes": true
+    },
+    {
+      "scrutin": "presidentielle",
+      "annee": 2002,
+      "tour": 2,
+      "perimetre": "France entière",
+      "source_url": "https://static.data.gouv.fr/18/ca642c03c03b775fa08c48d200702048e9c68631e6851ffa34014af8195991.xls",
+      "source_dataset": "https://www.data.gouv.fr/datasets/election-presidentielle-2002-resultats-572114",
+      "source_page": "https://www.data.gouv.fr/datasets/election-presidentielle-2002-resultats-572114",
+      "producteur": "Ministère de l'Intérieur",
+      "licence": "Licence Ouverte",
+      "methode": "Feuille « France entière T1T2 » du jeu ministère (pas la somme des communes). Blancs et nuls ne sont pas séparés.",
+      "inscrits": 41192272,
+      "abstentions": 8359440,
+      "votants": 32832832,
+      "blancs": null,
+      "nuls": null,
+      "blancs_et_nuls": 1769904,
+      "exprimes": 31062928,
+      "candidats": [
+        {
+          "nom": "CHIRAC",
+          "prenom": "JACQUES",
+          "voix": 25537894,
+          "pct_exprimes": 82.21,
+          "pct_exprimes_source": "fichier",
+          "pct_inscrits": 62.0,
+          "parti_id": null,
+          "mapping_source": "Le fichier du ministère et les décisions du Conseil constitutionnel utilisées ne donnent pas de code CNCCFP. Pas de rattachement inventé."
+        },
+        {
+          "nom": "LE PEN",
+          "prenom": "JEAN-MARIE",
+          "voix": 5525034,
+          "pct_exprimes": 17.79,
+          "pct_exprimes_source": "fichier",
+          "pct_inscrits": 13.41,
+          "parti_id": null,
+          "mapping_source": "Le fichier du ministère et les décisions du Conseil constitutionnel utilisées ne donnent pas de code CNCCFP. Pas de rattachement inventé."
+        }
+      ],
+      "blancs_et_nuls_non_separes": true
+    },
+    {
+      "scrutin": "presidentielle",
+      "annee": 2007,
+      "tour": 1,
+      "perimetre": "France entière",
+      "source_url": "https://static.data.gouv.fr/88/523001571e33cd204af5959a5387961121f2a1f765d2ea9197190fcdf02778.xls",
+      "source_dataset": "https://www.data.gouv.fr/datasets/election-presidentielle-2007-resultats-572122",
+      "source_page": "https://www.data.gouv.fr/datasets/election-presidentielle-2007-resultats-572122",
+      "producteur": "Ministère de l'Intérieur",
+      "licence": "Licence Ouverte",
+      "methode": "Pas de feuille France entière. Somme des lignes communales des feuilles Tour 1 et Tour 2. Le total des voix égale les exprimés. Les pourcentages sont voix/exprimés et voix/inscrits, arrondis au centième (half up) : le fichier ne publie pas le pourcentage national.",
+      "inscrits": 44472834,
+      "abstentions": 7218592,
+      "votants": 37254242,
+      "blancs": null,
+      "nuls": null,
+      "blancs_et_nuls": 534846,
+      "exprimes": 36719396,
+      "candidats": [
+        {
+          "nom": "BESANCENOT",
+          "prenom": "Olivier",
+          "voix": 1498581,
+          "pct_exprimes": 4.08,
+          "pct_exprimes_source": "calcule_voix_sur_exprimes_apres_somme_des_communes",
+          "pct_inscrits": 3.37,
+          "parti_id": null,
+          "mapping_source": "Le fichier du ministère et les décisions du Conseil constitutionnel utilisées ne donnent pas de code CNCCFP. Pas de rattachement inventé."
+        },
+        {
+          "nom": "BUFFET",
+          "prenom": "Marie-George",
+          "voix": 707268,
+          "pct_exprimes": 1.93,
+          "pct_exprimes_source": "calcule_voix_sur_exprimes_apres_somme_des_communes",
+          "pct_inscrits": 1.59,
+          "parti_id": null,
+          "mapping_source": "Le fichier du ministère et les décisions du Conseil constitutionnel utilisées ne donnent pas de code CNCCFP. Pas de rattachement inventé."
+        },
+        {
+          "nom": "SCHIVARDI",
+          "prenom": "Gérard",
+          "voix": 123540,
+          "pct_exprimes": 0.34,
+          "pct_exprimes_source": "calcule_voix_sur_exprimes_apres_somme_des_communes",
+          "pct_inscrits": 0.28,
+          "parti_id": null,
+          "mapping_source": "Le fichier du ministère et les décisions du Conseil constitutionnel utilisées ne donnent pas de code CNCCFP. Pas de rattachement inventé."
+        },
+        {
+          "nom": "BAYROU",
+          "prenom": "François",
+          "voix": 6820117,
+          "pct_exprimes": 18.57,
+          "pct_exprimes_source": "calcule_voix_sur_exprimes_apres_somme_des_communes",
+          "pct_inscrits": 15.34,
+          "parti_id": null,
+          "mapping_source": "Le fichier du ministère et les décisions du Conseil constitutionnel utilisées ne donnent pas de code CNCCFP. Pas de rattachement inventé."
+        },
+        {
+          "nom": "BOVÉ",
+          "prenom": "José",
+          "voix": 483009,
+          "pct_exprimes": 1.32,
+          "pct_exprimes_source": "calcule_voix_sur_exprimes_apres_somme_des_communes",
+          "pct_inscrits": 1.09,
+          "parti_id": null,
+          "mapping_source": "Le fichier du ministère et les décisions du Conseil constitutionnel utilisées ne donnent pas de code CNCCFP. Pas de rattachement inventé."
+        },
+        {
+          "nom": "VOYNET",
+          "prenom": "Dominique",
+          "voix": 576666,
+          "pct_exprimes": 1.57,
+          "pct_exprimes_source": "calcule_voix_sur_exprimes_apres_somme_des_communes",
+          "pct_inscrits": 1.3,
+          "parti_id": null,
+          "mapping_source": "Le fichier du ministère et les décisions du Conseil constitutionnel utilisées ne donnent pas de code CNCCFP. Pas de rattachement inventé."
+        },
+        {
+          "nom": "de VILLIERS",
+          "prenom": "Philippe",
+          "voix": 818407,
+          "pct_exprimes": 2.23,
+          "pct_exprimes_source": "calcule_voix_sur_exprimes_apres_somme_des_communes",
+          "pct_inscrits": 1.84,
+          "parti_id": null,
+          "mapping_source": "Le fichier du ministère et les décisions du Conseil constitutionnel utilisées ne donnent pas de code CNCCFP. Pas de rattachement inventé."
+        },
+        {
+          "nom": "ROYAL",
+          "prenom": "Ségolène",
+          "voix": 9500112,
+          "pct_exprimes": 25.87,
+          "pct_exprimes_source": "calcule_voix_sur_exprimes_apres_somme_des_communes",
+          "pct_inscrits": 21.36,
+          "parti_id": null,
+          "mapping_source": "Le fichier du ministère et les décisions du Conseil constitutionnel utilisées ne donnent pas de code CNCCFP. Pas de rattachement inventé."
+        },
+        {
+          "nom": "NIHOUS",
+          "prenom": "Frédéric",
+          "voix": 420645,
+          "pct_exprimes": 1.15,
+          "pct_exprimes_source": "calcule_voix_sur_exprimes_apres_somme_des_communes",
+          "pct_inscrits": 0.95,
+          "parti_id": null,
+          "mapping_source": "Le fichier du ministère et les décisions du Conseil constitutionnel utilisées ne donnent pas de code CNCCFP. Pas de rattachement inventé."
+        },
+        {
+          "nom": "LE PEN",
+          "prenom": "Jean-Marie",
+          "voix": 3834530,
+          "pct_exprimes": 10.44,
+          "pct_exprimes_source": "calcule_voix_sur_exprimes_apres_somme_des_communes",
+          "pct_inscrits": 8.62,
+          "parti_id": null,
+          "mapping_source": "Le fichier du ministère et les décisions du Conseil constitutionnel utilisées ne donnent pas de code CNCCFP. Pas de rattachement inventé."
+        },
+        {
+          "nom": "LAGUILLER",
+          "prenom": "Arlette",
+          "voix": 487858,
+          "pct_exprimes": 1.33,
+          "pct_exprimes_source": "calcule_voix_sur_exprimes_apres_somme_des_communes",
+          "pct_inscrits": 1.1,
+          "parti_id": null,
+          "mapping_source": "Le fichier du ministère et les décisions du Conseil constitutionnel utilisées ne donnent pas de code CNCCFP. Pas de rattachement inventé."
+        },
+        {
+          "nom": "SARKOZY",
+          "prenom": "Nicolas",
+          "voix": 11448663,
+          "pct_exprimes": 31.18,
+          "pct_exprimes_source": "calcule_voix_sur_exprimes_apres_somme_des_communes",
+          "pct_inscrits": 25.74,
+          "parti_id": null,
+          "mapping_source": "Le fichier du ministère et les décisions du Conseil constitutionnel utilisées ne donnent pas de code CNCCFP. Pas de rattachement inventé."
+        }
+      ],
+      "blancs_et_nuls_non_separes": true,
+      "n_communes": 36698
+    },
+    {
+      "scrutin": "presidentielle",
+      "annee": 2007,
+      "tour": 2,
+      "perimetre": "France entière",
+      "source_url": "https://static.data.gouv.fr/88/523001571e33cd204af5959a5387961121f2a1f765d2ea9197190fcdf02778.xls",
+      "source_dataset": "https://www.data.gouv.fr/datasets/election-presidentielle-2007-resultats-572122",
+      "source_page": "https://www.data.gouv.fr/datasets/election-presidentielle-2007-resultats-572122",
+      "producteur": "Ministère de l'Intérieur",
+      "licence": "Licence Ouverte",
+      "methode": "Pas de feuille France entière. Somme des lignes communales des feuilles Tour 1 et Tour 2. Le total des voix égale les exprimés. Les pourcentages sont voix/exprimés et voix/inscrits, arrondis au centième (half up) : le fichier ne publie pas le pourcentage national.",
+      "inscrits": 44472733,
+      "abstentions": 7130729,
+      "votants": 37342004,
+      "blancs": null,
+      "nuls": null,
+      "blancs_et_nuls": 1568426,
+      "exprimes": 35773578,
+      "candidats": [
+        {
+          "nom": "SARKOZY",
+          "prenom": "Nicolas",
+          "voix": 18983138,
+          "pct_exprimes": 53.06,
+          "pct_exprimes_source": "calcule_voix_sur_exprimes_apres_somme_des_communes",
+          "pct_inscrits": 42.68,
+          "parti_id": null,
+          "mapping_source": "Le fichier du ministère et les décisions du Conseil constitutionnel utilisées ne donnent pas de code CNCCFP. Pas de rattachement inventé."
+        },
+        {
+          "nom": "ROYAL",
+          "prenom": "Ségolène",
+          "voix": 16790440,
+          "pct_exprimes": 46.94,
+          "pct_exprimes_source": "calcule_voix_sur_exprimes_apres_somme_des_communes",
+          "pct_inscrits": 37.75,
+          "parti_id": null,
+          "mapping_source": "Le fichier du ministère et les décisions du Conseil constitutionnel utilisées ne donnent pas de code CNCCFP. Pas de rattachement inventé."
+        }
+      ],
+      "blancs_et_nuls_non_separes": true,
+      "n_communes": 36698
+    },
+    {
+      "scrutin": "presidentielle",
+      "annee": 2012,
+      "tour": 1,
+      "perimetre": "France entière",
+      "source_url": "https://static.data.gouv.fr/ff/e9c9483d39e00030815089aca1e2939f9cb99a84b0136e43056790e47bb4f0.xls",
+      "source_dataset": "https://www.data.gouv.fr/datasets/election-presidentielle-2012-resultats-572124",
+      "source_page": "https://www.data.gouv.fr/datasets/election-presidentielle-2012-resultats-572124",
+      "producteur": "Ministère de l'Intérieur",
+      "licence": "Licence Ouverte",
+      "methode": "Feuille « France entière T1T2 ». Blancs et nuls ne sont pas séparés dans ce fichier.",
+      "inscrits": 46028542,
+      "abstentions": 9444143,
+      "votants": 36584399,
+      "blancs": null,
+      "nuls": null,
+      "blancs_et_nuls": 701190,
+      "exprimes": 35883209,
+      "candidats": [
+        {
+          "nom": "JOLY",
+          "prenom": "Eva",
+          "voix": 828345,
+          "pct_exprimes": 2.31,
+          "pct_exprimes_source": "fichier",
+          "pct_inscrits": 1.8,
+          "parti_id": null,
+          "mapping_source": "Le fichier du ministère et les décisions du Conseil constitutionnel utilisées ne donnent pas de code CNCCFP. Pas de rattachement inventé."
+        },
+        {
+          "nom": "LE PEN",
+          "prenom": "Marine",
+          "voix": 6421426,
+          "pct_exprimes": 17.9,
+          "pct_exprimes_source": "fichier",
+          "pct_inscrits": 13.95,
+          "parti_id": "rn",
+          "mapping_source": "Même personne que la candidate RN des listes 2017 et 2022 dans partis.json. Le fichier 2012 ne porte pas de code parti."
+        },
+        {
+          "nom": "SARKOZY",
+          "prenom": "Nicolas",
+          "voix": 9753629,
+          "pct_exprimes": 27.18,
+          "pct_exprimes_source": "fichier",
+          "pct_inscrits": 21.19,
+          "parti_id": null,
+          "mapping_source": "Le fichier du ministère et les décisions du Conseil constitutionnel utilisées ne donnent pas de code CNCCFP. Pas de rattachement inventé."
+        },
+        {
+          "nom": "MÉLENCHON",
+          "prenom": "Jean-Luc",
+          "voix": 3984822,
+          "pct_exprimes": 11.1,
+          "pct_exprimes_source": "fichier",
+          "pct_inscrits": 8.66,
+          "parti_id": null,
+          "mapping_source": "Le fichier du ministère et les décisions du Conseil constitutionnel utilisées ne donnent pas de code CNCCFP. Pas de rattachement inventé."
+        },
+        {
+          "nom": "POUTOU",
+          "prenom": "Philippe",
+          "voix": 411160,
+          "pct_exprimes": 1.15,
+          "pct_exprimes_source": "fichier",
+          "pct_inscrits": 0.89,
+          "parti_id": null,
+          "mapping_source": "Le fichier du ministère et les décisions du Conseil constitutionnel utilisées ne donnent pas de code CNCCFP. Pas de rattachement inventé."
+        },
+        {
+          "nom": "ARTHAUD",
+          "prenom": "Nathalie",
+          "voix": 202548,
+          "pct_exprimes": 0.56,
+          "pct_exprimes_source": "fichier",
+          "pct_inscrits": 0.44,
+          "parti_id": "lo",
+          "mapping_source": "Même personne que la candidate LO des listes 2017 et 2022 dans partis.json. Le fichier antérieur ne porte pas de code parti."
+        },
+        {
+          "nom": "CHEMINADE",
+          "prenom": "Jacques",
+          "voix": 89545,
+          "pct_exprimes": 0.25,
+          "pct_exprimes_source": "fichier",
+          "pct_inscrits": 0.19,
+          "parti_id": "sp",
+          "mapping_source": "Même personne que le candidat Solidarité et Progrès des listes 2017 et 2022 dans partis.json. Le fichier antérieur ne porte pas de code parti."
+        },
+        {
+          "nom": "BAYROU",
+          "prenom": "François",
+          "voix": 3275122,
+          "pct_exprimes": 9.13,
+          "pct_exprimes_source": "fichier",
+          "pct_inscrits": 7.12,
+          "parti_id": null,
+          "mapping_source": "Le fichier du ministère et les décisions du Conseil constitutionnel utilisées ne donnent pas de code CNCCFP. Pas de rattachement inventé."
+        },
+        {
+          "nom": "DUPONT-AIGNAN",
+          "prenom": "Nicolas",
+          "voix": 643907,
+          "pct_exprimes": 1.79,
+          "pct_exprimes_source": "fichier",
+          "pct_inscrits": 1.4,
+          "parti_id": "dlf",
+          "mapping_source": "Même personne que le candidat DLF des listes 2017 et 2022 dans partis.json. Le fichier antérieur ne porte pas de code parti."
+        },
+        {
+          "nom": "HOLLANDE",
+          "prenom": "François",
+          "voix": 10272705,
+          "pct_exprimes": 28.63,
+          "pct_exprimes_source": "fichier",
+          "pct_inscrits": 22.32,
+          "parti_id": null,
+          "mapping_source": "Le fichier du ministère et les décisions du Conseil constitutionnel utilisées ne donnent pas de code CNCCFP. Pas de rattachement inventé."
+        }
+      ],
+      "blancs_et_nuls_non_separes": true
+    },
+    {
+      "scrutin": "presidentielle",
+      "annee": 2012,
+      "tour": 2,
+      "perimetre": "France entière",
+      "source_url": "https://static.data.gouv.fr/ff/e9c9483d39e00030815089aca1e2939f9cb99a84b0136e43056790e47bb4f0.xls",
+      "source_dataset": "https://www.data.gouv.fr/datasets/election-presidentielle-2012-resultats-572124",
+      "source_page": "https://www.data.gouv.fr/datasets/election-presidentielle-2012-resultats-572124",
+      "producteur": "Ministère de l'Intérieur",
+      "licence": "Licence Ouverte",
+      "methode": "Feuille « France entière T1T2 ». Blancs et nuls ne sont pas séparés dans ce fichier.",
+      "inscrits": 46066307,
+      "abstentions": 9049998,
+      "votants": 37016309,
+      "blancs": null,
+      "nuls": null,
+      "blancs_et_nuls": 2154956,
+      "exprimes": 34861353,
+      "candidats": [
+        {
+          "nom": "SARKOZY",
+          "prenom": "Nicolas",
+          "voix": 16860685,
+          "pct_exprimes": 48.36,
+          "pct_exprimes_source": "fichier",
+          "pct_inscrits": 36.6,
+          "parti_id": null,
+          "mapping_source": "Le fichier du ministère et les décisions du Conseil constitutionnel utilisées ne donnent pas de code CNCCFP. Pas de rattachement inventé."
+        },
+        {
+          "nom": "HOLLANDE",
+          "prenom": "François",
+          "voix": 18000668,
+          "pct_exprimes": 51.64,
+          "pct_exprimes_source": "fichier",
+          "pct_inscrits": 39.08,
+          "parti_id": null,
+          "mapping_source": "Le fichier du ministère et les décisions du Conseil constitutionnel utilisées ne donnent pas de code CNCCFP. Pas de rattachement inventé."
+        }
+      ],
+      "blancs_et_nuls_non_separes": true
+    },
+    {
+      "scrutin": "presidentielle",
+      "annee": 2017,
+      "tour": 1,
+      "perimetre": "France entière",
+      "source_url": "https://static.data.gouv.fr/resources/election-presidentielle-des-23-avril-et-7-mai-2017-resultats-definitifs-du-1er-tour-1/20170427-100131/Presidentielle_2017_Resultats_Tour_1_c.xls",
+      "source_dataset": "https://www.data.gouv.fr/datasets/election-presidentielle-des-23-avril-et-7-mai-2017-resultats-definitifs-du-1er-tour-1",
+      "source_page": "https://www.data.gouv.fr/datasets/election-presidentielle-des-23-avril-et-7-mai-2017-resultats-definitifs-du-1er-tour-1",
+      "producteur": "Ministère de l'Intérieur",
+      "licence": "Licence Ouverte",
+      "methode": "Feuille « FE Metro OM Tour 1 », bloc France entière uniquement (avant Métropole et Outre-mer).",
+      "inscrits": 47582183,
+      "abstentions": 10578455,
+      "votants": 37003728,
+      "blancs": 659997,
+      "nuls": 289337,
+      "blancs_et_nuls": null,
+      "exprimes": 36054394,
+      "candidats": [
+        {
+          "nom": "DUPONT-AIGNAN",
+          "prenom": "Nicolas",
+          "voix": 1695000,
+          "pct_exprimes": 4.7,
+          "pct_exprimes_source": "fichier",
+          "pct_inscrits": 3.56,
+          "parti_id": "dlf",
+          "mapping_source": "partis.json candidats_officiels 2017"
+        },
+        {
+          "nom": "LE PEN",
+          "prenom": "Marine",
+          "voix": 7678491,
+          "pct_exprimes": 21.3,
+          "pct_exprimes_source": "fichier",
+          "pct_inscrits": 16.14,
+          "parti_id": "rn",
+          "mapping_source": "partis.json candidats_officiels 2017"
+        },
+        {
+          "nom": "MACRON",
+          "prenom": "Emmanuel",
+          "voix": 8656346,
+          "pct_exprimes": 24.01,
+          "pct_exprimes_source": "fichier",
+          "pct_inscrits": 18.19,
+          "parti_id": "renaissance",
+          "mapping_source": "partis.json candidats_officiels 2017"
+        },
+        {
+          "nom": "HAMON",
+          "prenom": "Benoît",
+          "voix": 2291288,
+          "pct_exprimes": 6.36,
+          "pct_exprimes_source": "fichier",
+          "pct_inscrits": 4.82,
+          "parti_id": "ps",
+          "mapping_source": "partis.json candidats_officiels 2017"
+        },
+        {
+          "nom": "ARTHAUD",
+          "prenom": "Nathalie",
+          "voix": 232384,
+          "pct_exprimes": 0.64,
+          "pct_exprimes_source": "fichier",
+          "pct_inscrits": 0.49,
+          "parti_id": "lo",
+          "mapping_source": "partis.json candidats_officiels 2017"
+        },
+        {
+          "nom": "POUTOU",
+          "prenom": "Philippe",
+          "voix": 394505,
+          "pct_exprimes": 1.09,
+          "pct_exprimes_source": "fichier",
+          "pct_inscrits": 0.83,
+          "parti_id": null,
+          "mapping_source": "partis.json candidats_officiels 2017",
+          "etiquette": "NPA"
+        },
+        {
+          "nom": "CHEMINADE",
+          "prenom": "Jacques",
+          "voix": 65586,
+          "pct_exprimes": 0.18,
+          "pct_exprimes_source": "fichier",
+          "pct_inscrits": 0.14,
+          "parti_id": "sp",
+          "mapping_source": "partis.json candidats_officiels 2017"
+        },
+        {
+          "nom": "LASSALLE",
+          "prenom": "Jean",
+          "voix": 435301,
+          "pct_exprimes": 1.21,
+          "pct_exprimes_source": "fichier",
+          "pct_inscrits": 0.91,
+          "parti_id": "resistons",
+          "mapping_source": "partis.json candidats_officiels 2017"
+        },
+        {
+          "nom": "MÉLENCHON",
+          "prenom": "Jean-Luc",
+          "voix": 7059951,
+          "pct_exprimes": 19.58,
+          "pct_exprimes_source": "fichier",
+          "pct_inscrits": 14.84,
+          "parti_id": "lfi",
+          "mapping_source": "partis.json candidats_officiels 2017"
+        },
+        {
+          "nom": "ASSELINEAU",
+          "prenom": "François",
+          "voix": 332547,
+          "pct_exprimes": 0.92,
+          "pct_exprimes_source": "fichier",
+          "pct_inscrits": 0.7,
+          "parti_id": "upr",
+          "mapping_source": "partis.json candidats_officiels 2017"
+        },
+        {
+          "nom": "FILLON",
+          "prenom": "François",
+          "voix": 7212995,
+          "pct_exprimes": 20.01,
+          "pct_exprimes_source": "fichier",
+          "pct_inscrits": 15.16,
+          "parti_id": "lr",
+          "mapping_source": "partis.json candidats_officiels 2017"
+        }
+      ]
+    },
+    {
+      "scrutin": "presidentielle",
+      "annee": 2017,
+      "tour": 2,
+      "perimetre": "France entière",
+      "source_url": "https://static.data.gouv.fr/resources/election-presidentielle-des-23-avril-et-7-mai-2017-resultats-definitifs-du-2nd-tour/20170511-092258/Presidentielle_2017_Resultats_Tour_2_c.xls",
+      "source_dataset": "https://www.data.gouv.fr/datasets/election-presidentielle-des-23-avril-et-7-mai-2017-resultats-definitifs-du-2nd-tour",
+      "source_page": "https://www.data.gouv.fr/datasets/election-presidentielle-des-23-avril-et-7-mai-2017-resultats-definitifs-du-2nd-tour",
+      "producteur": "Ministère de l'Intérieur",
+      "licence": "Licence Ouverte",
+      "methode": "Feuille « FE Metro OM Tour 2 », bloc France entière uniquement.",
+      "inscrits": 47568693,
+      "abstentions": 12101366,
+      "votants": 35467327,
+      "blancs": 3021499,
+      "nuls": 1064225,
+      "blancs_et_nuls": null,
+      "exprimes": 31381603,
+      "candidats": [
+        {
+          "nom": "MACRON",
+          "prenom": "Emmanuel",
+          "voix": 20743128,
+          "pct_exprimes": 66.1,
+          "pct_exprimes_source": "fichier",
+          "pct_inscrits": 43.61,
+          "parti_id": "renaissance",
+          "mapping_source": "partis.json candidats_officiels 2017"
+        },
+        {
+          "nom": "LE PEN",
+          "prenom": "Marine",
+          "voix": 10638475,
+          "pct_exprimes": 33.9,
+          "pct_exprimes_source": "fichier",
+          "pct_inscrits": 22.36,
+          "parti_id": "rn",
+          "mapping_source": "partis.json candidats_officiels 2017"
+        }
+      ]
+    },
+    {
+      "scrutin": "presidentielle",
+      "annee": 2022,
+      "tour": 1,
+      "perimetre": "France entière",
+      "source_url": "https://static.data.gouv.fr/resources/election-presidentielle-des-10-et-24-avril-2022-resultats-definitifs-du-1er-tour/20220414-152200/resultats-par-niveau-fe-t1-france-entiere.txt",
+      "source_dataset": "https://www.data.gouv.fr/datasets/election-presidentielle-des-10-et-24-avril-2022-resultats-definitifs-du-1er-tour",
+      "source_page": "https://www.data.gouv.fr/datasets/election-presidentielle-des-10-et-24-avril-2022-resultats-definitifs-du-1er-tour",
+      "producteur": "Ministère de l'Intérieur",
+      "licence": "Licence Ouverte",
+      "methode": "Fichier national « France entière » du 1er tour, une ligne. Pourcentages ceux du fichier.",
+      "inscrits": 48747876,
+      "abstentions": 12824169,
+      "votants": 35923707,
+      "blancs": 543609,
+      "nuls": 247151,
+      "blancs_et_nuls": null,
+      "exprimes": 35132947,
+      "candidats": [
+        {
+          "nom": "ARTHAUD",
+          "prenom": "Nathalie",
+          "voix": 197094,
+          "pct_exprimes": 0.56,
+          "pct_exprimes_source": "fichier",
+          "pct_inscrits": 0.4,
+          "parti_id": "lo",
+          "mapping_source": "partis.json candidats_officiels 2022"
+        },
+        {
+          "nom": "ROUSSEL",
+          "prenom": "Fabien",
+          "voix": 802422,
+          "pct_exprimes": 2.28,
+          "pct_exprimes_source": "fichier",
+          "pct_inscrits": 1.65,
+          "parti_id": "pcf",
+          "mapping_source": "partis.json candidats_officiels 2022"
+        },
+        {
+          "nom": "MACRON",
+          "prenom": "Emmanuel",
+          "voix": 9783058,
+          "pct_exprimes": 27.85,
+          "pct_exprimes_source": "fichier",
+          "pct_inscrits": 20.07,
+          "parti_id": "renaissance",
+          "mapping_source": "partis.json candidats_officiels 2022"
+        },
+        {
+          "nom": "LASSALLE",
+          "prenom": "Jean",
+          "voix": 1101387,
+          "pct_exprimes": 3.13,
+          "pct_exprimes_source": "fichier",
+          "pct_inscrits": 2.26,
+          "parti_id": "resistons",
+          "mapping_source": "partis.json candidats_officiels 2022"
+        },
+        {
+          "nom": "LE PEN",
+          "prenom": "Marine",
+          "voix": 8133828,
+          "pct_exprimes": 23.15,
+          "pct_exprimes_source": "fichier",
+          "pct_inscrits": 16.69,
+          "parti_id": "rn",
+          "mapping_source": "partis.json candidats_officiels 2022"
+        },
+        {
+          "nom": "ZEMMOUR",
+          "prenom": "Éric",
+          "voix": 2485226,
+          "pct_exprimes": 7.07,
+          "pct_exprimes_source": "fichier",
+          "pct_inscrits": 5.1,
+          "parti_id": "reconquete",
+          "mapping_source": "partis.json candidats_officiels 2022"
+        },
+        {
+          "nom": "MÉLENCHON",
+          "prenom": "Jean-Luc",
+          "voix": 7712520,
+          "pct_exprimes": 21.95,
+          "pct_exprimes_source": "fichier",
+          "pct_inscrits": 15.82,
+          "parti_id": "lfi",
+          "mapping_source": "partis.json candidats_officiels 2022"
+        },
+        {
+          "nom": "HIDALGO",
+          "prenom": "Anne",
+          "voix": 616478,
+          "pct_exprimes": 1.75,
+          "pct_exprimes_source": "fichier",
+          "pct_inscrits": 1.26,
+          "parti_id": "ps",
+          "mapping_source": "partis.json candidats_officiels 2022"
+        },
+        {
+          "nom": "JADOT",
+          "prenom": "Yannick",
+          "voix": 1627853,
+          "pct_exprimes": 4.63,
+          "pct_exprimes_source": "fichier",
+          "pct_inscrits": 3.34,
+          "parti_id": "eelv",
+          "mapping_source": "partis.json candidats_officiels 2022"
+        },
+        {
+          "nom": "PÉCRESSE",
+          "prenom": "Valérie",
+          "voix": 1679001,
+          "pct_exprimes": 4.78,
+          "pct_exprimes_source": "fichier",
+          "pct_inscrits": 3.44,
+          "parti_id": "lr",
+          "mapping_source": "partis.json candidats_officiels 2022"
+        },
+        {
+          "nom": "POUTOU",
+          "prenom": "Philippe",
+          "voix": 268904,
+          "pct_exprimes": 0.77,
+          "pct_exprimes_source": "fichier",
+          "pct_inscrits": 0.55,
+          "parti_id": null,
+          "mapping_source": "partis.json candidats_officiels 2022",
+          "etiquette": "NPA"
+        },
+        {
+          "nom": "DUPONT-AIGNAN",
+          "prenom": "Nicolas",
+          "voix": 725176,
+          "pct_exprimes": 2.06,
+          "pct_exprimes_source": "fichier",
+          "pct_inscrits": 1.49,
+          "parti_id": "dlf",
+          "mapping_source": "partis.json candidats_officiels 2022"
+        }
+      ]
+    },
+    {
+      "scrutin": "presidentielle",
+      "annee": 2022,
+      "tour": 2,
+      "perimetre": "France entière",
+      "source_url": "https://static.data.gouv.fr/resources/election-presidentielle-des-10-et-24-avril-2022-resultats-definitifs-du-2nd-tour/20220428-141900/resultats-par-niveau-fe-t2-france-entiere.txt",
+      "source_dataset": "https://www.data.gouv.fr/datasets/election-presidentielle-des-10-et-24-avril-2022-resultats-definitifs-du-2nd-tour",
+      "source_page": "https://www.data.gouv.fr/datasets/election-presidentielle-des-10-et-24-avril-2022-resultats-definitifs-du-2nd-tour",
+      "producteur": "Ministère de l'Intérieur",
+      "licence": "Licence Ouverte",
+      "methode": "Fichier national « France entière » du 2nd tour, une ligne. Pourcentages ceux du fichier.",
+      "inscrits": 48752339,
+      "abstentions": 13655861,
+      "votants": 35096478,
+      "blancs": 2233904,
+      "nuls": 805249,
+      "blancs_et_nuls": null,
+      "exprimes": 32057325,
+      "candidats": [
+        {
+          "nom": "MACRON",
+          "prenom": "Emmanuel",
+          "voix": 18768639,
+          "pct_exprimes": 58.55,
+          "pct_exprimes_source": "fichier",
+          "pct_inscrits": 38.5,
+          "parti_id": "renaissance",
+          "mapping_source": "partis.json candidats_officiels 2022"
+        },
+        {
+          "nom": "LE PEN",
+          "prenom": "Marine",
+          "voix": 13288686,
+          "pct_exprimes": 41.45,
+          "pct_exprimes_source": "fichier",
+          "pct_inscrits": 27.26,
+          "parti_id": "rn",
+          "mapping_source": "partis.json candidats_officiels 2022"
+        }
+      ]
+    }
+  ]
+}
