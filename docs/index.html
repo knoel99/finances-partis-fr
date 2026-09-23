@@ -53,10 +53,17 @@
         L’UPR reste à <strong>0</strong> sur toute la période (ligne orange en pointillés).
       </p>
       <div class="card chart">
+        <div class="chart-toolbar">
+          <label class="scale-toggle">
+            <input type="checkbox" class="js-log-scale" aria-controls="chart-emprunts">
+            <span>Échelle logarithmique</span>
+          </label>
+        </div>
         <div class="chart-wrap">
           <canvas id="chart-emprunts" aria-label="Graphique emprunts financiers par parti"></canvas>
         </div>
         <p class="chart-note">Source : <code>series_dette.json</code> — CNCCFP / data.gouv.fr</p>
+        <p class="chart-note log-hint" hidden>Graduation en millions d’euros (1&nbsp;M€, 10&nbsp;M€). Les valeurs nulles ou négatives sont omises : elles ne sont pas définies sur une échelle logarithmique.</p>
       </div>
     </section>
 
@@ -69,10 +76,17 @@
         Un parti peut avoir <strong>zéro emprunt</strong> tout en ayant des dettes au bilan.
       </p>
       <div class="card chart">
+        <div class="chart-toolbar">
+          <label class="scale-toggle">
+            <input type="checkbox" class="js-log-scale" aria-controls="chart-bilan">
+            <span>Échelle logarithmique</span>
+          </label>
+        </div>
         <div class="chart-wrap">
           <canvas id="chart-bilan" aria-label="Graphique dettes bilan Total III par parti"></canvas>
         </div>
         <p class="chart-note">Source : <code>series_dette.json</code> — ne pas confondre avec le graphique emprunts ci-dessus</p>
+        <p class="chart-note log-hint" hidden>Graduation en millions d’euros (1&nbsp;M€, 10&nbsp;M€). Les valeurs nulles ou négatives sont omises : elles ne sont pas définies sur une échelle logarithmique.</p>
       </div>
     </section>
 
