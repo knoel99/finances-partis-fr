@@ -1,8 +1,17 @@
-/* Finances partis FR — charts from CNCCFP JSON only (no invented numbers) */
+/* Finances partis FR — filtres, classements, petits multiples, tableaux.
+   Chiffres lus dans les JSON CNCCFP du dépôt. Aucune valeur inventée. */
 (function () {
   "use strict";
 
-  const SHORT_LABELS = {
+  const METRICS = [
+    { id: "somme_emprunts_eur", label: "Emprunts financiers", short: "Emprunts" },
+    { id: "dettes_passif_total_III_eur", label: "Total III du passif", short: "Total III" },
+    { id: "cotisations_adherents_eur", label: "Cotisations adhérents", short: "Cotisations" },
+    { id: "dons_eur", label: "Dons", short: "Dons" },
+    { id: "aide_publique_eur", label: "Aide publique", short: "Aide publique" },
+  ];
+
+  const SHORT = {
     upr: "UPR",
     rn: "RN",
     lr: "LR",
@@ -17,7 +26,7 @@
     lo: "LO",
     generations: "Génération.s",
     sp: "S&P",
-    resistons: "Résistons !",
+    resistons: "Résistons",
   };
 
   const COLORS = {
@@ -26,22 +35,57 @@
     lr: "#1e3a8a",
     ps: "#e11d48",
     lfi: "#b91c1c",
-    renaissance: "#f59e0b",
+    renaissance: "#d97706",
     eelv: "#16a34a",
     pcf: "#dc2626",
     dlf: "#7c3aed",
     reconquete: "#1e293b",
-    modem: "#f97316",
+    modem: "#ea580c",
     lo: "#991b1b",
-    generations: "#ec4899",
+    generations: "#db2777",
     sp: "#64748b",
-    resistons: "#0ea5e9",
+    resistons: "#0284c7",
   };
 
-  const YEARS = [2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024];
+  const AXIS = "#475569";
+  const GRID = "rgba(15, 23, 42, 0.12)";
+  const MAX_LINES = 4;
+
+  const state = {
+    parties: new Set(),
+    yearFrom: 2017,
+    yearTo: 2024,
+    focusYear: 2024,
+    metric: METRICS[0].id,
+    mode: "rank",
+    log: false,
+    sortMatrix: { key: "2024", dir: "desc" },
+    sortMetrics: { key: METRICS[0].id, dir: "desc" },
+  };
+
+  let store = { rows: [], partis: [], years: [], libelles: {}, officiels: {} };
+  const charts = [];
+
+  function esc(s) {
+    return String(s == null ? "" : s).replace(/[&<>"']/g, (c) => ({
+      "&": "&amp;",
+      "<": "&lt;",
+      ">": "&gt;",
+      '"': "&quot;",
+      "'": "&#39;",
+    }[c]));
+  }
+
+  function safeUrl(u) {
+    try {
+      const url = new URL(u, window.location.href);
+      if (url.protocol === "http:" || url.protocol === "https:") return url.href;
+    } catch (e) { /* ignore */ }
+    return "";
+  }
 
   function eur(n) {
-    if (n == null || Number.isNaN(n)) return "—";
+    if (n == null || Number.isNaN(Number(n))) return "—";
     return new Intl.NumberFormat("fr-FR", {
       style: "currency",
       currency: "EUR",
@@ -49,285 +93,700 @@
     }).format(n);
   }
 
-  /** Y ticks on the log scale, in millions of euros (1 M€, 10 M€, 0,1 M€…). */
-  function formatMillionsEur(value) {
-    const millions = value / 1e6;
-    const abs = Math.abs(millions);
-    let digits = 0;
-    if (abs > 0 && abs < 1) {
-      digits = Math.min(6, Math.max(0, Math.ceil(-Math.log10(abs))));
+  function formatAxis(value) {
+    const n = Number(value);
+    if (!Number.isFinite(n)) return "";
+    const abs = Math.abs(n);
+    if (abs >= 1e6) {
+      return (
+        (n / 1e6).toLocaleString("fr-FR", {
+          maximumFractionDigits: abs >= 1e7 ? 0 : 1,
+        }) + " M€"
+      );
     }
-    const rounded = Number(millions.toFixed(digits));
-    return (
-      rounded.toLocaleString("fr-FR", {
-        minimumFractionDigits: digits,
-        maximumFractionDigits: digits,
-      }) + " M€"
-    );
+    if (abs >= 1e3) {
+      return (
+        (n / 1e3).toLocaleString("fr-FR", { maximumFractionDigits: 0 }) + " k€"
+      );
+    }
+    return n.toLocaleString("fr-FR", { maximumFractionDigits: 0 });
   }
 
-  function axisTitle(titleY, logarithmic) {
-    if (!logarithmic) return titleY;
-    if (titleY.endsWith("— €")) return titleY.slice(0, -1) + "M€";
-    return titleY + " (M€)";
+  function partyById(id) {
+    return store.partis.find((p) => p.id === id);
   }
 
-  /**
-   * Chart.js logarithmic scale rejects non-positive values (log undefined)
-   * and would otherwise draw a 0 at the axis minimum. Omit those points
-   * instead of substituting an epsilon, so a true zero is not plotted as debt.
-   */
-  function seriesForScale(raw, logarithmic) {
-    return raw.map((v) => {
-      if (v == null || Number.isNaN(v)) return null;
-      if (logarithmic && !(v > 0)) return null;
-      return v;
-    });
+  function partyName(p) {
+    const names = (p && p.noms_historiques) || [];
+    if (names.length) return names[names.length - 1];
+    return (p && p.id) || "";
   }
 
-  function partyLabel(id, partis) {
-    if (SHORT_LABELS[id]) return SHORT_LABELS[id];
-    const p = (partis || []).find((x) => x.id === id);
-    if (p && p.noms_historiques && p.noms_historiques.length)
-      return p.noms_historiques[p.noms_historiques.length - 1];
-    return id;
+  function shortName(id) {
+    if (SHORT[id]) return SHORT[id];
+    const p = partyById(id);
+    return p ? partyName(p) : id;
   }
 
-  function seriesByParty(dette) {
-    const map = {};
-    (dette.parties || []).forEach((p) => {
-      map[p.party_id] = p;
-    });
-    return map;
+  function colorOf(id) {
+    return COLORS[id] || "#64748b";
   }
 
-  function buildDataset(partyId, seriesObj, field, partis) {
-    const byYear = {};
-    (seriesObj.series || []).forEach((pt) => {
-      byYear[pt.year] = pt[field];
-    });
-    const data = YEARS.map((y) =>
-      byYear[y] != null ? byYear[y] : null
-    );
-    const isUpr = partyId === "upr";
+  function metricById(id) {
+    return METRICS.find((m) => m.id === id) || METRICS[0];
+  }
+
+  function yearsInRange() {
+    const out = [];
+    for (let y = state.yearFrom; y <= state.yearTo; y += 1) out.push(y);
+    return out;
+  }
+
+  function selectedParties() {
+    return store.partis.filter((p) => state.parties.has(p.id));
+  }
+
+  function valueAt(partyId, year, metric) {
+    const row = store.rows.find((r) => r.party_id === partyId && r.year === year);
+    if (!row || row[metric] == null || Number.isNaN(Number(row[metric]))) return null;
+    return Number(row[metric]);
+  }
+
+  function destroyCharts() {
+    while (charts.length) {
+      const c = charts.pop();
+      try { c.destroy(); } catch (e) { /* already gone */ }
+    }
+  }
+
+  function applyLightDefaults() {
+    if (typeof Chart === "undefined") return;
+    Chart.defaults.color = "#334155";
+    Chart.defaults.borderColor = GRID;
+    Chart.defaults.backgroundColor = "#ffffff";
+    Chart.defaults.font.family = '"Segoe UI", system-ui, sans-serif';
+    if (Chart.defaults.scale) {
+      Chart.defaults.scale.grid = Chart.defaults.scale.grid || {};
+      Chart.defaults.scale.grid.color = GRID;
+      Chart.defaults.scale.ticks = Chart.defaults.scale.ticks || {};
+      Chart.defaults.scale.ticks.color = AXIS;
+    }
+    const tip = Chart.defaults.plugins && Chart.defaults.plugins.tooltip;
+    if (tip) {
+      tip.backgroundColor = "#ffffff";
+      tip.titleColor = "#1e293b";
+      tip.bodyColor = "#334155";
+      tip.borderColor = "#d5dee8";
+      tip.borderWidth = 1;
+    }
+  }
+
+  const whiteBackground = {
+    id: "whiteBackground",
+    beforeDraw(chart) {
+      const { ctx } = chart;
+      ctx.save();
+      ctx.fillStyle = "#ffffff";
+      ctx.fillRect(0, 0, chart.width, chart.height);
+      ctx.restore();
+    },
+  };
+
+  function tooltipOptions() {
     return {
-      label: partyLabel(partyId, partis),
-      data,
-      borderColor: COLORS[partyId] || "#94a3b8",
-      backgroundColor: "transparent",
-      borderWidth: isUpr ? 3 : 1.5,
-      borderDash: isUpr ? [8, 5] : [],
-      tension: 0,
-      pointRadius: isUpr ? 4 : 2,
-      pointHoverRadius: 5,
-      spanGaps: false,
-      order: isUpr ? 0 : 1,
-    };
-  }
-
-  function legendLabelOptions() {
-    return {
-      color: "#334155",
-      boxWidth: 14,
-      padding: 8,
-      font(ctx) {
-        const w = ctx && ctx.chart ? ctx.chart.width : 800;
-        return { size: w < 520 ? 10 : 11 };
+      backgroundColor: "#ffffff",
+      titleColor: "#1e293b",
+      bodyColor: "#334155",
+      borderColor: "#d5dee8",
+      borderWidth: 1,
+      callbacks: {
+        label(ctx) {
+          const raw = ctx.dataset.rawValues
+            ? ctx.dataset.rawValues[ctx.dataIndex]
+            : null;
+          const v = raw != null ? raw : (ctx.parsed.x != null && ctx.dataset.indexAxis === "y"
+            ? ctx.parsed.x
+            : ctx.parsed.y);
+          if (v == null || Number.isNaN(v)) return ctx.dataset.label + " : —";
+          return ctx.dataset.label + " : " + eur(v);
+        },
       },
     };
   }
 
-  function yScaleOptions(titleY, logarithmic) {
-    if (!logarithmic) {
+  function valueScale(log, min, max) {
+    if (log) {
+      const positiveMin = min > 0 ? min : 1;
+      const positiveMax = max > 0 ? max : positiveMin * 10;
+      const lo = positiveMin / 10;
+      const hi = positiveMax > positiveMin ? positiveMax * 1.15 : positiveMin * 10;
       return {
-        type: "linear",
-        title: {
-          display: true,
-          text: titleY,
-          color: "#475569",
-        },
+        type: "logarithmic",
+        min: lo,
+        max: hi,
         ticks: {
-          color: "#475569",
+          color: AXIS,
           maxRotation: 0,
-          callback(v) {
-            if (Math.abs(v) >= 1e6)
-              return (
-                (v / 1e6).toLocaleString("fr-FR", {
-                  maximumFractionDigits: 1,
-                }) + " M€"
-              );
-            if (Math.abs(v) >= 1e3)
-              return (
-                (v / 1e3).toLocaleString("fr-FR", {
-                  maximumFractionDigits: 0,
-                }) + " k€"
-              );
-            return v;
+          callback(value, index, ticks) {
+            const n = Number(value);
+            if (!Number.isFinite(n) || n <= 0) return "";
+            const tick = ticks && ticks[index];
+            if (tick && tick.major === false) return "";
+            return formatAxis(n);
           },
         },
-        grid: { color: "rgba(15, 23, 42, 0.12)" },
+        grid: { color: GRID },
       };
     }
-
     return {
-      type: "logarithmic",
-      title: {
-        display: true,
-        text: axisTitle(titleY, true),
-        color: "#475569",
-      },
+      type: "linear",
+      min: 0,
+      max: max > 0 ? max : 1,
       ticks: {
-        color: "#475569",
+        color: AXIS,
         maxRotation: 0,
-        autoSkip: true,
-        callback(value, index, ticks) {
-          const tick = ticks && ticks[index];
-          const n = Number(value);
-          if (!Number.isFinite(n) || n <= 0) return "";
-          if (tick && tick.major === false) return "";
-          return formatMillionsEur(n);
-        },
+        callback: (v) => formatAxis(v),
       },
-      afterBuildTicks(scale) {
-        const major = scale.ticks.filter((t) => t.major && t.value > 0);
-        if (major.length >= 2) scale.ticks = major;
-      },
-      grid: { color: "rgba(15, 23, 42, 0.12)" },
+      grid: { color: GRID },
     };
   }
 
-  const euroCharts = [];
+  function categoryScale() {
+    return {
+      ticks: { color: "#334155", autoSkip: false, maxRotation: 0 },
+      grid: { display: false },
+    };
+  }
 
-  function makeChart(canvasId, seriesMap, partis, field, titleY) {
-    const el = document.getElementById(canvasId);
-    if (!el || typeof Chart === "undefined") return null;
+  function mountChart(canvas, config) {
+    const chart = new Chart(canvas, config);
+    charts.push(chart);
+    return chart;
+  }
 
-    const partyIds = Object.keys(seriesMap).sort((a, b) => {
-      if (a === "upr") return 1;
-      if (b === "upr") return -1;
-      return partyLabel(a, partis).localeCompare(partyLabel(b, partis), "fr");
+  function sharedExtent(log) {
+    const vals = [];
+    selectedParties().forEach((p) => {
+      yearsInRange().forEach((y) => {
+        const v = valueAt(p.id, y, state.metric);
+        if (v == null) return;
+        if (log && !(v > 0)) return;
+        vals.push(v);
+      });
+    });
+    if (!vals.length) return { min: log ? 1 : 0, max: log ? 10 : 1, empty: true };
+    return { min: Math.min(...vals), max: Math.max(...vals), empty: false };
+  }
+
+  function seriesFor(partyId, log) {
+    const years = yearsInRange();
+    const raw = years.map((y) => valueAt(partyId, y, state.metric));
+    const data = raw.map((v) => {
+      if (v == null) return null;
+      if (log && !(v > 0)) return null;
+      return v;
+    });
+    return { raw, data, years };
+  }
+
+  function renderRank(panel) {
+    const log = state.log;
+    const ranked = selectedParties()
+      .map((p) => ({ p, v: valueAt(p.id, state.focusYear, state.metric) }))
+      .filter((d) => d.v != null && (!log || d.v > 0))
+      .sort((a, b) => b.v - a.v || shortName(a.p.id).localeCompare(shortName(b.p.id), "fr"));
+
+    const missing = selectedParties().filter((p) => valueAt(p.id, state.focusYear, state.metric) == null);
+    const zeros = selectedParties().filter((p) => valueAt(p.id, state.focusYear, state.metric) === 0);
+
+    if (!ranked.length) {
+      panel.dataset.chart = "empty";
+      panel.innerHTML = '<p class="empty">Aucun montant affichable pour cette année, cette métrique et cette sélection.</p>';
+      return;
+    }
+
+    const height = Math.max(300, ranked.length * 34 + 72);
+    panel.dataset.chart = "bar";
+    panel.innerHTML =
+      '<div class="chart-wrap" style="height:' + height + 'px">' +
+      '<canvas id="chart-rank" aria-label="Classement en barres horizontales"></canvas></div>';
+    const max = Math.max(...ranked.map((d) => d.v));
+    const padded = max === 0 ? 1 : max * 1.06;
+    mountChart(document.getElementById("chart-rank"), {
+      type: "bar",
+      plugins: [whiteBackground],
+      data: {
+        labels: ranked.map((d) => shortName(d.p.id)),
+        datasets: [{
+          label: metricById(state.metric).label,
+          data: ranked.map((d) => d.v),
+          rawValues: ranked.map((d) => d.v),
+          backgroundColor: ranked.map((d) => colorOf(d.p.id)),
+          borderColor: ranked.map((d) => colorOf(d.p.id)),
+          borderWidth: 1,
+          maxBarThickness: 22,
+          indexAxis: "y",
+        }],
+      },
+      options: {
+        indexAxis: "y",
+        responsive: true,
+        maintainAspectRatio: false,
+        animation: false,
+        plugins: {
+          legend: { display: false },
+          tooltip: tooltipOptions(),
+        },
+        scales: {
+          x: valueScale(log, Math.min(...ranked.map((d) => d.v)), log ? max : padded),
+          y: categoryScale(),
+        },
+      },
     });
 
-    const datasets = partyIds.map((id) => {
-      const ds = buildDataset(id, seriesMap[id], field, partis);
-      ds.rawValues = ds.data.slice();
-      ds.pointHitRadius = id === "upr" ? 12 : 8;
-      return ds;
-    });
+    const notes = [];
+    if (missing.length) {
+      notes.push("Sans montant publié pour " + state.focusYear + " : " + missing.map((p) => shortName(p.id)).join(", ") + ".");
+    }
+    if (log && zeros.length) {
+      notes.push("À 0 €, donc absents du graphique logarithmique : " + zeros.map((p) => shortName(p.id)).join(", ") + ".");
+    }
+    if (notes.length) {
+      panel.insertAdjacentHTML("beforeend", '<p class="chart-note">' + esc(notes.join(" ")) + "</p>");
+    }
+  }
 
-    const chart = new Chart(el, {
+  function renderMultiples(panel) {
+    const parties = selectedParties();
+    if (!parties.length) {
+      panel.dataset.chart = "empty";
+      panel.innerHTML = '<p class="empty">Sélectionnez au moins un parti.</p>';
+      return;
+    }
+    const extent = sharedExtent(state.log);
+    panel.dataset.chart = "multiples";
+    const cards = parties.map((p) => {
+      return (
+        '<figure class="mini">' +
+        "<h3>" + esc(shortName(p.id)) + "</h3>" +
+        '<div class="chart-wrap"><canvas id="chart-' + esc(p.id) + '" aria-label="Évolution de ' + esc(shortName(p.id)) + '"></canvas></div>' +
+        "</figure>"
+      );
+    }).join("");
+    panel.innerHTML =
+      '<p class="chart-note">Échelle verticale commune à tous les graphiques.</p>' +
+      '<div class="multiples">' + cards + "</div>";
+
+    parties.forEach((p) => {
+      const series = seriesFor(p.id, state.log);
+      const scale = valueScale(
+        state.log,
+        extent.min,
+        state.log ? extent.max : (extent.max > 0 ? extent.max * 1.05 : 1)
+      );
+      scale.ticks.font = { size: 10 };
+      scale.ticks.maxTicksLimit = 4;
+      mountChart(document.getElementById("chart-" + p.id), {
+        type: "line",
+        plugins: [whiteBackground],
+        data: {
+          labels: series.years,
+          datasets: [{
+            label: shortName(p.id),
+            data: series.data,
+            rawValues: series.raw,
+            borderColor: colorOf(p.id),
+            backgroundColor: "transparent",
+            borderWidth: 2,
+            tension: 0,
+            spanGaps: false,
+            pointRadius: 2,
+            pointHoverRadius: 4,
+          }],
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          animation: false,
+          plugins: {
+            legend: { display: false },
+            tooltip: tooltipOptions(),
+          },
+          scales: {
+            x: {
+              ticks: { color: AXIS, maxRotation: 0, font: { size: 10 } },
+              grid: { color: "rgba(15, 23, 42, 0.08)" },
+            },
+            y: scale,
+          },
+        },
+      });
+    });
+  }
+
+  function renderEvolution(panel) {
+    const parties = selectedParties();
+    if (!parties.length) {
+      panel.dataset.chart = "empty";
+      panel.innerHTML = '<p class="empty">Sélectionnez au moins un parti.</p>';
+      return;
+    }
+    if (parties.length > MAX_LINES) {
+      panel.dataset.chart = "blocked";
+      panel.innerHTML =
+        '<p class="empty">L’évolution superposée est limitée à ' + MAX_LINES +
+        " partis, pour éviter un graphique illisible. " +
+        parties.length + " sont cochés : décochez-en dans le filtre, ou passez aux petits multiples.</p>";
+      return;
+    }
+    const extent = sharedExtent(state.log);
+    if (extent.empty) {
+      panel.dataset.chart = "empty";
+      panel.innerHTML = '<p class="empty">Aucun montant affichable pour cette sélection.</p>';
+      return;
+    }
+    panel.dataset.chart = "lines";
+    panel.innerHTML =
+      '<div class="chart-wrap" style="height:440px">' +
+      '<canvas id="chart-evo" aria-label="Évolution des partis sélectionnés"></canvas></div>';
+    const years = yearsInRange();
+    const scale = valueScale(state.log, extent.min, state.log ? extent.max : extent.max * 1.05);
+    mountChart(document.getElementById("chart-evo"), {
       type: "line",
-      data: { labels: YEARS, datasets },
+      plugins: [whiteBackground],
+      data: {
+        labels: years,
+        datasets: parties.map((p) => {
+          const series = seriesFor(p.id, state.log);
+          return {
+            label: shortName(p.id),
+            data: series.data,
+            rawValues: series.raw,
+            borderColor: colorOf(p.id),
+            backgroundColor: "transparent",
+            borderWidth: 2,
+            tension: 0,
+            spanGaps: false,
+            pointRadius: 3,
+            pointHoverRadius: 5,
+          };
+        }),
+      },
       options: {
         responsive: true,
         maintainAspectRatio: false,
+        animation: false,
         interaction: { mode: "nearest", axis: "x", intersect: false },
         plugins: {
           legend: {
             position: "bottom",
-            labels: legendLabelOptions(),
+            labels: { color: "#334155", boxWidth: 14, padding: 10 },
           },
-          tooltip: {
-            callbacks: {
-              label(ctx) {
-                const raw =
-                  ctx.dataset.rawValues &&
-                  ctx.dataset.rawValues[ctx.dataIndex];
-                const v = raw != null ? raw : ctx.parsed.y;
-                if (v == null) return ctx.dataset.label + " : n/a";
-                const omitted = !(v > 0) && document.body.classList.contains("log-scale");
-                return (
-                  ctx.dataset.label +
-                  " : " +
-                  eur(v) +
-                  (omitted ? " (non tracé en log)" : "")
-                );
-              },
-            },
-          },
+          tooltip: tooltipOptions(),
         },
         scales: {
           x: {
-            ticks: { color: "#475569", maxRotation: 0 },
-            grid: { color: "rgba(15, 23, 42, 0.12)" },
+            ticks: { color: AXIS, maxRotation: 0 },
+            grid: { color: GRID },
           },
-          y: yScaleOptions(titleY, false),
+          y: scale,
         },
       },
     });
-
-    euroCharts.push({ chart, titleY });
-    return chart;
   }
 
-  function setLogScale(on) {
-    document.body.classList.toggle("log-scale", on);
-    document.querySelectorAll(".js-log-scale").forEach((el) => {
+  function renderChart() {
+    const panel = document.getElementById("chart-panel");
+    if (!panel) return;
+    destroyCharts();
+    panel.dataset.mode = state.mode;
+    if (typeof Chart === "undefined") {
+      panel.dataset.chart = "empty";
+      panel.innerHTML = '<p class="error">Chart.js n’a pas pu être chargé.</p>';
+      return;
+    }
+    if (state.mode === "multiples") renderMultiples(panel);
+    else if (state.mode === "evolution") renderEvolution(panel);
+    else renderRank(panel);
+
+    const hint = document.getElementById("log-hint");
+    if (hint) hint.hidden = !state.log;
+  }
+
+  function arrow(sort, key) {
+    if (sort.key !== key) return "";
+    return sort.dir === "asc" ? " ▲" : " ▼";
+  }
+
+  function ariaSort(sort, key) {
+    if (sort.key !== key) return "none";
+    return sort.dir === "asc" ? "ascending" : "descending";
+  }
+
+  function compareNullable(av, bv, dir) {
+    const aMissing = av == null || Number.isNaN(av);
+    const bMissing = bv == null || Number.isNaN(bv);
+    if (aMissing && bMissing) return 0;
+    if (aMissing) return 1;
+    if (bMissing) return -1;
+    const diff = av - bv;
+    return dir === "asc" ? diff : -diff;
+  }
+
+  function sortedParties(sort, valueFor) {
+    const rows = selectedParties().slice();
+    rows.sort((a, b) => {
+      if (sort.key === "party") {
+        const c = partyName(a).localeCompare(partyName(b), "fr", { sensitivity: "base" });
+        return sort.dir === "asc" ? c : -c;
+      }
+      const byVal = compareNullable(valueFor(a), valueFor(b), sort.dir);
+      if (byVal) return byVal;
+      return partyName(a).localeCompare(partyName(b), "fr", { sensitivity: "base" });
+    });
+    return rows;
+  }
+
+  function headerCell(sort, key, label, extraClass) {
+    return (
+      '<th scope="col" class="' + (extraClass || "") + '" aria-sort="' + ariaSort(sort, key) + '">' +
+      '<button type="button" data-sort="' + esc(key) + '">' + esc(label) + arrow(sort, key) + "</button></th>"
+    );
+  }
+
+  function renderMatrix() {
+    const table = document.getElementById("table-matrix");
+    const title = document.getElementById("matrix-title");
+    if (!table) return;
+    const years = yearsInRange();
+    const metric = metricById(state.metric);
+    if (title) {
+      title.textContent = metric.label + " — parti × année (" + state.yearFrom + "–" + state.yearTo + ")";
+    }
+    if (state.sortMatrix.key !== "party" && years.indexOf(Number(state.sortMatrix.key)) === -1) {
+      state.sortMatrix = { key: String(state.focusYear), dir: "desc" };
+    }
+    const rows = sortedParties(state.sortMatrix, (p) => {
+      if (state.sortMatrix.key === "party") return null;
+      return valueAt(p.id, Number(state.sortMatrix.key), state.metric);
+    });
+    const head = "<tr>" + headerCell(state.sortMatrix, "party", "Parti") +
+      years.map((y) => headerCell(
+        state.sortMatrix,
+        String(y),
+        String(y),
+        y === state.focusYear ? "is-focus" : ""
+      )).join("") + "</tr>";
+    const body = rows.length
+      ? rows.map((p) => {
+        const cells = years.map((y) => {
+          const v = valueAt(p.id, y, state.metric);
+          const cls = "num" + (y === state.focusYear ? " is-focus" : "");
+          return '<td class="' + cls + '">' + esc(eur(v)) + "</td>";
+        }).join("");
+        return "<tr><th scope=\"row\" class=\"party\">" + esc(partyName(p)) + "</th>" + cells + "</tr>";
+      }).join("")
+      : '<tr><td colspan="' + (years.length + 1) + '">Aucun parti sélectionné.</td></tr>';
+    table.innerHTML =
+      "<caption>Champ " + esc(state.metric) + ". Tri en cliquant sur un en-tête.</caption>" +
+      "<thead>" + head + "</thead><tbody>" + body + "</tbody>";
+  }
+
+  function renderMetricTable() {
+    const table = document.getElementById("table-metrics");
+    const title = document.getElementById("metrics-title");
+    if (!table) return;
+    if (title) title.textContent = "Toutes les métriques en " + state.focusYear;
+    const rows = sortedParties(state.sortMetrics, (p) => {
+      if (state.sortMetrics.key === "party") return null;
+      return valueAt(p.id, state.focusYear, state.sortMetrics.key);
+    });
+    const head = "<tr>" + headerCell(state.sortMetrics, "party", "Parti") +
+      METRICS.map((m) => headerCell(
+        state.sortMetrics,
+        m.id,
+        m.short,
+        m.id === state.metric ? "is-focus" : ""
+      )).join("") + "</tr>";
+    const body = rows.length
+      ? rows.map((p) => {
+        const cells = METRICS.map((m) => {
+          const v = valueAt(p.id, state.focusYear, m.id);
+          const cls = "num" + (m.id === state.metric ? " is-focus" : "");
+          return '<td class="' + cls + '">' + esc(eur(v)) + "</td>";
+        }).join("");
+        return "<tr><th scope=\"row\" class=\"party\">" + esc(partyName(p)) + "</th>" + cells + "</tr>";
+      }).join("")
+      : '<tr><td colspan="' + (METRICS.length + 1) + '">Aucun parti sélectionné.</td></tr>';
+    table.innerHTML =
+      "<caption>Exercice " + state.focusYear + ". La colonne surlignée est la métrique du graphique.</caption>" +
+      "<thead>" + head + "</thead><tbody>" + body + "</tbody>";
+  }
+
+  function renderStatus() {
+    const metric = metricById(state.metric);
+    const n = selectedParties().length;
+    const modeLabel = state.mode === "multiples"
+      ? "Petits multiples"
+      : state.mode === "evolution"
+        ? "Évolution"
+        : "Classement";
+    const el = document.getElementById("view-status");
+    if (el) {
+      el.textContent = modeLabel + " · " + metric.label + " · " +
+        (state.mode === "rank" ? String(state.focusYear) : state.yearFrom + "–" + state.yearTo) +
+        " · " + n + (n > 1 ? " partis" : " parti");
+    }
+    const count = document.getElementById("party-count");
+    if (count) count.textContent = n + " / " + store.partis.length + " partis";
+    const hint = document.getElementById("metric-hint");
+    if (hint) {
+      const fromJson = store.libelles[state.metric];
+      hint.textContent = fromJson || ("Champ " + state.metric + " des comptes annuels CNCCFP.");
+    }
+  }
+
+  function render() {
+    renderStatus();
+    renderChart();
+    renderMatrix();
+    renderMetricTable();
+  }
+
+  function renderTables() {
+    renderMatrix();
+    renderMetricTable();
+  }
+
+  function bindSort(tableId, sort) {
+    const table = document.getElementById(tableId);
+    if (!table) return;
+    table.addEventListener("click", (event) => {
+      const btn = event.target.closest("button[data-sort]");
+      if (!btn) return;
+      const key = btn.dataset.sort;
+      if (sort.key === key) sort.dir = sort.dir === "asc" ? "desc" : "asc";
+      else {
+        sort.key = key;
+        sort.dir = key === "party" ? "asc" : "desc";
+      }
+      renderTables();
+    });
+  }
+
+  function setAllParties(on) {
+    state.parties = on ? new Set(store.partis.map((p) => p.id)) : new Set();
+    document.querySelectorAll("#party-filters input").forEach((el) => {
       el.checked = on;
     });
-    document.querySelectorAll(".log-hint").forEach((el) => {
-      el.hidden = !on;
-    });
-    euroCharts.forEach(({ chart, titleY }) => {
-      chart.data.datasets.forEach((ds) => {
-        ds.data = seriesForScale(ds.rawValues || ds.data, on);
-      });
-      chart.options.scales.y = yScaleOptions(titleY, on);
-      chart.update();
-    });
+    render();
   }
 
-  function fillUprTable(comptes) {
-    const tbody = document.querySelector("#upr-table tbody");
-    if (!tbody) return;
-    const rows = (comptes.comptes || [])
-      .filter((r) => r.party_id === "upr")
-      .sort((a, b) => a.year - b.year);
-    tbody.innerHTML = rows
-      .map(
-        (r) =>
-          `<tr class="upr-row">
-            <td>${r.year}</td>
-            <td class="num">${eur(r.somme_emprunts_eur)}</td>
-            <td class="num">${eur(r.dettes_passif_total_III_eur)}</td>
-            <td class="num">${eur(r.cotisations_adherents_eur)}</td>
-            <td class="num">${eur(r.dons_eur)}</td>
-            <td class="num">${eur(r.aide_publique_eur)}</td>
-          </tr>`
-      )
-      .join("");
+  function fillSelect(id, options, value) {
+    const el = document.getElementById(id);
+    el.innerHTML = options.map((o) =>
+      '<option value="' + esc(o.value) + '">' + esc(o.label) + "</option>"
+    ).join("");
+    el.value = String(value);
+  }
+
+  function syncFocusOptions(keep) {
+    const years = yearsInRange();
+    const next = years.indexOf(keep) !== -1 ? keep : years[years.length - 1];
+    state.focusYear = next;
+    fillSelect("year-focus", years.map((y) => ({ value: y, label: String(y) })), next);
+    state.sortMatrix = { key: String(next), dir: "desc" };
+  }
+
+  function buildFilters() {
+    const host = document.getElementById("party-filters");
+    host.innerHTML = store.partis.map((p) =>
+      '<label title="' + esc(partyName(p)) + '">' +
+      '<input type="checkbox" value="' + esc(p.id) + '" checked> ' +
+      esc(shortName(p.id)) + "</label>"
+    ).join("");
+    state.parties = new Set(store.partis.map((p) => p.id));
+
+    fillSelect("metric", METRICS.map((m) => ({ value: m.id, label: m.label })), state.metric);
+    const yearOpts = store.years.map((y) => ({ value: y, label: String(y) }));
+    fillSelect("year-from", yearOpts, state.yearFrom);
+    fillSelect("year-to", yearOpts, state.yearTo);
+    syncFocusOptions(state.focusYear);
+
+    host.addEventListener("change", (event) => {
+      const input = event.target;
+      if (!input || input.type !== "checkbox") return;
+      if (input.checked) state.parties.add(input.value);
+      else state.parties.delete(input.value);
+      render();
+    });
+    document.getElementById("parties-all").addEventListener("click", () => setAllParties(true));
+    document.getElementById("parties-none").addEventListener("click", () => setAllParties(false));
+
+    document.getElementById("metric").addEventListener("change", (event) => {
+      state.metric = event.target.value;
+      state.sortMetrics = { key: state.metric, dir: "desc" };
+      render();
+    });
+    document.getElementById("year-from").addEventListener("change", (event) => {
+      state.yearFrom = Number(event.target.value);
+      if (state.yearFrom > state.yearTo) {
+        state.yearTo = state.yearFrom;
+        document.getElementById("year-to").value = String(state.yearTo);
+      }
+      syncFocusOptions(state.focusYear);
+      render();
+    });
+    document.getElementById("year-to").addEventListener("change", (event) => {
+      state.yearTo = Number(event.target.value);
+      if (state.yearTo < state.yearFrom) {
+        state.yearFrom = state.yearTo;
+        document.getElementById("year-from").value = String(state.yearFrom);
+      }
+      syncFocusOptions(state.focusYear);
+      render();
+    });
+    document.getElementById("year-focus").addEventListener("change", (event) => {
+      state.focusYear = Number(event.target.value);
+      state.sortMatrix = { key: String(state.focusYear), dir: "desc" };
+      render();
+    });
+    document.querySelectorAll('input[name="mode"]').forEach((el) => {
+      el.addEventListener("change", () => {
+        if (!el.checked) return;
+        state.mode = el.value;
+        render();
+      });
+    });
+    document.getElementById("log-scale").addEventListener("change", (event) => {
+      state.log = event.target.checked;
+      render();
+    });
+    bindSort("table-matrix", state.sortMatrix);
+    bindSort("table-metrics", state.sortMetrics);
   }
 
   function fillCandidateLists(partisData) {
-    const meta = partisData.meta || {};
-    const officiels = meta.candidats_officiels || {};
+    const officiels = (partisData.meta && partisData.meta.candidats_officiels) || {};
     const nameById = {};
-    (partisData.partis || []).forEach((p) => {
-      nameById[p.id] = partyLabel(p.id, partisData.partis);
-    });
+    store.partis.forEach((p) => { nameById[p.id] = shortName(p.id); });
 
     function renderOfficial(year, containerId) {
       const block = officiels[String(year)];
       const el = document.getElementById(containerId);
       if (!el || !block) return;
-      const items = (block.liste || [])
-        .map((c) => {
-          const tag =
-            c.parti_id != null
-              ? nameById[c.parti_id] || c.etiquette || ""
-              : c.etiquette || "";
-          const note = c.note ? ` <em>(${c.note})</em>` : "";
-          return `<li><strong>${c.nom}</strong>${
-            tag ? " — " + tag : ""
-          }${note}</li>`;
-        })
-        .join("");
-      el.querySelector("ol").innerHTML = items;
+      const items = (block.liste || []).map((c) => {
+        const tag = c.parti_id != null ? (nameById[c.parti_id] || c.etiquette || "") : (c.etiquette || "");
+        const note = c.note ? " <em>(" + esc(c.note) + ")</em>" : "";
+        return "<li><strong>" + esc(c.nom) + "</strong>" + (tag ? " — " + esc(tag) : "") + note + "</li>";
+      }).join("");
+      const list = el.querySelector("ol");
+      if (list) list.innerHTML = items;
       const src = el.querySelector(".meta-src");
+      const href = safeUrl(block.source || "");
       if (src) {
-        src.innerHTML = `${block.decision || ""} — <a href="${
-          block.source
-        }" target="_blank" rel="noopener">source</a>`;
+        src.innerHTML = esc(block.decision || "") +
+          (href ? ' — <a href="' + esc(href) + '" target="_blank" rel="noopener">source</a>' : "");
       }
     }
 
@@ -335,30 +794,28 @@
     renderOfficial(2022, "list-2022");
 
     const el27 = document.getElementById("list-2027");
-    if (el27) {
-      const items = [];
-      (partisData.partis || []).forEach((p) => {
-        (p.candidats_2027 || []).forEach((c) => {
-          items.push({
-            nom: c.nom,
-            parti: partyLabel(p.id, partisData.partis),
-            statut: c.statut,
-            annonce: c.annonce || "",
-            sources: c.sources || [],
-          });
+    if (!el27) return;
+    const items = [];
+    store.partis.forEach((p) => {
+      (p.candidats_2027 || []).forEach((c) => {
+        items.push({
+          nom: c.nom,
+          parti: shortName(p.id),
+          statut: c.statut || "",
+          annonce: c.annonce || "",
+          source: (c.sources && c.sources[0]) || "",
         });
       });
-      el27.querySelector("ul").innerHTML = items
-        .map((c) => {
-          const src =
-            c.sources[0] != null
-              ? ` <a href="${c.sources[0]}" target="_blank" rel="noopener">↗</a>`
-              : "";
-          return `<li><strong>${c.nom}</strong> — ${c.parti}<br><span class="badge warn">${c.statut}</span>${
-            c.annonce ? " " + c.annonce : ""
-          }${src}</li>`;
-        })
-        .join("");
+    });
+    const ul = el27.querySelector("ul");
+    if (ul) {
+      ul.innerHTML = items.map((c) => {
+        const href = safeUrl(c.source);
+        const link = href ? ' <a href="' + esc(href) + '" target="_blank" rel="noopener">↗</a>' : "";
+        return "<li><strong>" + esc(c.nom) + "</strong> — " + esc(c.parti) +
+          "<br><span class=\"badge warn\">" + esc(c.statut) + "</span> " +
+          esc(c.annonce) + link + "</li>";
+      }).join("");
     }
   }
 
@@ -371,42 +828,28 @@
   async function init() {
     const status = document.getElementById("data-status");
     try {
-      const [partis, dette, comptes] = await Promise.all([
+      const [partis, comptes] = await Promise.all([
         loadJson("data/partis.json"),
-        loadJson("data/series_dette.json"),
         loadJson("data/comptes_annuels.json"),
       ]);
-
-      const seriesMap = seriesByParty(dette);
-      const partisList = partis.partis || [];
-
-      makeChart(
-        "chart-emprunts",
-        seriesMap,
-        partisList,
-        "debt_eur",
-        "Emprunts financiers (somme_emprunts) — €"
+      store.rows = comptes.comptes || [];
+      store.libelles = (comptes.meta && comptes.meta.libelles) || {};
+      store.partis = (partis.partis || []).slice().sort((a, b) =>
+        shortName(a.id).localeCompare(shortName(b.id), "fr", { sensitivity: "base" })
       );
-      makeChart(
-        "chart-bilan",
-        seriesMap,
-        partisList,
-        "debt_total_bilan_III_eur",
-        "Total III passif (dettes bilan) — €"
-      );
-
-      fillUprTable(comptes);
+      store.years = Array.from(new Set(store.rows.map((r) => r.year))).sort((a, b) => a - b);
+      if (store.years.length) {
+        state.yearFrom = store.years[0];
+        state.yearTo = store.years[store.years.length - 1];
+        state.focusYear = state.yearTo;
+        state.sortMatrix = { key: String(state.focusYear), dir: "desc" };
+      }
+      applyLightDefaults();
+      buildFilters();
       fillCandidateLists(partis);
-
-      document.querySelectorAll(".js-log-scale").forEach((el) => {
-        el.addEventListener("change", () => setLogScale(el.checked));
-      });
-
+      render();
       if (status) {
-        status.textContent =
-          "Données chargées — " +
-          (dette.parties || []).length +
-          " partis, exercices 2017–2024 (CNCCFP).";
+        status.textContent = store.rows.length + " lignes · " + store.partis.length + " partis · CNCCFP";
         status.className = "badge ok";
       }
     } catch (err) {
@@ -415,16 +858,11 @@
         status.textContent = String(err.message || err);
         status.className = "error";
       }
-      document.querySelectorAll(".chart-wrap").forEach((w) => {
-        w.innerHTML =
-          '<p class="error">Impossible de charger les graphiques. Ouvrez le site via un serveur HTTP local (voir tip de vérification).</p>';
-      });
+      const panel = document.getElementById("chart-panel");
+      if (panel) panel.innerHTML = '<p class="error">Impossible de charger les données. Ouvrez le site via HTTP.</p>';
     }
   }
 
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", init);
-  } else {
-    init();
-  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);
+  else init();
 })();
