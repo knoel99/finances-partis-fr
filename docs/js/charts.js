@@ -117,7 +117,7 @@
       backgroundColor: "transparent",
       borderWidth: isUpr ? 3 : 1.5,
       borderDash: isUpr ? [8, 5] : [],
-      tension: 0.15,
+      tension: 0,
       pointRadius: isUpr ? 4 : 2,
       pointHoverRadius: 5,
       spanGaps: false,
@@ -127,7 +127,7 @@
 
   function legendLabelOptions() {
     return {
-      color: "#c5d4e8",
+      color: "#334155",
       boxWidth: 14,
       padding: 8,
       font(ctx) {
@@ -144,10 +144,10 @@
         title: {
           display: true,
           text: titleY,
-          color: "#9aabbd",
+          color: "#475569",
         },
         ticks: {
-          color: "#9aabbd",
+          color: "#475569",
           maxRotation: 0,
           callback(v) {
             if (Math.abs(v) >= 1e6)
@@ -165,7 +165,7 @@
             return v;
           },
         },
-        grid: { color: "rgba(45,58,77,0.5)" },
+        grid: { color: "rgba(15, 23, 42, 0.12)" },
       };
     }
 
@@ -174,10 +174,10 @@
       title: {
         display: true,
         text: axisTitle(titleY, true),
-        color: "#9aabbd",
+        color: "#475569",
       },
       ticks: {
-        color: "#9aabbd",
+        color: "#475569",
         maxRotation: 0,
         autoSkip: true,
         callback(value, index, ticks) {
@@ -192,7 +192,7 @@
         const major = scale.ticks.filter((t) => t.major && t.value > 0);
         if (major.length >= 2) scale.ticks = major;
       },
-      grid: { color: "rgba(45,58,77,0.55)" },
+      grid: { color: "rgba(15, 23, 42, 0.12)" },
     };
   }
 
@@ -248,8 +248,8 @@
         },
         scales: {
           x: {
-            ticks: { color: "#9aabbd", maxRotation: 0 },
-            grid: { color: "rgba(45,58,77,0.5)" },
+            ticks: { color: "#475569", maxRotation: 0 },
+            grid: { color: "rgba(15, 23, 42, 0.12)" },
           },
           y: yScaleOptions(titleY, false),
         },
